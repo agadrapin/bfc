@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>David Fincher — The Bayley Film Club</title>
+  <link rel="stylesheet" href="../../assets/css/global.css">
+<style>
+  /* GRAIN */
+  @keyframes grain {
+    0%   { transform: translate(0,0) }
+    20%  { transform: translate(-2%,-3%) }
+    40%  { transform: translate(3%,1%) }
+    60%  { transform: translate(-1%,4%) }
+    80%  { transform: translate(4%,-2%) }
+    100% { transform: translate(0,0) }
+  }
+
+  /* ── NAV ─────────────────────────────────────────────── */
+  nav {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.4rem 3rem;
+    border-bottom: 1px solid var(--border);
+    background: rgba(6,6,10,0.88);
+    backdrop-filter: blur(16px);
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.12em;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .nav-logo em {
+    font-style: normal;
+    color: var(--magenta);
+    text-shadow: 0 0 20px rgba(232,24,154,0.6);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted2);
+    text-decoration: none;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: -3px;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-live {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted2);
+    border: 1px solid var(--border2);
+    padding: 0.4rem 1rem;
+  }
+
+  .nav-live-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--magenta);
+    box-shadow: 0 0 8px var(--magenta);
+    animation: pulse 2s ease infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  /* ── HERO ─────────────────────────────────────────────── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    position: relative;
+    overflow: hidden;
+    padding-top: 80px;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 70% 60% at 100% 50%, rgba(123,47,255,0.1) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 80% at 0% 100%, rgba(232,24,154,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 50% 0%, rgba(201,168,76,0.04) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  /* large ghost letter behind everything */
+  .hero-ghost {
+    position: absolute;
+    right: -0.05em;
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(16rem, 28vw, 28rem);
+    letter-spacing: -0.02em;
+    color: rgba(123,47,255,0.04);
+    pointer-events: none;
+    user-select: none;
+    line-height: 1;
+    z-index: 0;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 4rem;
+    align-items: end;
+    padding: 5rem 3rem 4rem;
+  }
+
+  .hero-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.1s forwards;
+  }
+
+  .breadcrumb-link {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .breadcrumb-link:hover { color: var(--gold); }
+
+  .breadcrumb-sep {
+    font-size: 0.5rem;
+    color: var(--border2);
+  }
+
+  .breadcrumb-current {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .hero-season-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 0.35rem 0.9rem;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.2s forwards;
+  }
+
+  .season-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 8px var(--gold);
+  }
+
+  .season-label {
+    font-size: 0.55rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .hero-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(5rem, 10vw, 11rem);
+    line-height: 0.86;
+    letter-spacing: 0.01em;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.3s forwards;
+  }
+
+  .hero-name .first { display: block; color: var(--white); }
+  .hero-name .last  {
+    display: block;
+    color: var(--gold2);
+    text-shadow: 0 0 60px rgba(201,168,76,0.2);
+    position: relative;
+  }
+
+  .hero-name .last::before,
+  .hero-name .last::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0; left: 0;
+  }
+
+  .hero-name .last::before {
+    color: var(--magenta);
+    clip-path: polygon(0 0, 100% 0, 100% 30%, 0 30%);
+    animation: glitchTop 6s infinite;
+    text-shadow: none;
+  }
+
+  .hero-name .last::after {
+    color: var(--purple);
+    clip-path: polygon(0 70%, 100% 70%, 100% 100%, 0 100%);
+    animation: glitchBot 6s infinite;
+    text-shadow: none;
+  }
+
+  @keyframes glitchTop {
+    0%,90%,100% { opacity:0; transform:translate(0) }
+    92% { opacity:0.7; transform:translate(-5px,0) }
+    95% { opacity:0.5; transform:translate(3px,0) }
+    98% { opacity:0; }
+  }
+
+  @keyframes glitchBot {
+    0%,90%,100% { opacity:0; transform:translate(0) }
+    93% { opacity:0.6; transform:translate(5px,0) }
+    96% { opacity:0.4; transform:translate(-2px,0) }
+    99% { opacity:0; }
+  }
+
+  .hero-bio {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--muted2);
+    max-width: 560px;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.45s forwards;
+  }
+
+  .hero-bio strong {
+    color: var(--white);
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.55s forwards;
+  }
+
+  .btn {
+    padding: 0.9rem 2rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: crosshair;
+    transition: all 0.25s;
+    display: inline-block;
+  }
+
+  .btn-gold {
+    background: var(--gold);
+    color: var(--black);
+    border: 1px solid var(--gold);
+  }
+
+  .btn-gold:hover {
+    background: var(--gold2);
+    transform: translate(-2px,-2px);
+    box-shadow: 4px 4px 0 rgba(201,168,76,0.3);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--muted2);
+    border: 1px solid var(--border2);
+  }
+
+  .btn-outline:hover {
+    border-color: var(--purple2);
+    color: var(--purple2);
+    box-shadow: 0 0 20px rgba(123,47,255,0.15);
+  }
+
+  /* HERO RIGHT — STAT PANEL */
+  .hero-stats {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeIn 0.8s ease 0.6s forwards;
+    align-self: end;
+  }
+
+  .hero-stats::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(201,168,76,0.04), transparent 60%, rgba(123,47,255,0.04));
+    pointer-events: none;
+  }
+
+  .stats-header {
+    padding: 0.7rem 1.2rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--panel2);
+    font-size: 0.5rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .stats-header-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 6px var(--gold);
+  }
+
+  .stat-row {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stat-row:last-child { border-bottom: none; }
+
+  .stat-cell {
+    flex: 1;
+    padding: 1rem 1.2rem;
+    border-right: 1px solid var(--border);
+  }
+
+  .stat-cell:last-child { border-right: none; }
+
+  .stat-cell label {
+    display: block;
+    font-size: 0.5rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+  }
+
+  .stat-cell span {
+    font-size: 0.82rem;
+    color: var(--white);
+    line-height: 1.3;
+  }
+
+  .stat-cell span.accent-gold { color: var(--gold2); }
+  .stat-cell span.accent-mag  { color: var(--magenta2); }
+
+  .themes-wrap {
+    padding: 1rem 1.2rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .themes-label {
+    font-size: 0.5rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.7rem;
+  }
+
+  .themes-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .theme-tag {
+    font-size: 0.55rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    border: 1px solid var(--border2);
+    color: var(--muted2);
+    transition: all 0.2s;
+  }
+
+  .theme-tag:hover {
+    border-color: var(--purple2);
+    color: var(--purple2);
+    box-shadow: 0 0 10px rgba(123,47,255,0.15);
+  }
+
+  /* ── HERO BOTTOM BAR ─────────────────────────────────── */
+  .hero-bar {
+    position: relative;
+    z-index: 2;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 3rem;
+    background: rgba(6,6,10,0.6);
+    backdrop-filter: blur(8px);
+  }
+
+  .hero-bar-nav {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .bar-link {
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .bar-link::before {
+    content: '';
+    display: block;
+    width: 12px; height: 1px;
+    background: var(--border2);
+    transition: background 0.2s, width 0.2s;
+  }
+
+  .bar-link:hover { color: var(--gold); }
+  .bar-link:hover::before { background: var(--gold); width: 18px; }
+
+  /* ── FILMOGRAPHY TIMELINE ────────────────────────────── */
+  .section {
+    padding: 6rem 3rem;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+
+  .section-glow-purple {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 100% 50%, rgba(123,47,255,0.05) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .section-glow-magenta {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 50% 60% at 0% 50%, rgba(232,24,154,0.04) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .section-tag {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .tag-line {
+    width: 1.8rem; height: 1px;
+    background: linear-gradient(to right, var(--gold), transparent);
+  }
+
+  .tag-text {
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .section-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    letter-spacing: 0.03em;
+    line-height: 1;
+    margin-bottom: 3.5rem;
+  }
+
+  /* TIMELINE */
+  .timeline {
+    position: relative;
+    padding-left: 0;
+  }
+
+  /* ── axis wrapper — needs overflow visible for dots ── */
+  .timeline-axis-wrap {
+    position: relative;
+    margin-bottom: 3rem;
+  }
+
+  .timeline-axis {
+    position: relative;
+    height: 2px;
+    background: var(--border);
+    overflow: visible;
+  }
+
+  .timeline-axis-fill {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    background: linear-gradient(to right, var(--purple), var(--magenta), var(--gold));
+    width: 0;
+    transition: width 1.8s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .timeline-axis.revealed .timeline-axis-fill { width: 100%; }
+
+  /* ── film dots on the axis ── */
+  .axis-dot {
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    cursor: crosshair;
+  }
+
+  .axis-dot-inner {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1px solid;
+    background: var(--black);
+    transition: transform 0.25s, box-shadow 0.25s;
+    position: relative;
+  }
+
+  .axis-dot.regular .axis-dot-inner {
+    border-color: var(--purple2);
+    box-shadow: 0 0 6px rgba(123,47,255,0.5);
+  }
+
+  .axis-dot.pick .axis-dot-inner {
+    width: 11px;
+    height: 11px;
+    border-color: var(--gold);
+    box-shadow: 0 0 10px rgba(201,168,76,0.7);
+    background: rgba(201,168,76,0.15);
+  }
+
+  .axis-dot:hover .axis-dot-inner {
+    transform: scale(1.6);
+  }
+
+  .axis-dot.regular:hover .axis-dot-inner {
+    box-shadow: 0 0 16px rgba(168,107,255,0.9);
+  }
+
+  .axis-dot.pick:hover .axis-dot-inner {
+    box-shadow: 0 0 20px rgba(201,168,76,1);
+  }
+
+  /* tooltip */
+  .axis-tooltip {
+    position: absolute;
+    bottom: calc(100% + 14px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--panel2);
+    border: 1px solid var(--border2);
+    padding: 0.5rem 0.8rem;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s, transform 0.2s;
+    transform: translateX(-50%) translateY(4px);
+    z-index: 50;
+  }
+
+  .axis-dot:hover .axis-tooltip {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .axis-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%; left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: var(--border2);
+  }
+
+  .tooltip-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.05em;
+    color: var(--white);
+    display: block;
+    margin-bottom: 0.1rem;
+  }
+
+  .axis-dot.pick .tooltip-title { color: var(--gold2); }
+
+  .tooltip-year {
+    font-size: 0.5rem;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    display: block;
+  }
+
+  /* year labels below axis */
+  .axis-year-label {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.48rem;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    white-space: nowrap;
+    pointer-events: none;
+  }
+
+  .axis-dot.pick .axis-year-label { color: var(--gold); }
+
+  /* decade markers */
+  .timeline-decades {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+  .decade-mark {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .decade-tick {
+    width: 1px;
+    height: 8px;
+    background: var(--border2);
+  }
+
+  .decade-label {
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+  }
+
+  /* film card grid */
+  .timeline-films {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    margin-top: 3.5rem;
+    overflow: visible;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tl-film {
+    background: var(--panel);
+    padding: 1.2rem 1rem;
+    cursor: crosshair;
+    position: relative;
+    transition: background 0.3s;
+    overflow: visible;
+  }
+
+  .tl-film::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+    z-index: 1;
+  }
+
+  .tl-film.pick::before { background: var(--gold); }
+  .tl-film:not(.pick)::before { background: var(--purple); }
+
+  .tl-film:hover { background: var(--panel2); }
+  .tl-film:hover::before { transform: scaleX(1); }
+
+  .tl-year {
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    margin-bottom: 0.4rem;
+  }
+
+  .tl-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.04em;
+    line-height: 1.1;
+    margin-bottom: 0.4rem;
+    transition: color 0.2s;
+  }
+
+  .tl-film.pick .tl-title { color: var(--gold2); }
+  .tl-film:not(.pick) .tl-title { color: var(--white); }
+
+  .tl-genre {
+    font-size: 0.52rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.6rem;
+    font-family: 'Space Mono', monospace;
+  }
+
+  .tl-pick-marker {
+    font-size: 0.48rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .tl-pick-marker::before {
+    content: '';
+    display: block;
+    width: 16px;
+    height: 1px;
+    background: var(--gold);
+    box-shadow: 0 0 6px rgba(201,168,76,0.6);
+  }
+
+  .tl-film.pick {
+    background: rgba(201,168,76,0.04);
+    border-top: 2px solid var(--gold);
+  }
+
+  .tl-film.pick:hover { background: rgba(201,168,76,0.07); }
+
+  .tl-film.pick .tl-badge {
+    color: var(--gold);
+    border-color: rgba(201,168,76,0.4);
+    background: rgba(201,168,76,0.06);
+  }
+
+  .tl-film:not(.pick) .tl-badge {
+    color: var(--muted);
+    border-color: var(--border2);
+  }
+
+  /* ── AWARD ICONS ── */
+  .tl-awards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-top: 0.6rem;
+  }
+
+  .award {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.46rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.45rem;
+    border: 1px solid;
+    white-space: nowrap;
+    position: relative;
+    cursor: default;
+  }
+
+  .award-icon {
+    font-size: 0.6rem;
+    line-height: 1;
+  }
+
+  /* Oscar — warm ivory */
+  .award.oscar {
+    color: #d4c5a9;
+    border-color: rgba(212,197,169,0.35);
+    background: rgba(212,197,169,0.05);
+  }
+
+  .award.oscar .award-icon { color: #d4c5a9; }
+
+  /* Palme d'Or — green-gold */
+  .award.palme {
+    color: #a8c17a;
+    border-color: rgba(168,193,122,0.35);
+    background: rgba(168,193,122,0.05);
+  }
+
+  .award.palme .award-icon { color: #a8c17a; }
+
+  /* Golden Globe — bright gold */
+  .award.globe {
+    color: var(--gold2);
+    border-color: rgba(232,201,122,0.35);
+    background: rgba(232,201,122,0.05);
+  }
+
+  .award.globe .award-icon { color: var(--gold2); }
+
+  /* nominee vs winner distinction */
+  .award.nominee { opacity: 0.6; }
+  .award.winner  { opacity: 1; }
+
+  /* tooltip on award hover */
+  .award-wrap {
+    position: relative;
+    display: inline-flex;
+  }
+
+  .award-tip {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--panel2);
+    border: 1px solid var(--border2);
+    padding: 0.5rem 0.7rem;
+    font-size: 0.5rem;
+    letter-spacing: 0.08em;
+    line-height: 1.6;
+    white-space: normal;
+    width: max-content;
+    max-width: 200px;
+    color: var(--white);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.15s;
+    z-index: 999;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+  }
+
+  .award-tip::after {
+    content: '';
+    position: absolute;
+    top: 100%; left: 50%;
+    transform: translateX(-50%);
+    border: 5px solid transparent;
+    border-top-color: var(--border2);
+  }
+
+  .award-wrap:hover .award-tip { opacity: 1; }
+
+  .cr-dim {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.48rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .cr-dim-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .cr-dim.a .cr-dim-dot { background: var(--purple2); box-shadow: 0 0 5px rgba(168,107,255,0.7); }
+  .cr-dim.e .cr-dim-dot { background: var(--magenta2); box-shadow: 0 0 5px rgba(255,92,200,0.7); }
+  .cr-dim.r .cr-dim-dot { background: var(--gold2); box-shadow: 0 0 5px rgba(232,201,122,0.7); }
+
+  .cr-dim.a { color: var(--purple2); }
+  .cr-dim.e { color: var(--magenta2); }
+  .cr-dim.r { color: var(--gold2); }
+
+  /* ── REVIEWS ─────────────────────────────────────────── */
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: var(--border);
+  }
+
+  .review-card {
+    background: var(--panel);
+    display: grid;
+    grid-template-columns: clamp(160px, 22vw, 300px) 1fr;
+    cursor: crosshair;
+    transition: background 0.3s;
+    position: relative;
+    overflow: hidden;
+    min-height: 220px;
+  }
+
+  .review-card:hover { background: var(--panel2); }
+
+  .review-card-vis {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    min-height: 220px;
+  }
+
+  .review-card:nth-child(1) .review-card-vis { background: linear-gradient(160deg, #100820, #1c0f35); }
+  .review-card:nth-child(2) .review-card-vis { background: linear-gradient(160deg, #180810, #280d1e); }
+  .review-card:nth-child(3) .review-card-vis { background: linear-gradient(160deg, #14100a, #221c08); }
+
+  .review-vis-year {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 8rem;
+    line-height: 1;
+    user-select: none;
+    transition: transform 0.4s, opacity 0.4s;
+  }
+
+  .review-card:nth-child(1) .review-vis-year { color: rgba(123,47,255,0.18); }
+  .review-card:nth-child(2) .review-vis-year { color: rgba(232,24,154,0.15); }
+  .review-card:nth-child(3) .review-vis-year { color: rgba(201,168,76,0.18); }
+
+  .review-card:hover .review-vis-year { transform: scale(1.06); opacity: 0.85; }
+
+  .review-vis-badge {
+    position: absolute;
+    top: 1rem; left: 1rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    padding: 0.25rem 0.7rem;
+    background: rgba(0,0,0,0.75);
+  }
+
+  .review-card:nth-child(1) .review-vis-badge { color: var(--purple2); border: 1px solid rgba(123,47,255,0.5); }
+  .review-card:nth-child(2) .review-vis-badge { color: var(--magenta2); border: 1px solid rgba(232,24,154,0.5); }
+  .review-card:nth-child(3) .review-vis-badge { color: var(--gold2); border: 1px solid rgba(201,168,76,0.5); }
+
+  .review-card-body {
+    padding: 2.5rem 2.5rem 2rem;
+    border-left: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .review-meta {
+    font-size: 0.55rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.8rem;
+  }
+
+  .review-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    letter-spacing: 0.03em;
+    line-height: 1;
+    margin-bottom: 1.2rem;
+    transition: color 0.25s;
+  }
+
+  .review-card:nth-child(1):hover .review-title { color: var(--purple2); }
+  .review-card:nth-child(2):hover .review-title { color: var(--magenta2); }
+  .review-card:nth-child(3):hover .review-title { color: var(--gold2); }
+
+  .review-excerpt {
+    font-family: 'Syne', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 0.92rem;
+    line-height: 1.85;
+    color: var(--muted2);
+    margin-bottom: 2rem;
+    flex: 1;
+  }
+
+  .review-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--border);
+    padding-top: 1.2rem;
+  }
+
+  .club-rating {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .club-rating-label {
+    font-size: 0.48rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .club-rating-score {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+  }
+
+  .club-rating-total {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    color: var(--gold2);
+    text-shadow: 0 0 20px rgba(201,168,76,0.35);
+  }
+
+  .club-rating-max {
+    font-size: 0.55rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+
+  .club-rating-breakdown {
+    display: flex;
+    gap: 0.6rem;
+  }
+
+  .cr-dim {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.48rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .cr-dim-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+  }
+
+  .cr-dim.a .cr-dim-dot { background: var(--purple2); box-shadow: 0 0 5px rgba(168,107,255,0.7); }
+  .cr-dim.e .cr-dim-dot { background: var(--magenta2); box-shadow: 0 0 5px rgba(255,92,200,0.7); }
+  .cr-dim.r .cr-dim-dot { background: var(--gold2); box-shadow: 0 0 5px rgba(232,201,122,0.7); }
+
+  .cr-dim.a { color: var(--purple2); }
+  .cr-dim.e { color: var(--magenta2); }
+  .cr-dim.r { color: var(--gold2); }
+
+  .read-link {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border2);
+    padding-bottom: 0.15rem;
+    transition: all 0.2s;
+    align-self: flex-end;
+  }
+
+  .review-card:nth-child(1):hover .read-link { color: var(--purple2); border-color: var(--purple2); }
+  .review-card:nth-child(2):hover .read-link { color: var(--magenta2); border-color: var(--magenta2); }
+  .review-card:nth-child(3):hover .read-link { color: var(--gold2); border-color: var(--gold2); }
+
+  /* ── FOOTER ──────────────────────────────────────────── */
+  footer {
+    padding: 2.5rem 3rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--panel);
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    color: var(--white);
+  }
+
+  .footer-logo em {
+    font-style: normal;
+    color: var(--magenta);
+    text-shadow: 0 0 15px rgba(232,24,154,0.5);
+  }
+
+  .footer-copy {
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── CURSOR GLOW ─────────────────────────────────────── */
+  /* ── UTILS ───────────────────────────────────────────── */
+  .link-subtle {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border2);
+    padding-bottom: 0.2rem;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .link-subtle:hover { color: var(--gold); border-color: var(--gold); }
+
+  .section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 3rem;
+  }
+
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(20px) }
+    to   { opacity:1; transform:translateY(0) }
+  }
+
+  @keyframes fadeIn {
+    from { opacity:0 }
+    to   { opacity:1 }
+  }
+
+
+</style>
+</head>
+<body>
+
+<div id="cursorGlow"></div>
+
+<!-- ═══ NAV ══════════════════════════════════════════════ -->
+<nav class="site-nav">
+  <a href="../../index.html" class="nav-logo">THE BAYLEY <em>FILM</em> CLUB</a>
+  <ul class="nav-links">
+    <li><a href="#">Now Screening</a></li>
+    <li><a href="#">Archive</a></li>
+    <li><a href="#">Essays</a></li>
+    <li><a href="#">About</a></li>
+  </ul>
+  <div class="nav-live">
+    <div class="nav-live-dot"></div>
+    Season 04 · Active
+  </div>
+</nav>
+
+<!-- ═══ HERO ══════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-ghost">F</div>
+
+  <div class="hero-content">
+    <!-- LEFT -->
+    <div>
+      <div class="hero-breadcrumb">
+        <a href="../../index.html" class="breadcrumb-link">Home</a>
+        <span class="breadcrumb-sep">◆</span>
+        <a href="#" class="breadcrumb-link">Archive</a>
+        <span class="breadcrumb-sep">◆</span>
+        <span class="breadcrumb-current">David Fincher</span>
+      </div>
+
+      <div class="hero-season-tag">
+        <div class="season-dot"></div>
+        <span class="season-label">Season 04 · Current Director</span>
+      </div>
+
+      <h1 class="hero-name">
+        <span class="first">DAVID</span>
+        <span class="last" data-text="FINCHER">FINCHER</span>
+      </h1>
+
+      <p class="hero-bio">
+        <strong>The architect of dread.</strong> David Fincher is a filmmaker of uncommon precision — a director who treats cinema as an act of control, and whose films are saturated with the creeping certainty that something is profoundly, irreversibly wrong. From the rain-soaked procedural horror of <strong>Se7en</strong> to the existential unravelling of <strong>Fight Club</strong>, Fincher's work returns obsessively to obsession itself: men chasing truth until truth destroys them.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#reviews" class="btn btn-gold">Read Reviews</a>
+        <a href="#timeline" class="btn btn-outline">View Timeline</a>
+      </div>
+    </div>
+
+    <!-- RIGHT — STATS PANEL -->
+    <div class="hero-stats">
+      <div class="stats-header">
+        Director Profile <div class="stats-header-dot"></div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-cell">
+          <label>Born</label>
+          <span>Aug 28, 1962</span>
+        </div>
+        <div class="stat-cell">
+          <label>Origin</label>
+          <span>Denver, USA</span>
+        </div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-cell">
+          <label>Active</label>
+          <span>1992 – Present</span>
+        </div>
+        <div class="stat-cell">
+          <label>Features</label>
+          <span class="accent-gold">12 films</span>
+        </div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-cell">
+          <label>Our Picks</label>
+          <span class="accent-gold">3 selected</span>
+        </div>
+        <div class="stat-cell">
+          <label>Season</label>
+          <span class="accent-mag">04</span>
+        </div>
+      </div>
+
+      <div class="themes-wrap">
+        <div class="themes-label">Recurring Themes</div>
+        <div class="themes-tags">
+          <span class="theme-tag">Obsession</span>
+          <span class="theme-tag">Identity</span>
+          <span class="theme-tag">Dread</span>
+          <span class="theme-tag">Procedure</span>
+          <span class="theme-tag">Masculinity</span>
+          <span class="theme-tag">Paranoia</span>
+          <span class="theme-tag">Control</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM ANCHOR BAR -->
+  <div class="hero-bar">
+    <div class="hero-bar-nav">
+      <a href="#timeline" class="bar-link">Timeline</a>
+      <a href="#reviews" class="bar-link">Reviews</a>
+    </div>
+    <span style="font-size:0.55rem; letter-spacing:0.2em; color:var(--muted); text-transform:uppercase;">Season 04 of 04</span>
+  </div>
+</section>
+
+<!-- ═══ FILMOGRAPHY TIMELINE ══════════════════════════════ -->
+<section class="section" id="timeline">
+  <div class="section-glow-purple"></div>
+
+  <div class="section-tag">
+    <div class="tag-line"></div>
+    <span class="tag-text">Career in Order</span>
+  </div>
+  <h2 class="section-heading">TIMELINE</h2>
+
+  <div class="timeline">
+
+    <!-- AXIS with glowing film dots -->
+    <div class="timeline-axis-wrap">
+      <div class="timeline-axis" id="timelineAxis">
+        <div class="timeline-axis-fill"></div>
+        <!-- dots injected by JS -->
+      </div>
+    </div>
+
+    <div class="timeline-decades">
+      <div class="decade-mark"><div class="decade-tick"></div><span class="decade-label">1990s</span></div>
+      <div class="decade-mark"><div class="decade-tick"></div><span class="decade-label">2000s</span></div>
+      <div class="decade-mark"><div class="decade-tick"></div><span class="decade-label">2010s</span></div>
+      <div class="decade-mark"><div class="decade-tick"></div><span class="decade-label">2020s</span></div>
+    </div>
+
+    <div class="timeline-films">
+      <div class="tl-film">
+        <div class="tl-year">1992</div>
+        <div class="tl-title">Alien³</div>
+        <div class="tl-genre">Sci-Fi · Horror</div>
+        <span class="tl-badge">Feature</span>
+      </div>
+      <div class="tl-film pick">
+        <div class="tl-pick-marker">OUR PICK</div>
+        <div class="tl-year">1995</div>
+        <div class="tl-title">Se7en</div>
+        <div class="tl-genre">Thriller · Crime</div>
+        <span class="tl-badge">★ Reviewed</span>
+        <div class="tl-awards">
+          <div class="award-wrap">
+            <span class="award oscar nominee"><span class="award-icon">🏆</span>Oscar</span>
+            <span class="award-tip">Oscar Nominee — Best Film Editing</span>
+          </div>
+          <div class="award-wrap">
+            <span class="award globe nominee"><span class="award-icon">🌐</span>Globe</span>
+            <span class="award-tip">Golden Globe Nominee — Best Score</span>
+          </div>
+        </div>
+      </div>
+      <div class="tl-film">
+        <div class="tl-year">1997</div>
+        <div class="tl-title">The Game</div>
+        <div class="tl-genre">Thriller · Mystery</div>
+        <span class="tl-badge">Feature</span>
+      </div>
+      <div class="tl-film pick">
+        <div class="tl-pick-marker">OUR PICK</div>
+        <div class="tl-year">1999</div>
+        <div class="tl-title">Fight Club</div>
+        <div class="tl-genre">Drama · Thriller</div>
+        <span class="tl-badge">★ Reviewed</span>
+        <div class="tl-awards">
+          <div class="award-wrap">
+            <span class="award oscar nominee"><span class="award-icon">🏆</span>Oscar</span>
+            <span class="award-tip">Oscar Nominee — Best Film Editing</span>
+          </div>
+        </div>
+      </div>
+      <div class="tl-film">
+        <div class="tl-year">2002</div>
+        <div class="tl-title">Panic Room</div>
+        <div class="tl-genre">Thriller</div>
+        <span class="tl-badge">Feature</span>
+      </div>
+      <div class="tl-film pick">
+        <div class="tl-pick-marker">OUR PICK</div>
+        <div class="tl-year">2007</div>
+        <div class="tl-title">Zodiac</div>
+        <div class="tl-genre">Crime · Mystery</div>
+        <span class="tl-badge">★ Reviewed</span>
+      </div>
+      <div class="tl-film">
+        <div class="tl-year">2008</div>
+        <div class="tl-title">Benjamin Button</div>
+        <div class="tl-genre">Drama · Fantasy</div>
+        <span class="tl-badge">Feature</span>
+        <div class="tl-awards">
+          <div class="award-wrap">
+            <span class="award oscar nominee"><span class="award-icon">🏆</span>Oscar</span>
+            <span class="award-tip">Oscar Nominee — Best Picture (13 nominations)</span>
+          </div>
+          <div class="award-wrap">
+            <span class="award globe nominee"><span class="award-icon">🌐</span>Globe</span>
+            <span class="award-tip">Golden Globe Nominee — Best Drama Film</span>
+          </div>
+        </div>
+      </div>
+      <div class="tl-film">
+        <div class="tl-year">2010</div>
+        <div class="tl-title">The Social Network</div>
+        <div class="tl-genre">Drama · Biography</div>
+        <span class="tl-badge">Feature</span>
+        <div class="tl-awards">
+          <div class="award-wrap">
+            <span class="award oscar winner"><span class="award-icon">🏆</span>Oscar ✦</span>
+            <span class="award-tip">Oscar Winner — Best Adapted Screenplay, Score, Editing</span>
+          </div>
+          <div class="award-wrap">
+            <span class="award globe winner"><span class="award-icon">🌐</span>Globe ✦</span>
+            <span class="award-tip">Golden Globe Winner — Best Drama Film</span>
+          </div>
+        </div>
+      </div>
+      <div class="tl-film">
+        <div class="tl-year">2011</div>
+        <div class="tl-title">Dragon Tattoo</div>
+        <div class="tl-genre">Crime · Thriller</div>
+        <span class="tl-badge">Feature</span>
+        <div class="tl-awards">
+          <div class="award-wrap">
+            <span class="award oscar winner"><span class="award-icon">🏆</span>Oscar ✦</span>
+            <span class="award-tip">Oscar Winner — Best Film Editing</span>
+          </div>
+        </div>
+      </div>
+      <div class="tl-film">
+        <div class="tl-year">2014</div>
+        <div class="tl-title">Gone Girl</div>
+        <div class="tl-genre">Thriller · Mystery</div>
+        <span class="tl-badge">Feature</span>
+        <div class="tl-awards">
+          <div class="award-wrap">
+            <span class="award oscar nominee"><span class="award-icon">🏆</span>Oscar</span>
+            <span class="award-tip">Oscar Nominee — Best Actress (Rosamund Pike)</span>
+          </div>
+          <div class="award-wrap">
+            <span class="award globe winner"><span class="award-icon">🌐</span>Globe ✦</span>
+            <span class="award-tip">Golden Globe Winner — Best Actress Drama</span>
+          </div>
+        </div>
+      </div>
+      <div class="tl-film">
+        <div class="tl-year">2020</div>
+        <div class="tl-title">Mank</div>
+        <div class="tl-genre">Drama · Biography</div>
+        <span class="tl-badge">Feature</span>
+        <div class="tl-awards">
+          <div class="award-wrap">
+            <span class="award oscar nominee"><span class="award-icon">🏆</span>Oscar</span>
+            <span class="award-tip">Oscar Nominee — Best Picture (10 nominations)</span>
+          </div>
+        </div>
+      </div>
+      <div class="tl-film">
+        <div class="tl-year">2023</div>
+        <div class="tl-title">The Killer</div>
+        <div class="tl-genre">Action · Thriller</div>
+        <span class="tl-badge">Feature</span>
+        <div class="tl-awards">
+          <div class="award-wrap">
+            <span class="award oscar nominee"><span class="award-icon">🏆</span>Oscar</span>
+            <span class="award-tip">Oscar Nominee — Best Film Editing</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SELECTED REVIEWS ══════════════════════════════════ -->
+<section class="section" id="reviews">
+  <div class="section-glow-magenta"></div>
+
+  <div class="section-header">
+    <div>
+      <div class="section-tag">
+        <div class="tag-line"></div>
+        <span class="tag-text">Season 04 Selections</span>
+      </div>
+      <h2 class="section-heading">THE PICKS</h2>
+    </div>
+    <a href="#" class="link-subtle">All reviews →</a>
+  </div>
+
+  <div class="reviews-grid">
+
+    <!-- Review 1 -->
+    <div class="review-card">
+      <div class="review-card-vis">
+        <div class="review-vis-year">1995</div>
+        <div class="review-vis-badge">★★★★★</div>
+      </div>
+      <div class="review-card-body">
+        <div>
+          <div class="review-meta">1995 · 127 min · Thriller · Crime</div>
+          <div class="review-title">Se7en</div>
+          <p class="review-excerpt">
+            What Fincher understood — and what makes Se7en so unbearably effective — is that evil doesn't need to be seen to be felt. We never witness the crimes in real time. We arrive after, into silence and consequence, and that absence is worse than anything that could have been shown. Somerset and Mills don't chase a monster. They follow a sermon. The killer isn't aberrant; he believes he's correct. That's what lingers.
+          </p>
+        </div>
+        <div class="review-footer">
+          <div class="club-rating">
+            <span class="club-rating-label">Club Rating</span>
+            <div class="club-rating-score">
+              <span class="club-rating-total">14</span>
+              <span class="club-rating-max">/ 15</span>
+            </div>
+            <div class="club-rating-breakdown">
+              <span class="cr-dim a"><span class="cr-dim-dot"></span>A·4</span>
+              <span class="cr-dim e"><span class="cr-dim-dot"></span>E·5</span>
+              <span class="cr-dim r"><span class="cr-dim-dot"></span>R·5</span>
+            </div>
+          </div>
+          <a href="se7en.html" class="read-link">Full review →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Review 2 -->
+    <div class="review-card">
+      <div class="review-card-vis">
+        <div class="review-vis-year">1999</div>
+        <div class="review-vis-badge">★★★★½</div>
+      </div>
+      <div class="review-card-body">
+        <div>
+          <div class="review-meta">1999 · 139 min · Drama · Thriller</div>
+          <div class="review-title">Fight Club</div>
+          <p class="review-excerpt">
+            The joke at the centre of Fight Club — that a film designed to critique toxic masculine fantasy became the canonical text for the very men it was satirising — is either the greatest irony in American cinema or evidence that Fincher was playing a longer game than anyone noticed. The film is a trap. It makes you feel powerful, then shows you what you've become. Most people step out before the second act of the trick lands.
+          </p>
+        </div>
+        <div class="review-footer">
+          <div class="club-rating">
+            <span class="club-rating-label">Club Rating</span>
+            <div class="club-rating-score">
+              <span class="club-rating-total">12</span>
+              <span class="club-rating-max">/ 15</span>
+            </div>
+            <div class="club-rating-breakdown">
+              <span class="cr-dim a"><span class="cr-dim-dot"></span>A·3</span>
+              <span class="cr-dim e"><span class="cr-dim-dot"></span>E·5</span>
+              <span class="cr-dim r"><span class="cr-dim-dot"></span>R·4</span>
+            </div>
+          </div>
+          <a href="fight-club.html" class="read-link">Full review →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Review 3 -->
+    <div class="review-card">
+      <div class="review-card-vis">
+        <div class="review-vis-year">2007</div>
+        <div class="review-vis-badge">★★★★½</div>
+      </div>
+      <div class="review-card-body">
+        <div>
+          <div class="review-meta">2007 · 157 min · Crime · Mystery</div>
+          <div class="review-title">Zodiac</div>
+          <p class="review-excerpt">
+            Zodiac is Fincher's most quietly devastating film precisely because it refuses to give you what you came for. There is no resolution. There is no catharsis. There is only Graysmith at his drawing board, years later, still at it — a man who handed his marriage, his sanity, and eventually his youth to a puzzle that was never going to be solved. Fincher makes you feel every year of it.
+          </p>
+        </div>
+        <div class="review-footer">
+          <div class="club-rating">
+            <span class="club-rating-label">Club Rating</span>
+            <div class="club-rating-score">
+              <span class="club-rating-total">12</span>
+              <span class="club-rating-max">/ 15</span>
+            </div>
+            <div class="club-rating-breakdown">
+              <span class="cr-dim a"><span class="cr-dim-dot"></span>A·3</span>
+              <span class="cr-dim e"><span class="cr-dim-dot"></span>E·4</span>
+              <span class="cr-dim r"><span class="cr-dim-dot"></span>R·5</span>
+            </div>
+          </div>
+          <a href="zodiac.html" class="read-link">Full review →</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+
+<!-- ═══ FOOTER ════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <a href="../../index.html" class="footer-logo">THE BAYLEY <em>FILM</em> CLUB</a>
+  <div class="footer-copy">A Club for the Obsessed · Est. 2024</div>
+  <div class="footer-copy">Built with love & cinema</div>
+</footer>
+
+<script>
+  // CURSOR GLOW
+  const glow = document.getElementById('cursorGlow');
+  let mx = window.innerWidth / 2, my = window.innerHeight / 2;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  (function animateGlow() { glow.style.left = mx+'px'; glow.style.top = my+'px'; requestAnimationFrame(animateGlow); })();
+
+  // TIMELINE DOTS — positioned proportionally by year
+  const films = [
+    { year: 1992, title: 'Alien³',               pick: false },
+    { year: 1995, title: 'Se7en',                pick: true  },
+    { year: 1997, title: 'The Game',             pick: false },
+    { year: 1999, title: 'Fight Club',           pick: true  },
+    { year: 2002, title: 'Panic Room',           pick: false },
+    { year: 2007, title: 'Zodiac',               pick: true  },
+    { year: 2008, title: 'Benjamin Button',      pick: false },
+    { year: 2010, title: 'The Social Network',   pick: false },
+    { year: 2011, title: 'Dragon Tattoo',        pick: false },
+    { year: 2014, title: 'Gone Girl',            pick: false },
+    { year: 2020, title: 'Mank',                 pick: false },
+    { year: 2023, title: 'The Killer',           pick: false },
+  ];
+
+  const START_YEAR = 1990, END_YEAR = 2025;
+
+  function buildDots() {
+    const axis = document.getElementById('timelineAxis');
+    films.forEach(f => {
+      const pct = ((f.year - START_YEAR) / (END_YEAR - START_YEAR)) * 100;
+      const dot = document.createElement('div');
+      dot.className = 'axis-dot ' + (f.pick ? 'pick' : 'regular');
+      dot.style.left = pct + '%';
+      dot.innerHTML = `
+        <div class="axis-dot-inner"></div>
+        <div class="axis-tooltip">
+          <span class="tooltip-title">${f.title}</span>
+          <span class="tooltip-year">${f.year}</span>
+        </div>
+        <div class="axis-year-label">${f.year}</div>
+      `;
+      axis.appendChild(dot);
+    });
+  }
+
+  buildDots();
+
+  // reveal axis line on scroll
+  const axis = document.getElementById('timelineAxis');
+  const axisObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        axis.classList.add('revealed');
+        axisObserver.unobserve(axis);
+      }
+    });
+  }, { threshold: 0.3 });
+  axisObserver.observe(axis);
+
+  // SCROLL REVEAL
+  const revealEls = document.querySelectorAll('.tl-film, .review-card');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        const delay = (Array.from(e.target.parentNode.children).indexOf(e.target) * 0.04);
+        e.target.style.opacity = '0';
+        e.target.style.transform = 'translateY(12px)';
+        e.target.style.transition = `opacity 0.5s ease ${delay}s, transform 0.5s ease ${delay}s`;
+        requestAnimationFrame(() => { e.target.style.opacity = ''; e.target.style.transform = ''; });
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05 });
+  revealEls.forEach(el => io.observe(el));
+
+
+</script>
+  <script src="../../assets/js/global.js"></script>
+</body>
+</html>

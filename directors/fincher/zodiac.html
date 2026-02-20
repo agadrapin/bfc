@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZODIAC — The Bayley Film Club</title>
+  <link rel="stylesheet" href="../../assets/css/global.css">
+<style>
+  @keyframes grain {
+    0%   { transform: translate(0,0) }
+    20%  { transform: translate(-2%,-3%) }
+    40%  { transform: translate(3%,1%) }
+    60%  { transform: translate(-1%,4%) }
+    80%  { transform: translate(4%,-2%) }
+    100% { transform: translate(0,0) }
+  }
+
+  /* ── NAV ────────────────────────────────────────── */
+  nav {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.4rem 3rem;
+    border-bottom: 1px solid var(--border);
+    background: rgba(6,6,10,0.88);
+    backdrop-filter: blur(16px);
+  }
+
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.12em;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .nav-logo em {
+    font-style: normal;
+    color: var(--magenta);
+    text-shadow: 0 0 20px rgba(232,24,154,0.6);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted2);
+    text-decoration: none;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+    position: relative;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: -3px;
+    width: 0; height: 1px;
+    background: var(--gold);
+    transition: width 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { width: 100%; }
+
+  .nav-live {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted2);
+    border: 1px solid var(--border2);
+    padding: 0.4rem 1rem;
+  }
+
+  .nav-live-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--magenta);
+    box-shadow: 0 0 8px var(--magenta);
+    animation: pulse 2s ease infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+  }
+
+  /* ── HERO ───────────────────────────────────────── */
+  .hero {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+    overflow: hidden;
+    padding-top: 80px;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 100%, rgba(123,47,255,0.1) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 50% at 90% 20%, rgba(232,24,154,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 40% at 10% 80%, rgba(201,168,76,0.04) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  /* giant ghost title behind everything */
+  .hero-ghost {
+    position: absolute;
+    left: -0.02em;
+    bottom: -0.1em;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(8rem, 18vw, 22rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: rgba(201,168,76,0.04);
+    pointer-events: none;
+    user-select: none;
+    z-index: 0;
+    white-space: nowrap;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 4rem 3rem 3rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 4rem;
+    align-items: end;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.1s forwards;
+  }
+
+  .breadcrumb-link {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .breadcrumb-link:hover { color: var(--gold); }
+  .breadcrumb-sep { font-size: 0.5rem; color: var(--border2); }
+  .breadcrumb-current { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); }
+
+  .hero-season-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    border: 1px solid rgba(201,168,76,0.3);
+    padding: 0.35rem 0.9rem;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.7s ease 0.2s forwards;
+  }
+
+  .season-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 8px var(--gold);
+  }
+
+  .season-label {
+    font-size: 0.55rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 9vw, 10rem);
+    line-height: 0.88;
+    letter-spacing: 0.01em;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.3s forwards;
+  }
+
+  .hero-title .line1 { display: block; color: var(--white); }
+  .hero-title .line2 {
+    display: block;
+    color: var(--gold2);
+    text-shadow: 0 0 60px rgba(201,168,76,0.2);
+    position: relative;
+  }
+
+  .hero-title .line2::before,
+  .hero-title .line2::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0; left: 0;
+  }
+
+  .hero-title .line2::before {
+    color: var(--magenta);
+    clip-path: polygon(0 0, 100% 0, 100% 30%, 0 30%);
+    animation: glitchTop 7s infinite;
+    text-shadow: none;
+  }
+
+  .hero-title .line2::after {
+    color: var(--purple);
+    clip-path: polygon(0 70%, 100% 70%, 100% 100%, 0 100%);
+    animation: glitchBot 7s infinite;
+    text-shadow: none;
+  }
+
+  @keyframes glitchTop {
+    0%,92%,100% { opacity:0; transform:translate(0) }
+    94% { opacity:0.6; transform:translate(-5px,0) }
+    97% { opacity:0; }
+  }
+
+  @keyframes glitchBot {
+    0%,92%,100% { opacity:0; transform:translate(0) }
+    95% { opacity:0.5; transform:translate(4px,0) }
+    98% { opacity:0; }
+  }
+
+  .hero-tagline {
+    font-family: 'Syne', sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    color: var(--muted2);
+    max-width: 520px;
+    line-height: 1.7;
+    opacity: 0;
+    animation: fadeUp 0.8s ease 0.45s forwards;
+  }
+
+  /* HERO RIGHT — film facts panel */
+  .hero-facts {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    min-width: 240px;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeIn 0.8s ease 0.55s forwards;
+    align-self: end;
+  }
+
+  .hero-facts::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(201,168,76,0.04), transparent);
+    pointer-events: none;
+  }
+
+  .facts-header {
+    padding: 0.6rem 1.1rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--panel2);
+    font-size: 0.5rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .facts-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--gold);
+    box-shadow: 0 0 6px var(--gold);
+  }
+
+  .fact-row {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .fact-row:last-child { border-bottom: none; }
+
+  .fact-cell {
+    flex: 1;
+    padding: 0.8rem 1.1rem;
+    border-right: 1px solid var(--border);
+  }
+
+  .fact-cell:last-child { border-right: none; }
+
+  .fact-cell label {
+    display: block;
+    font-size: 0.48rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.35rem;
+  }
+
+  .fact-cell span {
+    font-size: 0.75rem;
+    color: var(--white);
+    line-height: 1.3;
+  }
+
+  .fact-cell span.gold { color: var(--gold2); }
+
+  /* ── READING PROGRESS BAR ───────────────────────── */
+  .progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--purple), var(--magenta), var(--gold));
+    width: 0%;
+    z-index: 300;
+    transition: width 0.1s linear;
+  }
+
+  /* ── ARTICLE LAYOUT ─────────────────────────────── */
+  .article-wrap {
+    display: grid;
+    grid-template-columns: 1fr min(680px, 60%) 1fr;
+    padding: 5rem 0;
+    position: relative;
+  }
+
+  .article-main {
+    grid-column: 2;
+  }
+
+  /* sticky side nav */
+  .article-aside {
+    grid-column: 3;
+    padding: 0 3rem;
+    position: relative;
+  }
+
+  .aside-sticky {
+    position: sticky;
+    top: 120px;
+  }
+
+  .aside-label {
+    font-size: 0.5rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+
+  .aside-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    margin-bottom: 2rem;
+  }
+
+  .aside-link {
+    font-size: 0.58rem;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .aside-link::before {
+    content: '';
+    display: block;
+    width: 10px; height: 1px;
+    background: var(--border2);
+    transition: width 0.2s, background 0.2s;
+    flex-shrink: 0;
+  }
+
+  .aside-link:hover { color: var(--gold); }
+  .aside-link:hover::before { width: 16px; background: var(--gold); }
+  .aside-link.active { color: var(--gold2); }
+  .aside-link.active::before { width: 16px; background: var(--gold2); }
+
+  /* ── INTRO ──────────────────────────────────────── */
+  .review-intro {
+    margin-bottom: 3rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-tag {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .tag-line {
+    width: 1.8rem; height: 1px;
+    background: linear-gradient(to right, var(--gold), transparent);
+  }
+
+  .tag-text {
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  .intro-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    letter-spacing: 0.03em;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+    color: var(--white);
+  }
+
+  /* ── PROSE ──────────────────────────────────────── */
+  .prose {
+    font-family: 'Syne', sans-serif;
+    font-weight: 400;
+    font-size: 1.05rem;
+    line-height: 1.95;
+    color: var(--muted2);
+    letter-spacing: 0.01em;
+  }
+
+  .prose p {
+    margin-bottom: 1.6rem;
+  }
+
+  .prose p:last-child { margin-bottom: 0; }
+
+  .prose strong {
+    color: var(--white);
+    font-weight: 700;
+  }
+
+  .prose em {
+    color: var(--gold2);
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  /* drop cap on first paragraph */
+  .prose p.drop-cap::first-letter {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4.5rem;
+    line-height: 0.75;
+    float: left;
+    margin-right: 0.1em;
+    margin-top: 0.08em;
+    color: var(--gold2);
+    text-shadow: 0 0 30px rgba(201,168,76,0.4);
+  }
+
+  /* ── PULL QUOTE ─────────────────────────────────── */
+  .pull-quote {
+    margin: 3rem -3rem;
+    padding: 2.5rem 3rem;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--panel);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .pull-quote::before {
+    content: '\201C';
+    position: absolute;
+    top: -0.2em; left: 0.2em;
+    font-family: 'Syne', sans-serif;
+    font-size: 12rem;
+    line-height: 1;
+    color: rgba(201,168,76,0.06);
+    pointer-events: none;
+    user-select: none;
+  }
+
+  .pull-quote-text {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    font-size: clamp(1.1rem, 2.2vw, 1.55rem);
+    line-height: 1.55;
+    color: var(--white);
+    position: relative;
+    z-index: 1;
+    letter-spacing: -0.01em;
+  }
+
+  .pull-quote-accent {
+    display: block;
+    width: 2.5rem;
+    height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    margin-top: 1.2rem;
+  }
+
+  /* ── FILM SECTION DIVIDER ───────────────────────── */
+  .film-section {
+    margin-top: 4rem;
+    padding-top: 4rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .film-section-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .film-section-number {
+    font-size: 0.55rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .film-section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    color: var(--gold2);
+    text-shadow: 0 0 40px rgba(201,168,76,0.2);
+    margin-bottom: 0.5rem;
+  }
+
+  .film-section-meta {
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── CLUB RATING FULL ───────────────────────────── */
+  .rating-section {
+    margin: 4rem 0;
+    padding: 0;
+  }
+
+  .rating-card {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .rating-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(123,47,255,0.04), transparent 50%, rgba(201,168,76,0.03));
+    pointer-events: none;
+  }
+
+  .rating-header {
+    padding: 0.7rem 1.2rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--panel2);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .rating-header-label {
+    font-size: 0.52rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .rating-total {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    color: var(--gold2);
+    text-shadow: 0 0 20px rgba(201,168,76,0.4);
+  }
+
+  .rating-total span {
+    font-size: 0.65rem;
+    color: var(--muted);
+    font-family: 'Space Mono', monospace;
+    letter-spacing: 0.1em;
+  }
+
+  .rating-body {
+    padding: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .radar-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .radar-svg {
+    width: 180px;
+    height: 180px;
+    overflow: visible;
+  }
+
+  .score-breakdown {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .score-item { display: flex; flex-direction: column; gap: 0.4rem; }
+
+  .score-item-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .score-label {
+    font-size: 0.55rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+  }
+
+  .score-label.anticipation { color: var(--purple2); }
+  .score-label.enjoyment   { color: var(--magenta2); }
+  .score-label.retrospect  { color: var(--gold2); }
+
+  .score-value {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    line-height: 1;
+  }
+
+  .score-value.anticipation { color: var(--purple2); text-shadow: 0 0 12px rgba(168,107,255,0.5); }
+  .score-value.enjoyment    { color: var(--magenta2); text-shadow: 0 0 12px rgba(255,92,200,0.5); }
+  .score-value.retrospect   { color: var(--gold2);    text-shadow: 0 0 12px rgba(232,201,122,0.5); }
+
+  .score-bar-track {
+    height: 2px;
+    background: var(--border2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .score-bar-fill {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 0;
+    transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .score-bar-fill.anticipation { background: linear-gradient(to right, var(--purple), var(--purple2)); }
+  .score-bar-fill.enjoyment    { background: linear-gradient(to right, var(--magenta), var(--magenta2)); }
+  .score-bar-fill.retrospect   { background: linear-gradient(to right, var(--gold), var(--gold2)); }
+
+  .score-desc {
+    font-family: 'Syne', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 0.62rem;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  .rating-footer-bar {
+    border-top: 1px solid var(--border);
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .rating-footnote {
+    font-size: 0.5rem;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .rating-verdict {
+    font-family: 'Syne', sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: 0.72rem;
+    color: var(--gold2);
+    letter-spacing: 0.03em;
+  }
+
+  /* ── OTHER REVIEWS ──────────────────────────────── */
+  .other-reviews {
+    margin-top: 4rem;
+    padding-top: 4rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .other-reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1px;
+    background: var(--border);
+  }
+
+  .other-card {
+    background: var(--panel);
+    text-decoration: none;
+    cursor: crosshair;
+    transition: background 0.25s;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .other-card:hover { background: var(--panel2); }
+
+  .other-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--purple), var(--magenta));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s;
+  }
+
+  .other-card:hover::after { transform: scaleX(1); }
+
+  .other-card-vis {
+    height: 80px;
+    background: linear-gradient(160deg, #180810, #280d1e);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .other-card-year {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    color: rgba(232,24,154,0.12);
+    user-select: none;
+    transition: transform 0.3s;
+  }
+
+  .other-card:hover .other-card-year { transform: scale(1.1); }
+
+  .other-card-body {
+    padding: 1.2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .other-card-meta {
+    font-size: 0.5rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .other-card-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.6rem;
+    letter-spacing: 0.03em;
+    color: var(--white);
+    line-height: 1;
+    transition: color 0.2s;
+  }
+
+  .other-card:hover .other-card-title { color: var(--magenta2); }
+
+  .other-card-rating {
+    margin-top: auto;
+    padding-top: 0.8rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .ocr-label {
+    font-size: 0.45rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .ocr-score {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.05em;
+    color: var(--gold2);
+    text-shadow: 0 0 15px rgba(201,168,76,0.3);
+    line-height: 1;
+  }
+
+  .ocr-score span {
+    font-size: 0.55rem;
+    color: var(--muted);
+    font-family: 'Space Mono', monospace;
+  }
+
+  .ocr-dims {
+    display: flex;
+    gap: 0.6rem;
+  }
+
+  .cr-dim {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.46rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .cr-dim-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .cr-dim.a .cr-dim-dot { background: var(--purple2); box-shadow: 0 0 5px rgba(168,107,255,0.7); }
+  .cr-dim.e .cr-dim-dot { background: var(--magenta2); box-shadow: 0 0 5px rgba(255,92,200,0.7); }
+  .cr-dim.r .cr-dim-dot { background: var(--gold2); box-shadow: 0 0 5px rgba(232,201,122,0.7); }
+  .cr-dim.a { color: var(--purple2); }
+  .cr-dim.e { color: var(--magenta2); }
+  .cr-dim.r { color: var(--gold2); }
+
+  /* ── FOOTER ─────────────────────────────────────── */
+  footer {
+    padding: 2.5rem 3rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--panel);
+  }
+
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    color: var(--white);
+  }
+
+  .footer-logo em {
+    font-style: normal;
+    color: var(--magenta);
+    text-shadow: 0 0 15px rgba(232,24,154,0.5);
+  }
+
+  .footer-copy {
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  /* ── CURSOR ─────────────────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(20px) }
+    to   { opacity:1; transform:translateY(0) }
+  }
+
+  @keyframes fadeIn {
+    from { opacity:0 }
+    to   { opacity:1 }
+  }
+</style>
+</head>
+<body>
+
+<div id="cursorGlow"></div>
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- ═══ NAV ══════════════════════════════════════════ -->
+<nav class="site-nav">
+  <a href="../../index.html" class="nav-logo">THE BAYLEY <em>FILM</em> CLUB</a>
+  <ul class="nav-links">
+    <li><a href="#">Now Screening</a></li>
+    <li><a href="#">Archive</a></li>
+    <li><a href="#">Essays</a></li>
+    <li><a href="#">About</a></li>
+  </ul>
+  <div class="nav-live">
+    <div class="nav-live-dot"></div>
+    Season 04
+  </div>
+</nav>
+
+<!-- ═══ HERO ══════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-ghost">ZODIAC</div>
+
+  <div class="hero-content">
+    <div>
+      <div class="hero-breadcrumb">
+        <a href="../../index.html" class="breadcrumb-link">Home</a>
+        <span class="breadcrumb-sep">◆</span>
+        <a href="index.html" class="breadcrumb-link">David Fincher</a>
+        <span class="breadcrumb-sep">◆</span>
+        <span class="breadcrumb-current">ZODIAC</span>
+      </div>
+
+      <div class="hero-season-tag">
+        <div class="season-dot"></div>
+        <span class="season-label">Season 04 · Film 03 of 03</span>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="line1">ZODIAC</span>
+        
+      </h1>
+
+      <p class="hero-tagline">
+        Fincher's most underrated. An obsession about obsession — how the search for truth can quietly swallow an entire life.
+      </p>
+    </div>
+
+    <!-- FACTS PANEL -->
+    <div class="hero-facts">
+      <div class="facts-header">Film Facts <div class="facts-dot"></div></div>
+      <div class="fact-row">
+        <div class="fact-cell">
+          <label>Director</label>
+          <span>Joon-ho Bong</span>
+        </div>
+        <div class="fact-cell">
+          <label>Year</label>
+          <span class="gold">2007</span>
+        </div>
+      </div>
+      <div class="fact-row">
+        <div class="fact-cell">
+          <label>Runtime</label>
+          <span>157 min</span>
+        </div>
+        <div class="fact-cell">
+          <label>Country</label>
+          <span>South Korea</span>
+        </div>
+      </div>
+      <div class="fact-row">
+        <div class="fact-cell">
+          <label>Genre</label>
+          <span>Crime · Mystery</span>
+        </div>
+        <div class="fact-cell">
+          <label>Club Rating</label>
+          <span class="gold">12 / 15</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ARTICLE ════════════════════════════════════════ -->
+<div class="article-wrap">
+
+  <!-- MAIN CONTENT -->
+  <article class="article-main" id="articleMain">
+
+    <!-- INTRO -->
+    <div class="review-intro" id="section-intro">
+      <div class="section-tag">
+        <div class="tag-line"></div>
+        <span class="tag-text">Season 01 — Joon-ho Bong</span>
+      </div>
+      <h2 class="intro-heading">Shadows of Humanity</h2>
+      <div class="prose">
+        <p class="drop-cap">Joon-ho Bong has a remarkable talent for unearthing the darkness within the mundane. His films often begin with deceptively ordinary premises — small-town police work, a mother's devotion — but gradually peel back layers to reveal harrowing truths about human nature and societal failings. In <em>ZODIAC</em> (2003), Bong masterfully explores themes of guilt, justice, and the fragile bonds that hold us together in the face of chaos.</p>
+        <p>The film delves into the complexities of crime and its ripple effects on the lives of those entangled in it — though distinct in approach, this work carries Bong's signature blend of biting social commentary, sharp humour, and haunting lyricism.</p>
+      </div>
+    </div>
+
+    <!-- FILM REVIEW -->
+    <div class="film-section" id="section-review">
+      <div class="film-section-header">
+        <div class="film-section-number">Film 01 of 02</div>
+        <div class="film-section-title">ZODIAC</div>
+        <div class="film-section-meta">2003 · 132 min · Crime · Drama · South Korea</div>
+      </div>
+
+      <div class="prose">
+        <p class="drop-cap">Based on the real-life Hwaseong serial murders, Bong's film transcends the conventions of the genre. The director is less concerned with the mechanics of solving the crime than with the impact it leaves on the men tasked with catching the killer. Song Kang-ho's Detective Park is an impulsive, small-town officer relying on brute force and gut instincts. Opposite him is Kim Sang-kyung's Detective Seo, a methodical outsider from Seoul who embodies the ideal of professional rigour. As the investigation unfolds, both men's approaches falter, their certainties eroded by the weight of their failures.</p>
+        <p>Bong's direction is meticulous, his lens capturing a starkly beautiful South Korean countryside drenched in rain and despair. The film exists in this murky in-between — something procedural, something pastoral, something quietly devastating.</p>
+      </div>
+
+      <div class="pull-quote">
+        <p class="pull-quote-text">The tone is one of Bong's great triumphs — harrowing but laced with moments of absurd humour. A bumbling police force, comically inept, feels plucked from the pages of Kafka. These shifts shouldn't work. They do.</p>
+        <span class="pull-quote-accent"></span>
+      </div>
+
+      <div class="prose">
+        <p>The film's heart lies in its refusal to offer easy answers. As the case grows colder, Bong shifts focus from the pursuit of justice to the scars left in its wake. The haunting final scene — Detective Park's gaze meeting the camera, confronting us with the weight of unresolved guilt — lingers long after the credits roll.</p>
+        <p>What makes <em>ZODIAC</em> endure is precisely what makes it uncomfortable: it doesn't resolve. Not because Bong couldn't find an ending, but because the real story didn't have one. The killer was unknown for decades. That absence is the point — an institutional failure writ in rain and mud and exhausted men who never stopped believing they were almost there.</p>
+      </div>
+
+      <div class="pull-quote">
+        <p class="pull-quote-text">The haunting final scene — Detective Park's gaze meeting the camera — confronts us with the weight of unresolved guilt. It lingers long after we leave.</p>
+        <span class="pull-quote-accent"></span>
+      </div>
+
+      <div class="prose">
+        <p>On first watch, I came away shaken but unsure whether I'd witnessed a masterpiece or a very good thriller. That uncertainty — that retrospective doubt — is itself the film working as intended. Bong doesn't give you closure. He gives you the feeling the detectives had: that the answer was almost within reach, and you missed it.</p>
+      </div>
+    </div>
+
+    <!-- CLUB RATING -->
+    <div class="rating-section" id="section-rating">
+      <div class="section-tag" style="margin-bottom:1.5rem;">
+        <div class="tag-line"></div>
+        <span class="tag-text">Club Rating</span>
+      </div>
+
+      <div class="rating-card">
+        <div class="rating-header">
+          <span class="rating-header-label">ZODIAC  · Club Rating</span>
+          <div class="rating-total" id="totalDisplay">12 <span>/ 15</span></div>
+        </div>
+        <div class="rating-body">
+          <div class="radar-wrap">
+            <svg class="radar-svg" id="radarSvg" viewBox="0 0 200 200">
+              <defs>
+                <filter id="glowFill">
+                  <feGaussianBlur stdDeviation="5" result="blur"/>
+                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+                <linearGradient id="polyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#7b2fff" stop-opacity="0.5"/>
+                  <stop offset="50%" stop-color="#e8189a" stop-opacity="0.4"/>
+                  <stop offset="100%" stop-color="#c9a84c" stop-opacity="0.5"/>
+                </linearGradient>
+              </defs>
+              <g id="gridRings"></g>
+              <g id="axisLines"></g>
+              <polygon id="radarPoly" points="" fill="url(#polyGrad)" stroke="none" opacity="0.7" filter="url(#glowFill)"/>
+              <polygon id="radarPolyBorder" points="" fill="none" stroke-width="1.5" stroke="#e8c97a" opacity="0.9"/>
+              <g id="axisLabels"></g>
+              <g id="vertexDots"></g>
+            </svg>
+          </div>
+          <div class="score-breakdown">
+            <div class="score-item">
+              <div class="score-item-top">
+                <span class="score-label anticipation">Anticipation</span>
+                <span class="score-value anticipation">3/5</span>
+              </div>
+              <div class="score-bar-track"><div class="score-bar-fill anticipation" id="barA"></div></div>
+              <span class="score-desc">Already a legend — came in with high expectations.</span>
+            </div>
+            <div class="score-item">
+              <div class="score-item-top">
+                <span class="score-label enjoyment">Enjoyment</span>
+                <span class="score-value enjoyment">4/5</span>
+              </div>
+              <div class="score-bar-track"><div class="score-bar-fill enjoyment" id="barE"></div></div>
+              <span class="score-desc">Gripping, funny, and deeply unsettling throughout.</span>
+            </div>
+            <div class="score-item">
+              <div class="score-item-top">
+                <span class="score-label retrospect">Retrospect</span>
+                <span class="score-value retrospect">5/5</span>
+              </div>
+              <div class="score-bar-track"><div class="score-bar-fill retrospect" id="barR"></div></div>
+              <span class="score-desc">Strong but the lack of resolution still unsettles on reflection.</span>
+            </div>
+          </div>
+        </div>
+        <div class="rating-footer-bar">
+          <span class="rating-footnote">Each dimension max 5 pts</span>
+          <span class="rating-verdict">The long game.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- OTHER REVIEWS -->
+    <div class="other-reviews" id="section-next">
+      <div class="section-tag" style="margin-bottom: 1.5rem;">
+        <div class="tag-line"></div>
+        <span class="tag-text">Season 04 — Also Reviewed</span>
+      </div>
+
+      <div class="other-reviews-grid">
+        <a href="se7en.html" class="other-card">
+          <div class="other-card-vis">
+            <div class="other-card-year">1995</div>
+          </div>
+          <div class="other-card-body">
+            <div class="other-card-meta">2009 · 129 min · Crime · Drama</div>
+            <div class="other-card-title">Se7en</div>
+            <div class="other-card-rating">
+              <span class="ocr-label">Club Rating</span>
+              <span class="ocr-score">14 <span>/ 15</span></span>
+              <div class="ocr-dims">
+                <span class="cr-dim a"><span class="cr-dim-dot"></span>A·4</span>
+                <span class="cr-dim e"><span class="cr-dim-dot"></span>E·4</span>
+                <span class="cr-dim r"><span class="cr-dim-dot"></span>R·4</span>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+  </article>
+
+  <!-- STICKY SIDEBAR -->
+  <aside class="article-aside">
+    <div class="aside-sticky">
+      <div class="aside-label">In this review</div>
+      <nav class="aside-sections">
+        <a href="#section-intro"  class="aside-link active">Introduction</a>
+        <a href="#section-review" class="aside-link">The Review</a>
+        <a href="#section-rating" class="aside-link">Club Rating</a>
+        <a href="#section-next"   class="aside-link">Other Reviews</a>
+      </nav>
+      <div class="aside-label">Season 01</div>
+      <nav class="aside-sections">
+        <a href="#" class="aside-link" style="color:var(--gold)">ZODIAC</a>
+        <a href="#" class="aside-link">Mother</a>
+      </nav>
+    </div>
+  </aside>
+
+</div>
+
+<!-- ═══ FOOTER ══════════════════════════════════════════ -->
+<footer class="site-footer">
+  <a href="../../index.html" class="footer-logo">THE BAYLEY <em>FILM</em> CLUB</a>
+  <div class="footer-copy">A Club for the Obsessed · Est. 2024</div>
+  <div class="footer-copy">Built with love & cinema</div>
+</footer>
+
+<script>
+  // CURSOR GLOW
+  const glow = document.getElementById('cursorGlow');
+  let mx = window.innerWidth/2, my = window.innerHeight/2;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  (function tick() { glow.style.left = mx+'px'; glow.style.top = my+'px'; requestAnimationFrame(tick); })();
+
+  // READING PROGRESS BAR
+  window.addEventListener('scroll', () => {
+    const doc = document.documentElement;
+    const pct = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+    document.getElementById('progressBar').style.width = pct + '%';
+  });
+
+  // RADAR
+  const CX = 100, CY = 100, MAX_R = 72;
+  const ANGLES = [-90, 30, 150].map(a => a * Math.PI / 180);
+  const LABELS = ['Anticipation', 'Enjoyment', 'Retrospect'];
+  const COLORS = ['#a86bff', '#ff5cc8', '#e8c97a'];
+  const SCORES = [4, 4, 3];
+
+  function polarToXY(angle, r) {
+    return { x: CX + r * Math.cos(angle), y: CY + r * Math.sin(angle) };
+  }
+
+  function pointsStr(pts) {
+    return pts.map(p => `${p.x.toFixed(2)},${p.y.toFixed(2)}`).join(' ');
+  }
+
+  function buildGrid() {
+    const rings = document.getElementById('gridRings');
+    const axes  = document.getElementById('axisLines');
+    const labs  = document.getElementById('axisLabels');
+
+    for (let i = 1; i <= 5; i++) {
+      const r = (i / 5) * MAX_R;
+      const pts = ANGLES.map(a => polarToXY(a, r));
+      const poly = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+      poly.setAttribute('points', pointsStr(pts));
+      poly.setAttribute('fill', 'none');
+      poly.setAttribute('stroke', i === 5 ? '#2a2a40' : '#1e1e2e');
+      poly.setAttribute('stroke-width', i === 5 ? '1' : '0.5');
+      rings.appendChild(poly);
+    }
+
+    ANGLES.forEach((angle, i) => {
+      const tip = polarToXY(angle, MAX_R);
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('x1', CX); line.setAttribute('y1', CY);
+      line.setAttribute('x2', tip.x); line.setAttribute('y2', tip.y);
+      line.setAttribute('stroke', '#1e1e2e');
+      line.setAttribute('stroke-width', '0.5');
+      axes.appendChild(line);
+
+      const labelPt = polarToXY(angle, MAX_R + 18);
+      const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      text.setAttribute('x', labelPt.x);
+      text.setAttribute('y', labelPt.y);
+      text.setAttribute('text-anchor', 'middle');
+      text.setAttribute('dominant-baseline', 'middle');
+      text.setAttribute('font-family', 'Space Mono, monospace');
+      text.setAttribute('font-size', '6.5');
+      text.setAttribute('letter-spacing', '1');
+      text.setAttribute('fill', COLORS[i]);
+      text.setAttribute('opacity', '0.8');
+      text.textContent = LABELS[i].toUpperCase();
+      labs.appendChild(text);
+    });
+  }
+
+  function drawPoly(scores) {
+    const pts = ANGLES.map((angle, i) => polarToXY(angle, (scores[i] / 5) * MAX_R));
+    const str = pointsStr(pts);
+    document.getElementById('radarPoly').setAttribute('points', str);
+    document.getElementById('radarPolyBorder').setAttribute('points', str);
+
+    const vd = document.getElementById('vertexDots');
+    vd.innerHTML = '';
+    pts.forEach((p, i) => {
+      const c = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      c.setAttribute('cx', p.x); c.setAttribute('cy', p.y);
+      c.setAttribute('r', '3');
+      c.setAttribute('fill', COLORS[i]);
+      c.setAttribute('filter', 'url(#glowFill)');
+      vd.appendChild(c);
+    });
+  }
+
+  // Animate radar in on scroll
+  let radarDrawn = false;
+  const radarObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !radarDrawn) {
+        radarDrawn = true;
+        const start = performance.now();
+        const duration = 1000;
+        function ease(t) { return t < 0.5 ? 2*t*t : -1+(4-2*t)*t; }
+        function step(now) {
+          const t = ease(Math.min((now - start) / duration, 1));
+          drawPoly(SCORES.map(s => s * t));
+          if (t < 1) requestAnimationFrame(step);
+          else drawPoly(SCORES);
+        }
+        requestAnimationFrame(step);
+
+        // bars
+        setTimeout(() => {
+          document.getElementById('barA').style.width = (3/5*100)+'%';
+          document.getElementById('barE').style.width = (SCORES[1]/5*100)+'%';
+          document.getElementById('barR').style.width = (SCORES[2]/5*100)+'%';
+        }, 100);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  buildGrid();
+  radarObs.observe(document.getElementById('radarSvg'));
+
+  // ACTIVE SIDEBAR LINKS on scroll
+  const sections = ['section-intro','section-review','section-rating','section-next'];
+  const links = document.querySelectorAll('.aside-link');
+
+  const sectionObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.aside-link[href="#${e.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) sectionObs.observe(el);
+  });
+</script>
+  <script src="../../assets/js/global.js"></script>
+</body>
+</html>

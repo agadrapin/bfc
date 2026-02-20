@@ -1,0 +1,473 @@
+/* ═══════════════════════════════════════════════════════
+   THE BAYLEY FILM CLUB — mobile.css
+   Responsive breakpoints for all pages
+   Two breakpoints:
+     tablet : max-width 900px
+     mobile : max-width 600px
+   ═══════════════════════════════════════════════════════ */
+
+
+/* ── TABLET (≤ 900px) ───────────────────────────────────── */
+@media (max-width: 900px) {
+
+    /* NAV */
+    nav.site-nav {
+        padding: 1.1rem 1.5rem;
+    }
+
+    .nav-links {
+        display: none;
+        /* replaced by mobile menu below */
+    }
+
+    .nav-badge {
+        font-size: 0.52rem;
+        padding: 0.35rem 0.75rem;
+    }
+
+    /* ── LANDING PAGE ── */
+
+    /* Hero: stack left/right */
+    .hero-grid {
+        grid-template-columns: 1fr;
+        padding: 7rem 1.5rem 3rem;
+        gap: 3rem;
+    }
+
+    .hero-right {
+        padding: 0 1.5rem 3rem;
+        justify-content: flex-start;
+    }
+
+    .poster-stack {
+        width: clamp(220px, 60vw, 320px);
+        height: clamp(320px, 70vw, 480px);
+    }
+
+    .poster-card {
+        width: clamp(170px, 50vw, 260px);
+        height: clamp(260px, 60vw, 390px);
+    }
+
+    /* Director selector */
+    .selector-section {
+        padding: 4rem 1.5rem;
+    }
+
+    /* Picks grid: 1 column */
+    .picks-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Archive grid: 2 columns */
+    .archive-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* ── DIRECTOR PAGE ── */
+
+    /* Hero: stack */
+    .hero-content {
+        grid-template-columns: 1fr;
+        padding: 4rem 1.5rem 2.5rem;
+        gap: 2rem;
+    }
+
+    .hero-stats {
+        width: 100%;
+        min-width: unset;
+    }
+
+    /* stat rows: keep 2-col layout but smaller padding */
+    .stat-row {
+        flex-wrap: wrap;
+    }
+
+    .stat-cell {
+        padding: 0.7rem 1rem;
+    }
+
+    /* Timeline film grid: 2 columns */
+    .timeline-films {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Review cards: stack vis panel above body */
+    .review-card {
+        grid-template-columns: 1fr;
+    }
+
+    .review-card-vis {
+        min-height: 120px;
+    }
+
+    .review-card-body {
+        border-left: none;
+        border-top: 1px solid var(--border);
+    }
+
+    /* ── REVIEW PAGE ── */
+
+    /* Article: drop sidebar, single column */
+    .article-wrap {
+        grid-template-columns: 1fr;
+        padding: 3rem 0;
+    }
+
+    .article-main {
+        grid-column: 1;
+        padding: 0 1.5rem;
+    }
+
+    .article-aside {
+        display: none;
+        /* hidden on tablet — too cramped */
+    }
+
+    /* Pull quotes: reduce negative margin */
+    .pull-quote {
+        margin: 2.5rem -1.5rem;
+        padding: 2rem 1.5rem;
+    }
+
+    /* Rating card: stack radar + scores */
+    .rating-body {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .radar-svg {
+        width: 160px;
+        height: 160px;
+    }
+
+    /* Other reviews grid */
+    .other-reviews-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Section padding */
+    .section {
+        padding: 4rem 1.5rem;
+    }
+}
+
+
+/* ── MOBILE (≤ 600px) ───────────────────────────────────── */
+@media (max-width: 600px) {
+
+    /* NAV */
+    nav.site-nav {
+        padding: 1rem 1.2rem;
+    }
+
+    .nav-logo {
+        font-size: 1.1rem;
+    }
+
+    .nav-badge {
+        display: none;
+        /* too cramped — drop the season badge */
+    }
+
+    /* ── LANDING PAGE ── */
+
+    /* Hero title */
+    .hero-title-main {
+        font-size: clamp(3.5rem, 14vw, 6rem);
+    }
+
+    .hero-subtitle {
+        font-size: 0.7rem;
+    }
+
+    .hero-grid {
+        padding: 6rem 1.2rem 2rem;
+    }
+
+    .hero-right {
+        padding: 0 1.2rem 2rem;
+    }
+
+    /* Poster stack: centred, slightly smaller */
+    .poster-stack {
+        width: clamp(200px, 72vw, 280px);
+        height: clamp(290px, 100vw, 420px);
+        margin: 0 auto;
+    }
+
+    .poster-card {
+        width: clamp(155px, 60vw, 230px);
+        height: clamp(235px, 85vw, 350px);
+    }
+
+    /* Hero actions: stack buttons */
+    .hero-actions {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .btn {
+        text-align: center;
+        width: 100%;
+    }
+
+    /* Ticker: slightly slower on mobile */
+    .ticker-track {
+        animation-duration: 30s;
+    }
+
+    /* Picks grid: already 1 col from tablet */
+
+    /* Archive grid: 1 column */
+    .archive-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Section padding */
+    .section,
+    .picks-section,
+    .archive-section {
+        padding: 3rem 1.2rem;
+    }
+
+    /* Footer: stack */
+    footer.site-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+        padding: 2rem 1.2rem;
+    }
+
+    /* ── DIRECTOR PAGE ── */
+
+    /* Hero name: smaller */
+    .hero-name {
+        font-size: clamp(3.5rem, 16vw, 6rem);
+    }
+
+    .hero-content {
+        padding: 3rem 1.2rem 2rem;
+    }
+
+    /* Stats panel: single column cells */
+    .stat-row {
+        flex-direction: column;
+    }
+
+    .stat-cell {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        padding: 0.6rem 1rem;
+    }
+
+    .stat-cell:last-child {
+        border-bottom: none;
+    }
+
+    /* Hero bottom bar: hide on small screens */
+    .hero-bar {
+        padding: 0.8rem 1.2rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    /* Timeline: 1 column */
+    .timeline-films {
+        grid-template-columns: 1fr;
+    }
+
+    /* Axis dot year labels: hide to prevent overlap */
+    .axis-year-label {
+        display: none;
+    }
+
+    /* Section header: stack */
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        margin-bottom: 2rem;
+    }
+
+    /* Reviews section */
+    .review-excerpt {
+        font-size: 0.85rem;
+    }
+
+    .review-title {
+        font-size: 1.8rem;
+    }
+
+    /* ── REVIEW PAGE ── */
+
+    /* Hero title */
+    .hero-title {
+        font-size: clamp(3rem, 13vw, 5.5rem);
+    }
+
+    /* Hero content: tighter */
+    .hero-content {
+        padding: 3rem 1.2rem 2rem;
+        gap: 1.5rem;
+    }
+
+    /* Facts panel: full width, 1 col cells */
+    .hero-facts {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .fact-row {
+        flex-direction: column;
+    }
+
+    .fact-cell {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .fact-cell:last-child {
+        border-bottom: none;
+    }
+
+    /* Article */
+    .article-main {
+        padding: 0 1.2rem;
+    }
+
+    /* Prose: slightly smaller */
+    .prose {
+        font-size: 0.95rem;
+        line-height: 1.85;
+    }
+
+    /* Drop cap: smaller */
+    .prose p.drop-cap::first-letter {
+        font-size: 3.5rem;
+    }
+
+    /* Pull quote */
+    .pull-quote {
+        margin: 2rem -1.2rem;
+        padding: 1.8rem 1.2rem;
+    }
+
+    .pull-quote-text {
+        font-size: clamp(1rem, 4.5vw, 1.25rem);
+    }
+
+    /* Film section title */
+    .film-section-title {
+        font-size: clamp(2rem, 9vw, 3.5rem);
+    }
+
+    /* Rating card body */
+    .rating-body {
+        padding: 1.5rem 1.2rem;
+    }
+
+    .radar-svg {
+        width: 140px;
+        height: 140px;
+    }
+
+    .rating-footer-bar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.4rem;
+        padding: 0.8rem 1.2rem;
+    }
+
+    /* Other reviews: 1 column */
+    .other-reviews-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Breadcrumb: truncate gracefully */
+    .breadcrumb {
+        flex-wrap: wrap;
+        gap: 0.4rem;
+    }
+
+    /* Season tag: smaller */
+    .hero-season-tag {
+        padding: 0.25rem 0.7rem;
+    }
+
+    /* Section */
+    .section {
+        padding: 3rem 1.2rem;
+    }
+}
+
+
+/* ── HAMBURGER MENU (mobile nav) ────────────────────────── */
+/* Shows a ☰ button on mobile that reveals nav links */
+
+.nav-hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: crosshair;
+    padding: 0.3rem;
+    background: none;
+    border: none;
+}
+
+.nav-hamburger span {
+    display: block;
+    width: 22px;
+    height: 1px;
+    background: var(--muted2);
+    transition: all 0.25s;
+}
+
+.nav-hamburger.open span:nth-child(1) {
+    transform: rotate(45deg) translate(4px, 4px);
+    background: var(--gold);
+}
+
+.nav-hamburger.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-hamburger.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(4px, -4px);
+    background: var(--gold);
+}
+
+@media (max-width: 900px) {
+    .nav-hamburger {
+        display: flex;
+    }
+
+    .nav-links {
+        display: none;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        background: rgba(6, 6, 10, 0.97);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        padding: 1.5rem;
+        gap: 1.2rem;
+        z-index: 199;
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links a {
+        font-size: 0.8rem;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .nav-links a:last-child {
+        border-bottom: none;
+    }
+}

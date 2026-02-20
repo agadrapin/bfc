@@ -1,0 +1,109 @@
+---
+layout: layouts/rankings.njk
+title: Director Rankings
+permalink: /rankings/directors/
+---
+
+<!-- ═══ HERO ═════════════════════════════════════════════ -->
+<section class="rankings-hero">
+  <div class="rankings-hero-ghost purple">RANKED</div>
+  <div class="rankings-hero-inner">
+    <div class="section-tag">
+      <div class="tag-line"></div>
+      <span class="tag-text" style="color: var(--purple2);">Leaderboard</span>
+    </div>
+    <h1 class="rankings-hero-title purple">DIRECTOR RANKINGS</h1>
+    <p class="rankings-hero-sub">
+      Every director is scored by averaging their Club Ratings across all reviewed films. The total score (out of 15) reflects Anticipation, Enjoyment, and Retrospect — then averaged across their picks.
+    </p>
+  </div>
+</section>
+
+<!-- ═══ LEADERBOARD ═════════════════════════════════════ -->
+<section class="leaderboard">
+
+  <!-- #1 — Fincher -->
+  <div class="leaderboard-row" data-director="fincher">
+    <div class="rank-num">1</div>
+    <div class="row-body">
+      <div class="row-name">DAVID FINCHER</div>
+      <div class="row-meta">
+        <span class="row-meta-item">Season 04</span>
+        <span class="row-meta-item">American</span>
+        <span class="row-meta-item">3 Films Reviewed</span>
+      </div>
+      <div class="score-bar-wrap">
+        <div class="score-bar-fill rank-1" data-width="84.4"></div>
+      </div>
+      <div class="sub-scores">
+        <span class="sub-score a"><span class="sub-score-dot"></span> A: 3.3</span>
+        <span class="sub-score e"><span class="sub-score-dot"></span> E: 4.7</span>
+        <span class="sub-score r"><span class="sub-score-dot"></span> R: 4.7</span>
+      </div>
+      <a href="/directors/fincher/" class="row-link">View director →</a>
+    </div>
+    <div class="row-score">
+      <div class="row-score-num">12.7</div>
+      <div class="row-score-max">/ 15</div>
+    </div>
+  </div>
+
+  <!-- #2 — Bong -->
+  <div class="leaderboard-row" data-director="bong">
+    <div class="rank-num">2</div>
+    <div class="row-body">
+      <div class="row-name">BONG JOON-HO</div>
+      <div class="row-meta">
+        <span class="row-meta-item">Season 01</span>
+        <span class="row-meta-item">South Korean</span>
+        <span class="row-meta-item">2 Films Reviewed</span>
+      </div>
+      <div class="score-bar-wrap">
+        <div class="score-bar-fill rank-2" data-width="76.7"></div>
+      </div>
+      <div class="sub-scores">
+        <span class="sub-score a"><span class="sub-score-dot"></span> A: 4.0</span>
+        <span class="sub-score e"><span class="sub-score-dot"></span> E: 4.0</span>
+        <span class="sub-score r"><span class="sub-score-dot"></span> R: 3.5</span>
+      </div>
+      <a href="/directors/bong/" class="row-link">View director →</a>
+    </div>
+    <div class="row-score">
+      <div class="row-score-num">11.5</div>
+      <div class="row-score-max">/ 15</div>
+    </div>
+  </div>
+
+</section>
+
+<script>
+  // ── SCROLL REVEAL FOR LEADERBOARD ROWS
+  (function() {
+    const rows = document.querySelectorAll('.leaderboard-row');
+    if (!rows.length) return;
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const row = entry.target;
+          const siblings = Array.from(row.parentNode.children);
+          const idx = siblings.indexOf(row);
+          row.style.transitionDelay = (idx * 0.12) + 's';
+          row.classList.add('revealed');
+
+          // Animate score bar
+          const bar = row.querySelector('.score-bar-fill');
+          if (bar) {
+            setTimeout(() => {
+              bar.style.width = bar.dataset.width + '%';
+            }, 200 + idx * 120);
+          }
+
+          io.unobserve(row);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    rows.forEach(row => io.observe(row));
+  })();
+</script>

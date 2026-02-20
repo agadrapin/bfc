@@ -1,9 +1,16 @@
 <nav class="site-nav">
   <a href="/" class="nav-logo">THE BAYLEY <em>FILM</em> CLUB</a>
   <ul class="nav-links">
-    {% for item in navigation.main %}
-    <li><a href="{{ item.url }}">{{ item.text }}</a></li>
-    {% endfor %}
+    <li><a href="/">Home</a></li>
+    <li><a href="/directors/{{ site.currentDirector }}/">Now Screening</a></li>
+    <li class="nav-dropdown">
+      <button class="nav-dropdown-toggle">Rankings <span class="arrow">&#9662;</span></button>
+      <div class="nav-dropdown-menu">
+        <a href="/rankings/directors/"><span class="dropdown-icon">&#x2B21;</span>Director Rankings</a>
+        <a href="/rankings/films/"><span class="dropdown-icon">&#x25C8;</span>Film Rankings</a>
+      </div>
+    </li>
+    <li><a href="/#archive">Archive</a></li>
   </ul>
   <div class="nav-live">
     <div class="nav-live-dot"></div>

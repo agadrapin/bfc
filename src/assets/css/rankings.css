@@ -1,0 +1,388 @@
+/* ═══════════════════════════════════════════════════════
+   THE BAYLEY FILM CLUB — rankings.css
+   Director & Film Rankings leaderboard styles
+   ═══════════════════════════════════════════════════════ */
+
+/* ── HERO ─────────────────────────────────────────────── */
+.rankings-hero {
+  position: relative;
+  padding: 10rem 3rem 4rem;
+  overflow: hidden;
+  border-bottom: 1px solid var(--border);
+}
+
+.rankings-hero-ghost {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(8rem, 20vw, 18rem);
+  letter-spacing: 0.05em;
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+.rankings-hero-ghost.purple {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(168, 107, 255, 0.08);
+}
+
+.rankings-hero-ghost.magenta {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 92, 200, 0.08);
+}
+
+.rankings-hero-inner {
+  position: relative;
+  max-width: 700px;
+}
+
+.rankings-hero .section-tag {
+  margin-bottom: 1.2rem;
+}
+
+.rankings-hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 6vw, 5rem);
+  letter-spacing: 0.03em;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.rankings-hero-title.purple {
+  color: var(--purple2);
+  text-shadow: 0 0 40px rgba(168, 107, 255, 0.3);
+}
+
+.rankings-hero-title.magenta {
+  color: var(--magenta2);
+  text-shadow: 0 0 40px rgba(255, 92, 200, 0.3);
+}
+
+.rankings-hero-sub {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--muted2);
+  max-width: 540px;
+}
+
+/* ── FILTER BAR ───────────────────────────────────────── */
+.filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1.5rem 3rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--panel);
+}
+
+.filter-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.52rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-right: 0.4rem;
+}
+
+.filter-btn {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.52rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted2);
+  background: none;
+  border: 1px solid var(--border2);
+  padding: 0.4rem 0.9rem;
+  cursor: crosshair;
+  transition: all 0.2s;
+}
+
+.filter-btn:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
+.filter-btn.active {
+  color: var(--gold);
+  border-color: var(--gold);
+  background: rgba(201, 168, 76, 0.08);
+}
+
+/* ── LEADERBOARD ──────────────────────────────────────── */
+.leaderboard {
+  padding: 3rem;
+  max-width: 1000px;
+}
+
+.leaderboard-row {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr auto;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--border);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  position: relative;
+}
+
+.leaderboard-row.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.leaderboard-row:last-child {
+  border-bottom: none;
+}
+
+/* ── RANK NUMBER ──────────────────────────────────────── */
+.rank-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--border2);
+  text-align: center;
+}
+
+.leaderboard-row:first-child .rank-num {
+  color: var(--gold);
+  text-shadow: 0 0 20px rgba(201, 168, 76, 0.3);
+}
+
+/* ── ROW BODY ─────────────────────────────────────────── */
+.row-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+.row-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.8rem, 2.5vw, 2.8rem);
+  letter-spacing: 0.03em;
+  line-height: 1;
+  color: var(--white);
+}
+
+.row-meta {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.row-meta-item {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.52rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Film-specific: director name */
+.row-director {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted2);
+  margin-bottom: -0.2rem;
+}
+
+/* ── SCORE BAR ────────────────────────────────────────── */
+.score-bar-wrap {
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.score-bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  width: 0;
+  transition: width 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.score-bar-fill.rank-1 {
+  background: linear-gradient(90deg, var(--gold), var(--gold2));
+}
+
+.score-bar-fill.rank-2 {
+  background: linear-gradient(90deg, var(--purple), var(--purple2));
+}
+
+.score-bar-fill.rank-3 {
+  background: linear-gradient(90deg, var(--magenta), var(--magenta2));
+}
+
+.score-bar-fill.rank-4 {
+  background: linear-gradient(90deg, var(--muted), var(--muted2));
+}
+
+.score-bar-fill.rank-5 {
+  background: linear-gradient(90deg, var(--muted), var(--muted2));
+}
+
+/* ── SUB-SCORES ───────────────────────────────────────── */
+.sub-scores {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.2rem;
+}
+
+.sub-score {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.52rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.sub-score.a { color: var(--purple2); }
+.sub-score.e { color: var(--magenta2); }
+.sub-score.r { color: var(--gold2); }
+
+.sub-score-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.sub-score.a .sub-score-dot {
+  background: var(--purple2);
+  box-shadow: 0 0 5px rgba(168, 107, 255, 0.7);
+}
+
+.sub-score.e .sub-score-dot {
+  background: var(--magenta2);
+  box-shadow: 0 0 5px rgba(255, 92, 200, 0.7);
+}
+
+.sub-score.r .sub-score-dot {
+  background: var(--gold2);
+  box-shadow: 0 0 5px rgba(232, 201, 122, 0.7);
+}
+
+/* ── ROW LINK ─────────────────────────────────────────── */
+.row-link {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.52rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--gold);
+  text-decoration: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.leaderboard-row:hover .row-link {
+  opacity: 1;
+}
+
+/* ── TOTAL SCORE ──────────────────────────────────────── */
+.row-score {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.15rem;
+}
+
+.row-score-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 3.5vw, 4rem);
+  line-height: 1;
+  color: var(--gold);
+  text-shadow: 0 0 20px rgba(201, 168, 76, 0.25);
+}
+
+.row-score-max {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.5rem;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+}
+
+/* ── TIEBREAK NOTE ────────────────────────────────────── */
+.tiebreak-note {
+  padding: 1.5rem 3rem;
+  border-top: 1px solid var(--border);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.52rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── RESPONSIVE ───────────────────────────────────────── */
+@media (max-width: 600px) {
+  .rankings-hero {
+    padding: 7rem 1.2rem 3rem;
+  }
+
+  .leaderboard {
+    padding: 2rem 1.2rem;
+  }
+
+  .leaderboard-row {
+    grid-template-columns: 2.5rem 1fr;
+    gap: 1rem;
+  }
+
+  .row-score {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 0.5rem;
+    justify-content: flex-start;
+  }
+
+  .row-score-num {
+    font-size: 2.2rem;
+  }
+
+  .row-link {
+    opacity: 1;
+  }
+
+  .filter-bar {
+    padding: 1rem 1.2rem;
+    flex-wrap: wrap;
+  }
+
+  .tiebreak-note {
+    padding: 1.2rem;
+  }
+
+  /* Dropdown mobile */
+  .nav-dropdown-menu {
+    position: static;
+    transform: none;
+    display: none;
+    border: none;
+    border-top: 1px solid var(--border);
+    background: transparent;
+    backdrop-filter: none;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    min-width: 0;
+  }
+
+  .nav-dropdown.open .nav-dropdown-menu {
+    display: block;
+  }
+
+  .nav-dropdown-menu a {
+    padding-left: 1.5rem;
+  }
+}

@@ -21,10 +21,12 @@ title: null
       <span class="eyebrow-season">Season {{ site.currentSeason | pad(2, '0') }}</span>
     </div>
 
-    <h1 class="hero-title">
-      <span class="name-line">{{ currentDir.firstName | upper }}</span>
-      <span class="name-line accent" data-text="{{ currentDir.lastName | upper }}">{{ currentDir.lastName | upper }}</span>
-    </h1>
+    <a href="/directors/{{ currentDir.slug }}/" style="text-decoration:none;color:inherit;">
+      <h1 class="hero-title">
+        <span class="name-line">{{ currentDir.firstName | upper }}</span>
+        <span class="name-line accent" data-text="{{ currentDir.lastName | upper }}">{{ currentDir.lastName | upper }}</span>
+      </h1>
+    </a>
 
     <p class="hero-tagline">
       {{ currentDir.bio | truncate(200, true, '...') }}
@@ -53,7 +55,7 @@ title: null
 
   <div class="hero-right">
     <div class="poster-stack">
-      <div class="poster-card">
+      <a href="/directors/fincher/se7en.html" class="poster-card" style="text-decoration:none;color:inherit;">
         <div class="poster-inner">
           <div class="poster-bg">SE7EN</div>
           <div class="poster-rating">★ 9.1</div>
@@ -62,8 +64,8 @@ title: null
             <span>1995 · Thriller</span>
           </div>
         </div>
-      </div>
-      <div class="poster-card">
+      </a>
+      <a href="/directors/fincher/fight-club.html" class="poster-card" style="text-decoration:none;color:inherit;">
         <div class="poster-inner">
           <div class="poster-bg">FIGHT<br>CLUB</div>
           <div class="poster-rating">★ 8.8</div>
@@ -72,8 +74,8 @@ title: null
             <span>1999 · Drama</span>
           </div>
         </div>
-      </div>
-      <div class="poster-card">
+      </a>
+      <a href="/directors/fincher/zodiac.html" class="poster-card" style="text-decoration:none;color:inherit;">
         <div class="poster-inner">
           <div class="poster-bg">ZODIAC</div>
           <div class="poster-rating">★ 8.6</div>
@@ -82,7 +84,7 @@ title: null
             <span>2007 · Crime</span>
           </div>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </section>
@@ -167,7 +169,7 @@ title: null
   </div>
 
   <div class="picks-grid">
-    <div class="film-card">
+    <a href="/directors/fincher/se7en.html" class="film-card" style="text-decoration:none;color:inherit;">
       <div class="film-card-vis">
         <div class="film-year-ghost">1995</div>
       </div>
@@ -185,8 +187,8 @@ title: null
           </div>
         </div>
       </div>
-    </div>
-    <div class="film-card">
+    </a>
+    <a href="/directors/fincher/fight-club.html" class="film-card" style="text-decoration:none;color:inherit;">
       <div class="film-card-vis">
         <div class="film-year-ghost">1999</div>
       </div>
@@ -204,8 +206,8 @@ title: null
           </div>
         </div>
       </div>
-    </div>
-    <div class="film-card">
+    </a>
+    <a href="/directors/fincher/zodiac.html" class="film-card" style="text-decoration:none;color:inherit;">
       <div class="film-card-vis">
         <div class="film-year-ghost">2007</div>
       </div>
@@ -223,7 +225,7 @@ title: null
           </div>
         </div>
       </div>
-    </div>
+    </a>
   </div>
 </section>
 
@@ -237,7 +239,7 @@ title: null
       </div>
       <h2 class="section-heading">PAST<br>DIRECTORS</h2>
     </div>
-    <a href="#" class="link-subtle">Full archive →</a>
+    <a href="/rankings/directors/" class="link-subtle">Full archive →</a>
   </div>
 
   <div class="director-grid">

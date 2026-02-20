@@ -51,6 +51,48 @@
         display: none;
     }
 
+    /* ── NAV DROPDOWN (mobile) ─────────────────────────────── */
+    .nav-dropdown-menu {
+        position: static;
+        transform: none;
+        display: none;
+        border: none;
+        border-top: 1px solid var(--border);
+        background: transparent;
+        backdrop-filter: none;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        min-width: 0;
+    }
+
+    .nav-dropdown:hover .nav-dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+    }
+
+    .nav-dropdown.open .nav-dropdown-menu {
+        display: block;
+    }
+
+    .nav-dropdown-toggle {
+        display: block;
+        font-size: 0.8rem;
+        padding: 1rem 0;
+        width: 100%;
+        text-align: left;
+    }
+
+    .nav-dropdown-menu a {
+        padding: 0.8rem 0 0.8rem 1.5rem;
+        font-size: 0.75rem;
+    }
+
+    .nav-live {
+        display: none;
+    }
+
     footer.site-footer {
         flex-direction: column;
         align-items: flex-start;

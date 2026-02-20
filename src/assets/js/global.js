@@ -39,6 +39,25 @@
   });
 })();
 
+// ── NAV DROPDOWN (mobile tap toggle) ─────────────────────
+(function initDropdown() {
+  const dropdown = document.querySelector('.nav-dropdown');
+  if (!dropdown) return;
+  const toggle = dropdown.querySelector('.nav-dropdown-toggle');
+  if (!toggle) return;
+
+  toggle.addEventListener('click', function(e) {
+    if (window.innerWidth <= 900) {
+      e.stopPropagation();
+      dropdown.classList.toggle('open');
+    }
+  });
+
+  document.addEventListener('click', function() {
+    dropdown.classList.remove('open');
+  });
+})();
+
 // ── READING PROGRESS BAR ─────────────────────────────────
 (function initProgress() {
   const bar = document.getElementById('progressBar');

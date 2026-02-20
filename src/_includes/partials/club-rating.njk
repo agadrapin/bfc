@@ -1,0 +1,13 @@
+{# Club Rating component - compact version for cards #}
+<div class="club-rating">
+  <span class="club-rating-label">Club Rating</span>
+  <div class="club-rating-score">
+    <span class="club-rating-total">{{ ratings | totalRating }}</span>
+    <span class="club-rating-max">/ 15</span>
+  </div>
+  <div class="club-rating-breakdown">
+    <span class="cr-dim a"><span class="cr-dim-dot"></span>A·{{ ratings.anticipation }}</span>
+    <span class="cr-dim e"><span class="cr-dim-dot"></span>E·{{ ratings.enjoyment }}</span>
+    <span class="cr-dim r"><span class="cr-dim-dot"></span>R·{{ ratings.retrospect }}</span>
+  </div>
+</div>

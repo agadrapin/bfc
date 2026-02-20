@@ -1,0 +1,348 @@
+---
+layout: layouts/landing.njk
+title: null
+---
+
+{# Get current director data #}
+{% set currentDir = directors[site.currentDirector] %}
+
+<!-- ═══ HERO ═════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-glow"></div>
+
+  <!-- Rain effect -->
+  <div class="rain" id="rain"></div>
+
+  <div class="hero-left">
+    <div class="hero-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">Director Spotlight</span>
+      <div class="eyebrow-sep"></div>
+      <span class="eyebrow-season">Season {{ site.currentSeason | pad(2, '0') }}</span>
+    </div>
+
+    <h1 class="hero-title">
+      <span class="name-line">{{ currentDir.firstName | upper }}</span>
+      <span class="name-line accent" data-text="{{ currentDir.lastName | upper }}">{{ currentDir.lastName | upper }}</span>
+    </h1>
+
+    <p class="hero-tagline">
+      {{ currentDir.bio | truncate(200, true, '...') }}
+    </p>
+
+    <div class="hero-meta-row">
+      <div class="meta-cell">
+        <label>Active</label>
+        <span>{{ currentDir.active }}</span>
+      </div>
+      <div class="meta-cell">
+        <label>Selected</label>
+        <span>{{ currentDir.picks | length }} films</span>
+      </div>
+      <div class="meta-cell">
+        <label>Origin</label>
+        <span>{{ currentDir.nationality }}</span>
+      </div>
+    </div>
+
+    <div class="hero-actions">
+      <a href="#picks" class="btn btn-gold">Read Reviews</a>
+      <a href="#archive" class="btn btn-outline">Full Archive</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="poster-stack">
+      <div class="poster-card">
+        <div class="poster-inner">
+          <div class="poster-bg">SE7EN</div>
+          <div class="poster-rating">★ 9.1</div>
+          <div class="poster-info">
+            <h4>Se7en</h4>
+            <span>1995 · Thriller</span>
+          </div>
+        </div>
+      </div>
+      <div class="poster-card">
+        <div class="poster-inner">
+          <div class="poster-bg">FIGHT<br>CLUB</div>
+          <div class="poster-rating">★ 8.8</div>
+          <div class="poster-info">
+            <h4>Fight Club</h4>
+            <span>1999 · Drama</span>
+          </div>
+        </div>
+      </div>
+      <div class="poster-card">
+        <div class="poster-inner">
+          <div class="poster-bg">ZODIAC</div>
+          <div class="poster-rating">★ 8.6</div>
+          <div class="poster-info">
+            <h4>Zodiac</h4>
+            <span>2007 · Crime</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TICKER ════════════════════════════════════════════ -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span class="ticker-item"><span class="dot">◆</span> Kubrick</span>
+    <span class="ticker-item"><span class="dot">◆</span> Kurosawa</span>
+    <span class="ticker-item"><span class="dot">◆</span> Lynch</span>
+    <span class="ticker-item"><span class="dot">◆</span> Tarkovsky</span>
+    <span class="ticker-item"><span class="dot">◆</span> Bergman</span>
+    <span class="ticker-item"><span class="dot">◆</span> Cassavetes</span>
+    <span class="ticker-item"><span class="dot">◆</span> Wong Kar-wai</span>
+    <span class="ticker-item"><span class="dot">◆</span> Haneke</span>
+    <span class="ticker-item"><span class="dot">◆</span> Scorsese</span>
+    <span class="ticker-item"><span class="dot">◆</span> Coppola</span>
+    <span class="ticker-item"><span class="dot">◆</span> Almodovar</span>
+    <span class="ticker-item"><span class="dot">◆</span> Malick</span>
+    <!-- duplicate for seamless loop -->
+    <span class="ticker-item"><span class="dot">◆</span> Kubrick</span>
+    <span class="ticker-item"><span class="dot">◆</span> Kurosawa</span>
+    <span class="ticker-item"><span class="dot">◆</span> Lynch</span>
+    <span class="ticker-item"><span class="dot">◆</span> Tarkovsky</span>
+    <span class="ticker-item"><span class="dot">◆</span> Bergman</span>
+    <span class="ticker-item"><span class="dot">◆</span> Cassavetes</span>
+    <span class="ticker-item"><span class="dot">◆</span> Wong Kar-wai</span>
+    <span class="ticker-item"><span class="dot">◆</span> Haneke</span>
+    <span class="ticker-item"><span class="dot">◆</span> Scorsese</span>
+    <span class="ticker-item"><span class="dot">◆</span> Coppola</span>
+    <span class="ticker-item"><span class="dot">◆</span> Almodovar</span>
+    <span class="ticker-item"><span class="dot">◆</span> Malick</span>
+  </div>
+</div>
+
+<!-- ═══ DIRECTOR SELECTOR ════════════════════════════════ -->
+<section class="section-selector" id="selector">
+  <div>
+    <div class="section-tag">
+      <div class="section-tag-line"></div>
+      <span class="section-tag-text">The Mechanic</span>
+    </div>
+    <h2 class="section-heading">WHO'S<br>NEXT?</h2>
+    <p class="section-body">
+      Each season the wheel turns. A director is chosen — from the canon, the overlooked, the essential. Three films are selected. The club watches. The conversation begins.
+    </p>
+    <p class="section-body">
+      The selector doesn't play favourites.
+    </p>
+  </div>
+
+  <div class="terminal">
+    <div class="terminal-bar">
+      <div class="t-dot"></div>
+      <div class="t-dot"></div>
+      <div class="t-dot"></div>
+      <span class="terminal-title">director_selector.exe</span>
+    </div>
+    <div class="terminal-body">
+      <div class="terminal-prompt"><span>$</span> ./select --from pantheon.json</div>
+      <div class="slot-window">
+        <div class="slot-result" id="slotResult">AWAITING INPUT</div>
+        <div class="slot-sub" id="slotSub">— initialising —</div>
+      </div>
+      <div class="terminal-hint"><span>></span> press button to execute selection</div>
+      <button class="spin-btn" id="spinBtn" onclick="runSelector()">▶ Run Selector</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CURRENT PICKS ═════════════════════════════════════ -->
+<section class="section-picks" id="picks">
+  <div class="section-header">
+    <div>
+      <div class="section-tag">
+        <div class="tag-line"></div>
+        <span class="tag-text">Season {{ site.currentSeason | pad(2, '0') }} — {{ currentDir.lastName }}</span>
+      </div>
+      <h2 class="section-heading">THE PICKS</h2>
+    </div>
+    <a href="/directors/{{ currentDir.slug }}/" class="link-subtle">All reviews →</a>
+  </div>
+
+  <div class="picks-grid">
+    <div class="film-card">
+      <div class="film-card-vis">
+        <div class="film-year-ghost">1995</div>
+      </div>
+      <div class="film-card-body">
+        <div class="film-card-title">Se7en</div>
+        <div class="film-card-meta">1995 · 127 min · Thriller</div>
+        <p class="film-card-excerpt">"What's in the box?" A question that has haunted cinema for three decades. Fincher's masterwork in dread, procedure, and gut-punch inevitability.</p>
+        <div class="film-card-rating">
+          <div class="cr-label">Club Rating</div>
+          <div class="cr-score">14 <span>/ 15</span></div>
+          <div class="cr-dims">
+            <span class="cr-dim a"><span class="cr-dim-dot"></span>A·4</span>
+            <span class="cr-dim e"><span class="cr-dim-dot"></span>E·5</span>
+            <span class="cr-dim r"><span class="cr-dim-dot"></span>R·5</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="film-card">
+      <div class="film-card-vis">
+        <div class="film-year-ghost">1999</div>
+      </div>
+      <div class="film-card-body">
+        <div class="film-card-title">Fight Club</div>
+        <div class="film-card-meta">1999 · 139 min · Drama</div>
+        <p class="film-card-excerpt">A critique so sharp its targets still quote it approvingly. Fincher at his most kinetic — a film that eats itself and grins doing it.</p>
+        <div class="film-card-rating">
+          <div class="cr-label">Club Rating</div>
+          <div class="cr-score">12 <span>/ 15</span></div>
+          <div class="cr-dims">
+            <span class="cr-dim a"><span class="cr-dim-dot"></span>A·3</span>
+            <span class="cr-dim e"><span class="cr-dim-dot"></span>E·5</span>
+            <span class="cr-dim r"><span class="cr-dim-dot"></span>R·4</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="film-card">
+      <div class="film-card-vis">
+        <div class="film-year-ghost">2007</div>
+      </div>
+      <div class="film-card-body">
+        <div class="film-card-title">Zodiac</div>
+        <div class="film-card-meta">2007 · 157 min · Crime</div>
+        <p class="film-card-excerpt">Fincher's most underrated. An obsession about obsession — how the search for a single truth can quietly swallow an entire life whole.</p>
+        <div class="film-card-rating">
+          <div class="cr-label">Club Rating</div>
+          <div class="cr-score">12 <span>/ 15</span></div>
+          <div class="cr-dims">
+            <span class="cr-dim a"><span class="cr-dim-dot"></span>A·3</span>
+            <span class="cr-dim e"><span class="cr-dim-dot"></span>E·4</span>
+            <span class="cr-dim r"><span class="cr-dim-dot"></span>R·5</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ARCHIVE ════════════════════════════════════════════ -->
+<section class="section-archive" id="archive">
+  <div class="section-header">
+    <div>
+      <div class="section-tag">
+        <div class="tag-line"></div>
+        <span class="tag-text">The Pantheon</span>
+      </div>
+      <h2 class="section-heading">PAST<br>DIRECTORS</h2>
+    </div>
+    <a href="#" class="link-subtle">Full archive →</a>
+  </div>
+
+  <div class="director-grid">
+    {% for dir in directors.archive %}
+    <div class="dir-card">
+      <div class="dir-num">{{ dir.number | pad(2, '0') }}</div>
+      <div class="dir-name">{{ dir.name }}</div>
+      <div class="dir-origin">{{ dir.origin }}</div>
+      <div class="dir-films">
+        {% for film in dir.films %}
+        <div class="dir-film-tag">{{ film }}</div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<script>
+  // ── RAIN STREAKS
+  const rainEl = document.getElementById('rain');
+  for (let i = 0; i < 18; i++) {
+    const line = document.createElement('div');
+    line.className = 'rain-line';
+    const h = 40 + Math.random() * 80;
+    line.style.cssText = `
+      left: ${Math.random() * 100}%;
+      height: ${h}px;
+      opacity: ${0.06 + Math.random() * 0.1};
+      animation-duration: ${2.5 + Math.random() * 4}s;
+      animation-delay: ${Math.random() * 4}s;
+    `;
+    rainEl.appendChild(line);
+  }
+
+  // ── DIRECTOR SELECTOR
+  const directors = [
+    { name: 'F.F. COPPOLA',    years: '1969 – 1997' },
+    { name: 'INGMAR BERGMAN',  years: '1946 – 2003' },
+    { name: 'S. KUBRICK',      years: '1953 – 1999' },
+    { name: 'A. KUROSAWA',     years: '1943 – 1993' },
+    { name: 'DAVID LYNCH',     years: '1977 – 2006' },
+    { name: 'A. TARKOVSKY',    years: '1962 – 1986' },
+    { name: 'M. SCORSESE',     years: '1967 – Present' },
+    { name: 'M. HANEKE',       years: '1989 – Present' },
+    { name: 'WONG KAR-WAI',    years: '1988 – Present' },
+    { name: 'P. ALMODOVAR',    years: '1980 – Present' },
+    { name: 'J. CASSAVETES',   years: '1959 – 1984' },
+    { name: 'T. MALICK',       years: '1973 – Present' },
+    { name: 'R.W. FASSBINDER', years: '1969 – 1982' },
+    { name: 'J-L. GODARD',     years: '1960 – 2022' },
+    { name: 'C. NOLAN',        years: '1998 – Present' },
+    { name: 'A. HITCHCOCK',    years: '1925 – 1976' },
+  ];
+
+  let spinning = false;
+
+  function runSelector() {
+    if (spinning) return;
+    spinning = true;
+
+    const result = document.getElementById('slotResult');
+    const sub = document.getElementById('slotSub');
+    const btn = document.getElementById('spinBtn');
+
+    btn.textContent = '▶ Selecting...';
+    result.classList.add('spinning');
+    sub.textContent = '— searching database —';
+
+    let frame = 0;
+    const total = 28;
+    const interval = setInterval(() => {
+      const d = directors[Math.floor(Math.random() * directors.length)];
+      result.textContent = d.name;
+      sub.textContent = d.years;
+      frame++;
+
+      if (frame >= total) {
+        clearInterval(interval);
+        result.classList.remove('spinning');
+        const chosen = directors[Math.floor(Math.random() * directors.length)];
+        result.textContent = chosen.name;
+        sub.textContent = chosen.years + ' · selected';
+        btn.textContent = '▶ Run Again';
+        spinning = false;
+      }
+    }, 90);
+  }
+
+  // ── SCROLL REVEAL
+  const cards = document.querySelectorAll('.dir-card, .film-card');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '0';
+        e.target.style.transform = 'translateY(16px)';
+        e.target.style.transition = `opacity 0.5s ease ${i * 0.04}s, transform 0.5s ease ${i * 0.04}s`;
+        requestAnimationFrame(() => {
+          e.target.style.opacity = '';
+          e.target.style.transform = '';
+        });
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  cards.forEach(c => io.observe(c));
+</script>

@@ -1,0 +1,11 @@
+<div class="hero-breadcrumb">
+  <a href="/" class="breadcrumb-link">Home</a>
+  {% for crumb in breadcrumbs %}
+  <span class="breadcrumb-sep">◆</span>
+  {% if crumb.url %}
+  <a href="{{ crumb.url }}" class="breadcrumb-link">{{ crumb.text }}</a>
+  {% else %}
+  <span class="breadcrumb-current">{{ crumb.text }}</span>
+  {% endif %}
+  {% endfor %}
+</div>

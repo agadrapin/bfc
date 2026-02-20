@@ -1,0 +1,26 @@
+{
+  "name": "bfc",
+  "version": "1.0.0",
+  "description": "A personal film criticism site built as a static site for GitHub Pages. Each season spotlights a single director — two or three film picks, full written reviews, and a custom 3-tier rating system.",
+  "main": "index.js",
+  "scripts": {
+    "build": "eleventy",
+    "serve": "eleventy --serve",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/agadrapin/bfc.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/agadrapin/bfc/issues"
+  },
+  "homepage": "https://github.com/agadrapin/bfc#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.2"
+  }
+}

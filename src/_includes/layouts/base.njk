@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% if title %}{{ title }} — {% endif %}{{ site.name }}</title>
+  <link rel="stylesheet" href="/assets/css/global.css">
+  {% block styles %}{% endblock %}
+</head>
+<body>
+
+<div id="cursorGlow"></div>
+{% block progressBar %}{% endblock %}
+
+{% include "partials/nav.njk" %}
+
+{% block content %}{% endblock %}
+
+{% include "partials/footer.njk" %}
+
+<script src="/assets/js/global.js"></script>
+{% block scripts %}{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,699 @@
+/* ═══════════════════════════════════════════════════════
+   THE BAYLEY FILM CLUB — review.css
+   Styles specific to film review pages
+   ═══════════════════════════════════════════════════════ */
+
+/* ── HERO ───────────────────────────────────────────── */
+.hero {
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  overflow: hidden;
+  padding-top: 80px;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(123,47,255,0.1) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 50% at 90% 20%, rgba(232,24,154,0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 40% at 10% 80%, rgba(201,168,76,0.04) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.hero-ghost {
+  position: absolute;
+  left: -0.02em;
+  bottom: -0.1em;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(8rem, 18vw, 22rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: rgba(201,168,76,0.04);
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  white-space: nowrap;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 4rem 3rem 3rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4rem;
+  align-items: end;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero-season-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  border: 1px solid rgba(201,168,76,0.3);
+  padding: 0.35rem 0.9rem;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 0.7s ease 0.2s forwards;
+}
+
+.season-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 8px var(--gold);
+}
+
+.season-label {
+  font-size: 0.55rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4rem, 9vw, 10rem);
+  line-height: 0.88;
+  letter-spacing: 0.01em;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.3s forwards;
+}
+
+.hero-title .line1 { display: block; color: var(--white); }
+.hero-title .line2 {
+  display: block;
+  color: var(--gold2);
+  text-shadow: 0 0 60px rgba(201,168,76,0.2);
+  position: relative;
+}
+
+.hero-title .line2::before,
+.hero-title .line2::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0; left: 0;
+}
+
+.hero-title .line2::before {
+  color: var(--magenta);
+  clip-path: polygon(0 0, 100% 0, 100% 30%, 0 30%);
+  animation: glitchTop 7s infinite;
+  text-shadow: none;
+}
+
+.hero-title .line2::after {
+  color: var(--purple);
+  clip-path: polygon(0 70%, 100% 70%, 100% 100%, 0 100%);
+  animation: glitchBot 7s infinite;
+  text-shadow: none;
+}
+
+@keyframes glitchTop {
+  0%,92%,100% { opacity:0; transform:translate(0) }
+  94% { opacity:0.6; transform:translate(-5px,0) }
+  97% { opacity:0; }
+}
+
+@keyframes glitchBot {
+  0%,92%,100% { opacity:0; transform:translate(0) }
+  95% { opacity:0.5; transform:translate(4px,0) }
+  98% { opacity:0; }
+}
+
+.hero-tagline {
+  font-family: 'Syne', sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--muted2);
+  max-width: 520px;
+  line-height: 1.7;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.45s forwards;
+}
+
+/* HERO RIGHT — film facts panel */
+.hero-facts {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  min-width: 240px;
+  position: relative;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeIn 0.8s ease 0.55s forwards;
+  align-self: end;
+}
+
+.hero-facts::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(201,168,76,0.04), transparent);
+  pointer-events: none;
+}
+
+.facts-header {
+  padding: 0.6rem 1.1rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--panel2);
+  font-size: 0.5rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.facts-dot {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 6px var(--gold);
+}
+
+.fact-row {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+}
+
+.fact-row:last-child { border-bottom: none; }
+
+.fact-cell {
+  flex: 1;
+  padding: 0.8rem 1.1rem;
+  border-right: 1px solid var(--border);
+}
+
+.fact-cell:last-child { border-right: none; }
+
+.fact-cell label {
+  display: block;
+  font-size: 0.48rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.35rem;
+}
+
+.fact-cell span {
+  font-size: 0.75rem;
+  color: var(--white);
+  line-height: 1.3;
+}
+
+.fact-cell span.gold { color: var(--gold2); }
+
+/* ── READING PROGRESS BAR ───────────────────────────── */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 2px;
+  background: linear-gradient(to right, var(--purple), var(--magenta), var(--gold));
+  width: 0%;
+  z-index: 300;
+  transition: width 0.1s linear;
+}
+
+/* ── ARTICLE LAYOUT ─────────────────────────────────── */
+.article-wrap {
+  display: grid;
+  grid-template-columns: 1fr min(680px, 60%) 1fr;
+  padding: 5rem 0;
+  position: relative;
+}
+
+.article-main {
+  grid-column: 2;
+}
+
+/* sticky side nav */
+.article-aside {
+  grid-column: 3;
+  padding: 0 3rem;
+  position: relative;
+}
+
+.aside-sticky {
+  position: sticky;
+  top: 120px;
+}
+
+.aside-label {
+  font-size: 0.5rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.aside-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 2rem;
+}
+
+.aside-link {
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.aside-link::before {
+  content: '';
+  display: block;
+  width: 10px; height: 1px;
+  background: var(--border2);
+  transition: width 0.2s, background 0.2s;
+  flex-shrink: 0;
+}
+
+.aside-link:hover { color: var(--gold); }
+.aside-link:hover::before { width: 16px; background: var(--gold); }
+.aside-link.active { color: var(--gold2); }
+.aside-link.active::before { width: 16px; background: var(--gold2); }
+
+/* ── INTRO ──────────────────────────────────────────── */
+.review-intro {
+  margin-bottom: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.intro-heading {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  letter-spacing: 0.03em;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+  color: var(--white);
+}
+
+/* ── PROSE ──────────────────────────────────────────── */
+.prose {
+  font-family: 'Syne', sans-serif;
+  font-weight: 400;
+  font-size: 1.05rem;
+  line-height: 1.95;
+  color: var(--muted2);
+  letter-spacing: 0.01em;
+}
+
+.prose p {
+  margin-bottom: 1.6rem;
+}
+
+.prose p:last-child { margin-bottom: 0; }
+
+.prose strong {
+  color: var(--white);
+  font-weight: 700;
+}
+
+.prose em {
+  color: var(--gold2);
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* drop cap on first paragraph */
+.prose p.drop-cap::first-letter {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 4.5rem;
+  line-height: 0.75;
+  float: left;
+  margin-right: 0.1em;
+  margin-top: 0.08em;
+  color: var(--gold2);
+  text-shadow: 0 0 30px rgba(201,168,76,0.4);
+}
+
+/* ── PULL QUOTE ─────────────────────────────────────── */
+.pull-quote {
+  margin: 3rem -3rem;
+  padding: 2.5rem 3rem;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--panel);
+  position: relative;
+  overflow: hidden;
+}
+
+.pull-quote::before {
+  content: '\201C';
+  position: absolute;
+  top: -0.2em; left: 0.2em;
+  font-family: 'Syne', sans-serif;
+  font-size: 12rem;
+  line-height: 1;
+  color: rgba(201,168,76,0.06);
+  pointer-events: none;
+  user-select: none;
+}
+
+.pull-quote-text {
+  font-family: 'Syne', sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  font-size: clamp(1.1rem, 2.2vw, 1.55rem);
+  line-height: 1.55;
+  color: var(--white);
+  position: relative;
+  z-index: 1;
+  letter-spacing: -0.01em;
+}
+
+.pull-quote-accent {
+  display: block;
+  width: 2.5rem;
+  height: 2px;
+  background: linear-gradient(to right, var(--gold), transparent);
+  margin-top: 1.2rem;
+}
+
+/* ── FILM SECTION DIVIDER ───────────────────────────── */
+.film-section {
+  margin-top: 4rem;
+  padding-top: 4rem;
+  border-top: 1px solid var(--border);
+}
+
+.film-section-header {
+  margin-bottom: 2.5rem;
+}
+
+.film-section-number {
+  font-size: 0.55rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+.film-section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 0.9;
+  letter-spacing: 0.02em;
+  color: var(--gold2);
+  text-shadow: 0 0 40px rgba(201,168,76,0.2);
+  margin-bottom: 0.5rem;
+}
+
+.film-section-meta {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── CLUB RATING FULL ───────────────────────────────── */
+.rating-section {
+  margin: 4rem 0;
+  padding: 0;
+}
+
+.rating-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.rating-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(123,47,255,0.04), transparent 50%, rgba(201,168,76,0.03));
+  pointer-events: none;
+}
+
+.rating-header {
+  padding: 0.7rem 1.2rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--panel2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rating-header-label {
+  font-size: 0.52rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.rating-total {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  color: var(--gold2);
+  text-shadow: 0 0 20px rgba(201,168,76,0.4);
+}
+
+.rating-total span {
+  font-size: 0.65rem;
+  color: var(--muted);
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.1em;
+}
+
+.rating-body {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.radar-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.radar-svg {
+  width: 180px;
+  height: 180px;
+  overflow: visible;
+}
+
+.score-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.score-item { display: flex; flex-direction: column; gap: 0.4rem; }
+
+.score-item-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.score-label {
+  font-size: 0.55rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.score-label.anticipation { color: var(--purple2); }
+.score-label.enjoyment   { color: var(--magenta2); }
+.score-label.retrospect  { color: var(--gold2); }
+
+.score-value {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+
+.score-value.anticipation { color: var(--purple2); text-shadow: 0 0 12px rgba(168,107,255,0.5); }
+.score-value.enjoyment    { color: var(--magenta2); text-shadow: 0 0 12px rgba(255,92,200,0.5); }
+.score-value.retrospect   { color: var(--gold2);    text-shadow: 0 0 12px rgba(232,201,122,0.5); }
+
+.score-bar-track {
+  height: 2px;
+  background: var(--border2);
+  position: relative;
+  overflow: hidden;
+}
+
+.score-bar-fill {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 0;
+  transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+}
+
+.score-bar-fill.anticipation { background: linear-gradient(to right, var(--purple), var(--purple2)); }
+.score-bar-fill.enjoyment    { background: linear-gradient(to right, var(--magenta), var(--magenta2)); }
+.score-bar-fill.retrospect   { background: linear-gradient(to right, var(--gold), var(--gold2)); }
+
+.score-desc {
+  font-family: 'Syne', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 0.62rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.rating-footer-bar {
+  border-top: 1px solid var(--border);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.rating-footnote {
+  font-size: 0.5rem;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.rating-verdict {
+  font-family: 'Syne', sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  font-size: 0.72rem;
+  color: var(--gold2);
+  letter-spacing: 0.03em;
+}
+
+/* ── OTHER REVIEWS ──────────────────────────────────── */
+.other-reviews {
+  margin-top: 4rem;
+  padding-top: 4rem;
+  border-top: 1px solid var(--border);
+}
+
+.other-reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1px;
+  background: var(--border);
+}
+
+.other-card {
+  background: var(--panel);
+  text-decoration: none;
+  cursor: crosshair;
+  transition: background 0.25s;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.other-card:hover { background: var(--panel2); }
+
+.other-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(to right, var(--purple), var(--magenta));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+}
+
+.other-card:hover::after { transform: scaleX(1); }
+
+.other-card-vis {
+  height: 80px;
+  background: linear-gradient(160deg, #180810, #280d1e);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.other-card-year {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 4rem;
+  color: rgba(232,24,154,0.12);
+  user-select: none;
+  transition: transform 0.3s;
+}
+
+.other-card:hover .other-card-year { transform: scale(1.1); }
+
+.other-card-body {
+  padding: 1.2rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.other-card-meta {
+  font-size: 0.5rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.other-card-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 0.03em;
+  color: var(--white);
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.other-card:hover .other-card-title { color: var(--magenta2); }
+
+.other-card-rating {
+  margin-top: auto;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.ocr-label {
+  font-size: 0.45rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.ocr-score {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.3rem;
+  letter-spacing: 0.05em;
+  color: var(--gold2);
+  text-shadow: 0 0 15px rgba(201,168,76,0.3);
+  line-height: 1;
+}
+
+.ocr-score span {
+  font-size: 0.55rem;
+  color: var(--muted);
+  font-family: 'Space Mono', monospace;
+}
+
+.ocr-dims {
+  display: flex;
+  gap: 0.6rem;
+}

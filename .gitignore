@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Eleventy output
+_site/
+
+# OS files
+.DS_Store
+
+# Editor
+*.swp
+*.swo
+.vscode/
+
+# Environment
+.env
+.env.local

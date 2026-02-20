@@ -1,0 +1,109 @@
+{
+  "fincher": {
+    "name": "David Fincher",
+    "firstName": "David",
+    "lastName": "Fincher",
+    "slug": "fincher",
+    "ghostLetter": "F",
+    "season": 4,
+    "isCurrent": true,
+    "born": "Aug 28, 1962",
+    "origin": "Denver, USA",
+    "nationality": "American",
+    "active": "1992 – Present",
+    "features": 12,
+    "bio": "The architect of dread. David Fincher is a filmmaker of uncommon precision — a director who treats cinema as an act of control, and whose films are saturated with the creeping certainty that something is profoundly, irreversibly wrong. From the rain-soaked procedural horror of Se7en to the existential unravelling of Fight Club, Fincher's work returns obsessively to obsession itself: men chasing truth until truth destroys them.",
+    "themes": ["Obsession", "Identity", "Dread", "Procedure", "Masculinity", "Paranoia", "Control"],
+    "filmography": [
+      { "year": 1992, "title": "Alien³", "genre": "Sci-Fi · Horror", "pick": false },
+      { "year": 1995, "title": "Se7en", "genre": "Thriller · Crime", "pick": true },
+      { "year": 1997, "title": "The Game", "genre": "Thriller · Mystery", "pick": false },
+      { "year": 1999, "title": "Fight Club", "genre": "Drama · Thriller", "pick": true },
+      { "year": 2002, "title": "Panic Room", "genre": "Thriller", "pick": false },
+      { "year": 2007, "title": "Zodiac", "genre": "Crime · Mystery", "pick": true },
+      { "year": 2008, "title": "Benjamin Button", "genre": "Drama · Fantasy", "pick": false },
+      { "year": 2010, "title": "The Social Network", "genre": "Drama · Biography", "pick": false },
+      { "year": 2011, "title": "Dragon Tattoo", "genre": "Crime · Thriller", "pick": false },
+      { "year": 2014, "title": "Gone Girl", "genre": "Thriller · Mystery", "pick": false },
+      { "year": 2020, "title": "Mank", "genre": "Drama · Biography", "pick": false },
+      { "year": 2023, "title": "The Killer", "genre": "Action · Thriller", "pick": false }
+    ],
+    "picks": ["se7en", "fight-club", "zodiac"]
+  },
+  "bong": {
+    "name": "Bong Joon-ho",
+    "firstName": "Joon-ho",
+    "lastName": "Bong",
+    "slug": "bong",
+    "ghostLetter": "B",
+    "season": 1,
+    "isCurrent": false,
+    "born": "Sep 14, 1969",
+    "origin": "Daegu, South Korea",
+    "nationality": "South Korean",
+    "active": "2000 – Present",
+    "features": 7,
+    "bio": "Bong Joon-ho has a remarkable talent for unearthing the darkness within the mundane. His films often begin with deceptively ordinary premises — small-town police work, a mother's devotion — but gradually peel back layers to reveal harrowing truths about human nature and societal failings.",
+    "themes": ["Class", "Family", "Memory", "Justice", "Social Commentary", "Tragicomedy"],
+    "filmography": [
+      { "year": 2000, "title": "Barking Dogs Never Bite", "genre": "Comedy · Drama", "pick": false },
+      { "year": 2003, "title": "Memories of Murder", "genre": "Crime · Drama", "pick": true },
+      { "year": 2006, "title": "The Host", "genre": "Action · Horror", "pick": false },
+      { "year": 2009, "title": "Mother", "genre": "Crime · Drama", "pick": true },
+      { "year": 2013, "title": "Snowpiercer", "genre": "Action · Sci-Fi", "pick": false },
+      { "year": 2017, "title": "Okja", "genre": "Action · Drama", "pick": false },
+      { "year": 2019, "title": "Parasite", "genre": "Drama · Thriller", "pick": false }
+    ],
+    "picks": ["memories-of-murder", "mother"]
+  },
+  "archive": [
+    {
+      "number": 1,
+      "name": "Stanley Kubrick",
+      "origin": "British-American",
+      "films": ["2001: A Space Odyssey", "The Shining", "Full Metal Jacket"]
+    },
+    {
+      "number": 2,
+      "name": "Akira Kurosawa",
+      "origin": "Japanese",
+      "films": ["Rashomon", "Seven Samurai", "Ran"]
+    },
+    {
+      "number": 3,
+      "name": "David Lynch",
+      "origin": "American",
+      "films": ["Mulholland Drive", "Blue Velvet", "Eraserhead"]
+    },
+    {
+      "number": 4,
+      "name": "Andrei Tarkovsky",
+      "origin": "Russian",
+      "films": ["Stalker", "Solaris", "Andrei Rublev"]
+    },
+    {
+      "number": 5,
+      "name": "Ingmar Bergman",
+      "origin": "Swedish",
+      "films": ["The Seventh Seal", "Persona", "Wild Strawberries"]
+    },
+    {
+      "number": 6,
+      "name": "Wong Kar-wai",
+      "origin": "Hong Kong",
+      "films": ["In the Mood for Love", "Chungking Express", "2046"]
+    },
+    {
+      "number": 7,
+      "name": "Martin Scorsese",
+      "origin": "American",
+      "films": ["Taxi Driver", "Raging Bull", "Goodfellas"]
+    },
+    {
+      "number": 8,
+      "name": "Michael Haneke",
+      "origin": "Austrian",
+      "films": ["Caché", "The White Ribbon", "Amour"]
+    }
+  ]
+}

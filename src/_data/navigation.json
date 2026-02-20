@@ -1,0 +1,8 @@
+{
+  "main": [
+    { "text": "Now Screening", "url": "/" },
+    { "text": "Archive", "url": "/#archive" },
+    { "text": "Essays", "url": "/essays/" },
+    { "text": "About", "url": "/about/" }
+  ]
+}

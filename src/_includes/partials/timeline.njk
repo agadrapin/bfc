@@ -1,0 +1,41 @@
+{# Timeline component for director pages #}
+<div class="timeline">
+  <!-- AXIS with glowing film dots -->
+  <div class="timeline-axis-wrap">
+    <div class="timeline-axis" id="timelineAxis">
+      <div class="timeline-axis-fill"></div>
+      <!-- dots injected by JS -->
+    </div>
+  </div>
+
+  <div class="timeline-decades">
+    <div class="decade-mark"><div class="decade-tick"></div><span class="decade-label">1990s</span></div>
+    <div class="decade-mark"><div class="decade-tick"></div><span class="decade-label">2000s</span></div>
+    <div class="decade-mark"><div class="decade-tick"></div><span class="decade-label">2010s</span></div>
+    <div class="decade-mark"><div class="decade-tick"></div><span class="decade-label">2020s</span></div>
+  </div>
+
+  <div class="timeline-films">
+    {% for film in filmography %}
+    <div class="tl-film{% if film.pick %} pick{% endif %}">
+      {% if film.pick %}
+      <div class="tl-pick-marker">OUR PICK</div>
+      {% endif %}
+      <div class="tl-year">{{ film.year }}</div>
+      <div class="tl-title">{{ film.title }}</div>
+      <div class="tl-genre">{{ film.genre }}</div>
+      <span class="tl-badge">{% if film.pick %}★ Reviewed{% else %}Feature{% endif %}</span>
+      {% if film.awards %}
+      <div class="tl-awards">
+        {% for award in film.awards %}
+        <div class="award-wrap">
+          <span class="award {{ award.type }} {{ award.status }}"><span class="award-icon">{{ award.icon }}</span>{{ award.name }}</span>
+          <span class="award-tip">{{ award.description }}</span>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</div>

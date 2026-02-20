@@ -1,0 +1,20 @@
+{# Radar Chart SVG for review pages #}
+<svg class="radar-svg" id="radarSvg" viewBox="0 0 200 200">
+  <defs>
+    <filter id="glowFill">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <linearGradient id="polyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7b2fff" stop-opacity="0.5"/>
+      <stop offset="50%" stop-color="#e8189a" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#c9a84c" stop-opacity="0.5"/>
+    </linearGradient>
+  </defs>
+  <g id="gridRings"></g>
+  <g id="axisLines"></g>
+  <polygon id="radarPoly" points="" fill="url(#polyGrad)" stroke="none" opacity="0.7" filter="url(#glowFill)"/>
+  <polygon id="radarPolyBorder" points="" fill="none" stroke-width="1.5" stroke="#e8c97a" opacity="0.9"/>
+  <g id="axisLabels"></g>
+  <g id="vertexDots"></g>
+</svg>

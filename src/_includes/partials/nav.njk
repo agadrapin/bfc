@@ -1,0 +1,12 @@
+<nav class="site-nav">
+  <a href="/" class="nav-logo">THE BAYLEY <em>FILM</em> CLUB</a>
+  <ul class="nav-links">
+    {% for item in navigation.main %}
+    <li><a href="{{ item.url }}">{{ item.text }}</a></li>
+    {% endfor %}
+  </ul>
+  <div class="nav-live">
+    <div class="nav-live-dot"></div>
+    Season {{ site.currentSeason | pad(2, '0') }} · Active
+  </div>
+</nav>

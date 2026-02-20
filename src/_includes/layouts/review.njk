@@ -1,0 +1,13 @@
+{% extends "layouts/base.njk" %}
+
+{% block styles %}
+<link rel="stylesheet" href="/assets/css/review.css">
+{% endblock %}
+
+{% block progressBar %}
+<div class="progress-bar" id="progressBar"></div>
+{% endblock %}
+
+{% block content %}
+{{ content | safe }}
+{% endblock %}

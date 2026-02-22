@@ -54,37 +54,25 @@ title: null
   </div>
 
   <div class="hero-right">
-    <div class="poster-stack">
-      <a href="/directors/fincher/se7en.html" class="poster-card" style="text-decoration:none;color:inherit;">
-        <div class="poster-inner">
-          <div class="poster-bg">SE7EN</div>
-          <div class="poster-rating">★ 9.1</div>
-          <div class="poster-info">
-            <h4>Se7en</h4>
-            <span>1995 · Thriller</span>
-          </div>
-        </div>
-      </a>
-      <a href="/directors/fincher/fight-club.html" class="poster-card" style="text-decoration:none;color:inherit;">
-        <div class="poster-inner">
-          <div class="poster-bg">FIGHT<br>CLUB</div>
-          <div class="poster-rating">★ 8.8</div>
-          <div class="poster-info">
-            <h4>Fight Club</h4>
-            <span>1999 · Drama</span>
-          </div>
-        </div>
-      </a>
-      <a href="/directors/fincher/zodiac.html" class="poster-card" style="text-decoration:none;color:inherit;">
-        <div class="poster-inner">
-          <div class="poster-bg">ZODIAC</div>
-          <div class="poster-rating">★ 8.6</div>
-          <div class="poster-info">
-            <h4>Zodiac</h4>
-            <span>2007 · Crime</span>
-          </div>
-        </div>
-      </a>
+    <div class="film-selector">
+      <div class="fs-number" id="fsNumber">01</div>
+
+      <div class="fs-body" id="fsBody">
+        <div class="fs-title" id="fsTitle"></div>
+        <div class="fs-meta" id="fsMeta"></div>
+        <div class="fs-rating" id="fsRating"></div>
+        <a class="fs-link" id="fsLink" href="#">Read Review →</a>
+      </div>
+
+      <div class="fs-nav">
+        <button class="fs-arrow fs-prev" id="fsPrev" aria-label="Previous film">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+        </button>
+        <span class="fs-count" id="fsCount"></span>
+        <button class="fs-arrow fs-next" id="fsNext" aria-label="Next film">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+      </div>
     </div>
   </div>
 </section>
@@ -127,12 +115,12 @@ title: null
       <div class="section-tag-line"></div>
       <span class="section-tag-text">The Mechanic</span>
     </div>
-    <h2 class="section-heading">WHO'S<br>NEXT?</h2>
+    <h2 class="section-heading">EXPLORE<br>THE ARCHIVE</h2>
     <p class="section-body">
-      Each season the wheel turns. A director is chosen — from the canon, the overlooked, the essential. Three films are selected. The club watches. The conversation begins.
+      Every director we cover leaves a mark. Spin the selector to resurface a past season — revisit the films, the reviews, the conversations that shaped the club.
     </p>
     <p class="section-body">
-      The selector doesn't play favourites.
+      The archive remembers everything.
     </p>
   </div>
 
@@ -144,13 +132,14 @@ title: null
       <span class="terminal-title">director_selector.exe</span>
     </div>
     <div class="terminal-body">
-      <div class="terminal-prompt"><span>$</span> ./select --from pantheon.json</div>
+      <div class="terminal-prompt"><span>$</span> ./select --from archive.json</div>
       <div class="slot-window">
         <div class="slot-result" id="slotResult">AWAITING INPUT</div>
         <div class="slot-sub" id="slotSub">— initialising —</div>
+        <a href="#" class="slot-link" id="slotLink">View Profile →</a>
       </div>
-      <div class="terminal-hint"><span>></span> press button to execute selection</div>
-      <button class="spin-btn" id="spinBtn" onclick="runSelector()">▶ Run Selector</button>
+      <div class="terminal-hint" id="terminalHint"><span>></span> press button to explore the archive</div>
+      <button class="spin-btn" id="spinBtn" onclick="runSelector()">▶ Explore Archive</button>
     </div>
   </div>
 </section>
@@ -275,27 +264,74 @@ title: null
     rainEl.appendChild(line);
   }
 
-  // ── DIRECTOR SELECTOR
-  const directors = [
-    { name: 'F.F. COPPOLA',    years: '1969 – 1997' },
-    { name: 'INGMAR BERGMAN',  years: '1946 – 2003' },
-    { name: 'S. KUBRICK',      years: '1953 – 1999' },
-    { name: 'A. KUROSAWA',     years: '1943 – 1993' },
-    { name: 'DAVID LYNCH',     years: '1977 – 2006' },
-    { name: 'A. TARKOVSKY',    years: '1962 – 1986' },
-    { name: 'M. SCORSESE',     years: '1967 – Present' },
-    { name: 'M. HANEKE',       years: '1989 – Present' },
-    { name: 'WONG KAR-WAI',    years: '1988 – Present' },
-    { name: 'P. ALMODOVAR',    years: '1980 – Present' },
-    { name: 'J. CASSAVETES',   years: '1959 – 1984' },
-    { name: 'T. MALICK',       years: '1973 – Present' },
-    { name: 'R.W. FASSBINDER', years: '1969 – 1982' },
-    { name: 'J-L. GODARD',     years: '1960 – 2022' },
-    { name: 'C. NOLAN',        years: '1998 – Present' },
-    { name: 'A. HITCHCOCK',    years: '1925 – 1976' },
+  // ── FILM SELECTOR (BROADCAST CAROUSEL)
+  const heroFilms = [
+    {% for film in currentDir.filmography %}{% if film.pick %}
+    { title: '{{ film.title }}', year: {{ film.year }}, genre: '{{ film.genre }}', slug: '{{ film.slug }}' },
+    {% endif %}{% endfor %}
+  ];
+  const filmRatings = {
+    'se7en':              { total: 14, a: 4, e: 5, r: 5 },
+    'fight-club':         { total: 12, a: 3, e: 5, r: 4 },
+    'zodiac':             { total: 12, a: 3, e: 4, r: 5 },
+    'memories-of-murder': { total: 14, a: 4, e: 5, r: 5 },
+    'mother':             { total: 12, a: 4, e: 4, r: 4 }
+  };
+  const dirSlug = '{{ currentDir.slug }}';
+  let fsIndex = 0;
+  let fsTransitioning = false;
+
+  function renderFilm(index) {
+    const f = heroFilms[index];
+    document.getElementById('fsNumber').textContent = String(index + 1).padStart(2, '0');
+    document.getElementById('fsTitle').textContent = f.title.toUpperCase();
+    document.getElementById('fsMeta').textContent = f.year + ' · ' + f.genre;
+    const r = filmRatings[f.slug];
+    document.getElementById('fsRating').innerHTML = r
+      ? '<span class="fs-cr-score">' + r.total + ' <span class="fs-cr-max">/ 15</span></span>' +
+        '<span class="fs-cr-dims">' +
+          '<span class="cr-dim a"><span class="cr-dim-dot"></span>A·' + r.a + '</span>' +
+          '<span class="cr-dim e"><span class="cr-dim-dot"></span>E·' + r.e + '</span>' +
+          '<span class="cr-dim r"><span class="cr-dim-dot"></span>R·' + r.r + '</span>' +
+        '</span>'
+      : '—';
+    document.getElementById('fsLink').href = '/directors/' + dirSlug + '/' + f.slug + '.html';
+    document.getElementById('fsCount').textContent = (index + 1) + ' / ' + heroFilms.length;
+  }
+
+  function changeFilm(dir) {
+    if (fsTransitioning) return;
+    fsTransitioning = true;
+    const body = document.getElementById('fsBody');
+    const num = document.getElementById('fsNumber');
+    body.classList.add('fs-transitioning');
+    num.classList.add('fs-transitioning');
+    setTimeout(() => {
+      fsIndex = (fsIndex + dir + heroFilms.length) % heroFilms.length;
+      renderFilm(fsIndex);
+      body.classList.remove('fs-transitioning');
+      num.classList.remove('fs-transitioning');
+      setTimeout(() => { fsTransitioning = false; }, 300);
+    }, 200);
+  }
+
+  renderFilm(0);
+  document.getElementById('fsNext').addEventListener('click', () => changeFilm(1));
+  document.getElementById('fsPrev').addEventListener('click', () => changeFilm(-1));
+
+  // ── DIRECTOR SELECTOR (SLOT MACHINE)
+  const spinPool = [
+    {% for key, dir in directors %}{% if dir.slug %}
+    { name: '{{ dir.name }}', origin: '{{ dir.nationality }}', active: '{{ dir.active }}', slug: '{{ dir.slug }}', hasProfile: true },
+    {% endif %}{% endfor %}
+    {% for dir in directors.archive %}
+    { name: '{{ dir.name }}', origin: '{{ dir.origin }}', active: '', slug: '', hasProfile: false },
+    {% endfor %}
   ];
 
+  const landingPool = spinPool.filter(d => d.hasProfile);
   let spinning = false;
+  let lastSlug = '';
 
   function runSelector() {
     if (spinning) return;
@@ -304,29 +340,48 @@ title: null
     const result = document.getElementById('slotResult');
     const sub = document.getElementById('slotSub');
     const btn = document.getElementById('spinBtn');
+    const link = document.getElementById('slotLink');
+    const hint = document.getElementById('terminalHint');
 
     btn.textContent = '▶ Selecting...';
     result.classList.add('spinning');
-    sub.textContent = '— searching database —';
+    sub.textContent = '— searching archive —';
+    link.classList.remove('visible');
+    hint.innerHTML = '<span>></span> scanning database...';
 
     let frame = 0;
-    const total = 28;
-    const interval = setInterval(() => {
-      const d = directors[Math.floor(Math.random() * directors.length)];
-      result.textContent = d.name;
-      sub.textContent = d.years;
+    const totalFast = 22;
+    const totalSlow = 8;
+    const total = totalFast + totalSlow;
+
+    function tick() {
+      const d = spinPool[Math.floor(Math.random() * spinPool.length)];
+      result.textContent = d.name.toUpperCase();
+      sub.textContent = d.origin || '—';
       frame++;
 
       if (frame >= total) {
-        clearInterval(interval);
         result.classList.remove('spinning');
-        const chosen = directors[Math.floor(Math.random() * directors.length)];
-        result.textContent = chosen.name;
-        sub.textContent = chosen.years + ' · selected';
-        btn.textContent = '▶ Run Again';
+        let chosen = landingPool[Math.floor(Math.random() * landingPool.length)];
+        if (chosen.slug === lastSlug && landingPool.length > 1) {
+          chosen = landingPool.find(d => d.slug !== lastSlug);
+        }
+        lastSlug = chosen.slug;
+
+        result.textContent = chosen.name.toUpperCase();
+        sub.textContent = chosen.origin + ' · ' + chosen.active;
+        link.href = '/directors/' + chosen.slug + '/';
+        link.classList.add('visible');
+        hint.innerHTML = '<span>></span> match found — click to view profile';
+        btn.textContent = '▶ Spin Again';
         spinning = false;
+      } else {
+        const delay = frame < totalFast ? 70 : 70 + (frame - totalFast) * 40;
+        setTimeout(tick, delay);
       }
-    }, 90);
+    }
+
+    setTimeout(tick, 70);
   }
 
   // ── SCROLL REVEAL

@@ -158,58 +158,58 @@ title: null
   </div>
 
   <div class="picks-grid">
-    <a href="/directors/fincher/se7en.html" class="film-card" style="text-decoration:none;color:inherit;">
+    <a href="/directors/vontrier/breaking-the-waves.html" class="film-card" style="text-decoration:none;color:inherit;">
       <div class="film-card-vis">
-        <div class="film-year-ghost">1995</div>
+        <div class="film-year-ghost">1996</div>
       </div>
       <div class="film-card-body">
-        <div class="film-card-title">Se7en</div>
-        <div class="film-card-meta">1995 · 127 min · Thriller</div>
-        <p class="film-card-excerpt">"What's in the box?" A question that has haunted cinema for three decades. Fincher's masterwork in dread, procedure, and gut-punch inevitability.</p>
+        <div class="film-card-title">Breaking the Waves</div>
+        <div class="film-card-meta">1996 · 159 min · Drama · Romance</div>
+        <p class="film-card-excerpt">Devastating, and entirely earned. Bess McNeill is wired with only three variables — God, Love, and Community — and the film watches as all three turn against her.</p>
         <div class="film-card-rating">
           <div class="cr-label">Club Rating</div>
-          <div class="cr-score">14 <span>/ 15</span></div>
+          <div class="cr-score">11 <span>/ 15</span></div>
           <div class="cr-dims">
-            <span class="cr-dim a"><span class="cr-dim-dot"></span>A·4</span>
-            <span class="cr-dim e"><span class="cr-dim-dot"></span>E·5</span>
+            <span class="cr-dim a"><span class="cr-dim-dot"></span>A·2</span>
+            <span class="cr-dim e"><span class="cr-dim-dot"></span>E·4</span>
             <span class="cr-dim r"><span class="cr-dim-dot"></span>R·5</span>
           </div>
         </div>
       </div>
     </a>
-    <a href="/directors/fincher/fight-club.html" class="film-card" style="text-decoration:none;color:inherit;">
+    <a href="/directors/vontrier/the-idiots.html" class="film-card" style="text-decoration:none;color:inherit;">
       <div class="film-card-vis">
-        <div class="film-year-ghost">1999</div>
+        <div class="film-year-ghost">1998</div>
       </div>
       <div class="film-card-body">
-        <div class="film-card-title">Fight Club</div>
-        <div class="film-card-meta">1999 · 139 min · Drama</div>
-        <p class="film-card-excerpt">A critique so sharp its targets still quote it approvingly. Fincher at his most kinetic — a film that eats itself and grins doing it.</p>
+        <div class="film-card-title">The Idiots</div>
+        <div class="film-card-meta">1998 · 117 min · Drama · Comedy</div>
+        <p class="film-card-excerpt">Uncomfortable by design. Von Trier leaves you without the tools to pass judgement — which is itself the provocation. The questions it leaves behind are the ones that matter.</p>
         <div class="film-card-rating">
           <div class="cr-label">Club Rating</div>
-          <div class="cr-score">12 <span>/ 15</span></div>
+          <div class="cr-score">10 <span>/ 15</span></div>
           <div class="cr-dims">
-            <span class="cr-dim a"><span class="cr-dim-dot"></span>A·3</span>
-            <span class="cr-dim e"><span class="cr-dim-dot"></span>E·5</span>
-            <span class="cr-dim r"><span class="cr-dim-dot"></span>R·4</span>
+            <span class="cr-dim a"><span class="cr-dim-dot"></span>A·4</span>
+            <span class="cr-dim e"><span class="cr-dim-dot"></span>E·3</span>
+            <span class="cr-dim r"><span class="cr-dim-dot"></span>R·3</span>
           </div>
         </div>
       </div>
     </a>
-    <a href="/directors/fincher/zodiac.html" class="film-card" style="text-decoration:none;color:inherit;">
+    <a href="/directors/vontrier/dancer-in-the-dark.html" class="film-card" style="text-decoration:none;color:inherit;">
       <div class="film-card-vis">
-        <div class="film-year-ghost">2007</div>
+        <div class="film-year-ghost">2000</div>
       </div>
       <div class="film-card-body">
-        <div class="film-card-title">Zodiac</div>
-        <div class="film-card-meta">2007 · 157 min · Crime</div>
-        <p class="film-card-excerpt">Fincher's most underrated. An obsession about obsession — how the search for a single truth can quietly swallow an entire life whole.</p>
+        <div class="film-card-title">Dancer in the Dark</div>
+        <div class="film-card-meta">2000 · 140 min · Musical · Drama</div>
+        <p class="film-card-excerpt">The saddest film I have ever seen. The best of the trilogy. Björk is extraordinary. Sits comfortably in my personal top five of all time.</p>
         <div class="film-card-rating">
           <div class="cr-label">Club Rating</div>
-          <div class="cr-score">12 <span>/ 15</span></div>
+          <div class="cr-score">15 <span>/ 15</span></div>
           <div class="cr-dims">
-            <span class="cr-dim a"><span class="cr-dim-dot"></span>A·3</span>
-            <span class="cr-dim e"><span class="cr-dim-dot"></span>E·4</span>
+            <span class="cr-dim a"><span class="cr-dim-dot"></span>A·5</span>
+            <span class="cr-dim e"><span class="cr-dim-dot"></span>E·5</span>
             <span class="cr-dim r"><span class="cr-dim-dot"></span>R·5</span>
           </div>
         </div>
@@ -232,18 +232,18 @@ title: null
   </div>
 
   <div class="director-grid">
-    {% for dir in directors.archive %}
-    <div class="dir-card">
-      <div class="dir-num">{{ dir.number | pad(2, '0') }}</div>
+    {% for key, dir in directors %}{% if dir.slug and not dir.isCurrent %}
+    <a href="/directors/{{ dir.slug }}/" class="dir-card" style="text-decoration:none;color:inherit;">
+      <div class="dir-num">Season {{ dir.season | pad(2, '0') }}</div>
       <div class="dir-name">{{ dir.name }}</div>
-      <div class="dir-origin">{{ dir.origin }}</div>
+      <div class="dir-origin">{{ dir.nationality }}</div>
       <div class="dir-films">
-        {% for film in dir.films %}
-        <div class="dir-film-tag">{{ film }}</div>
-        {% endfor %}
+        {% for film in dir.filmography %}{% if film.pick %}
+        <div class="dir-film-tag">{{ film.title }}</div>
+        {% endif %}{% endfor %}
       </div>
-    </div>
-    {% endfor %}
+    </a>
+    {% endif %}{% endfor %}
   </div>
 </section>
 
@@ -271,11 +271,21 @@ title: null
     {% endif %}{% endfor %}
   ];
   const filmRatings = {
-    'se7en':              { total: 14, a: 4, e: 5, r: 5 },
-    'fight-club':         { total: 12, a: 3, e: 5, r: 4 },
-    'zodiac':             { total: 12, a: 3, e: 4, r: 5 },
-    'memories-of-murder': { total: 14, a: 4, e: 5, r: 5 },
-    'mother':             { total: 12, a: 4, e: 4, r: 4 }
+    'memories-of-murder':    { total: 14, a: 4, e: 5, r: 5 },
+    'mother':                { total: 12, a: 4, e: 4, r: 4 },
+    'no-country-for-old-men': { total: 10, a: 2, e: 4, r: 4 },
+    'the-big-lebowski':      { total: 9,  a: 2, e: 4, r: 3 },
+    'cache':                 { total: 8,  a: 3, e: 1, r: 4 },
+    'funny-games':           { total: 8,  a: 5, e: 1, r: 2 },
+    'there-will-be-blood':   { total: 13, a: 4, e: 5, r: 4 },
+    'phantom-thread':        { total: 10, a: 3, e: 3, r: 4 },
+    'the-pianist':           { total: 13, a: 4, e: 4, r: 5 },
+    'knife-in-the-water':    { total: 13, a: 5, e: 5, r: 3 },
+    'a-scanner-darkly':      { total: 9,  a: 3, e: 2, r: 4 },
+    'tape':                  { total: 12, a: 3, e: 5, r: 4 },
+    'breaking-the-waves':    { total: 11, a: 2, e: 4, r: 5 },
+    'the-idiots':            { total: 10, a: 4, e: 3, r: 3 },
+    'dancer-in-the-dark':    { total: 15, a: 5, e: 5, r: 5 }
   };
   const dirSlug = '{{ currentDir.slug }}';
   let fsIndex = 0;

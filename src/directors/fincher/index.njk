@@ -3,6 +3,8 @@ layout: layouts/director.njk
 title: David Fincher
 permalink: /directors/fincher/
 directorSlug: fincher
+breadcrumbs:
+  - text: David Fincher
 ---
 
 {% set dir = directors[directorSlug] %}
@@ -126,15 +128,36 @@ directorSlug: fincher
 
     <div class="timeline-films">
       {% for film in dir.filmography %}
-      <div class="tl-film{% if film.pick %} pick{% endif %}">
-        {% if film.pick %}
+      {% if film.pick and film.slug %}
+      <a href="{{ film.slug }}.html" class="tl-film pick">
         <div class="tl-pick-marker">OUR PICK</div>
-        {% endif %}
         <div class="tl-year">{{ film.year }}</div>
         <div class="tl-title">{{ film.title }}</div>
         <div class="tl-genre">{{ film.genre }}</div>
-        <span class="tl-badge">{% if film.pick %}★ Reviewed{% else %}Feature{% endif %}</span>
+        {% if film.awards %}
+        <div class="tl-awards">
+          {% for award in film.awards %}
+          <span class="tl-award {{ award.status }}" data-tip="{% if award.type == 'oscar' %}Oscar{% elif award.type == 'palme' %}Palme dOr{% else %}Golden Globe{% endif %} — {% if award.status == 'won' %}Winner{% else %}Nominee{% endif %}">{% if award.type == 'oscar' %}🏆{% elif award.type == 'palme' %}🌿{% else %}🌐{% endif %}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+        <span class="tl-badge">★ Reviewed</span>
+      </a>
+      {% else %}
+      <div class="tl-film">
+        <div class="tl-year">{{ film.year }}</div>
+        <div class="tl-title">{{ film.title }}</div>
+        <div class="tl-genre">{{ film.genre }}</div>
+        {% if film.awards %}
+        <div class="tl-awards">
+          {% for award in film.awards %}
+          <span class="tl-award {{ award.status }}" data-tip="{% if award.type == 'oscar' %}Oscar{% elif award.type == 'palme' %}Palme dOr{% else %}Golden Globe{% endif %} — {% if award.status == 'won' %}Winner{% else %}Nominee{% endif %}">{% if award.type == 'oscar' %}🏆{% elif award.type == 'palme' %}🌿{% else %}🌐{% endif %}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+        <span class="tl-badge">Feature</span>
       </div>
+      {% endif %}
       {% endfor %}
     </div>
   </div>
@@ -158,10 +181,10 @@ directorSlug: fincher
   <div class="reviews-grid">
 
     <!-- Review 1: Se7en -->
-    <div class="review-card">
+    <a href="se7en.html" class="review-card">
       <div class="review-card-vis">
         <div class="review-vis-year">1995</div>
-        <div class="review-vis-badge">★★★★★</div>
+        <div class="review-vis-badge">14 <span>/ 15</span></div>
       </div>
       <div class="review-card-body">
         <div>
@@ -184,16 +207,16 @@ directorSlug: fincher
               <span class="cr-dim r"><span class="cr-dim-dot"></span>R·5</span>
             </div>
           </div>
-          <a href="se7en.html" class="read-link">Full review →</a>
+          <span class="read-link">Full review →</span>
         </div>
       </div>
-    </div>
+    </a>
 
     <!-- Review 2: Fight Club -->
-    <div class="review-card">
+    <a href="fight-club.html" class="review-card">
       <div class="review-card-vis">
         <div class="review-vis-year">1999</div>
-        <div class="review-vis-badge">★★★★½</div>
+        <div class="review-vis-badge">12 <span>/ 15</span></div>
       </div>
       <div class="review-card-body">
         <div>
@@ -216,16 +239,16 @@ directorSlug: fincher
               <span class="cr-dim r"><span class="cr-dim-dot"></span>R·4</span>
             </div>
           </div>
-          <a href="fight-club.html" class="read-link">Full review →</a>
+          <span class="read-link">Full review →</span>
         </div>
       </div>
-    </div>
+    </a>
 
     <!-- Review 3: Zodiac -->
-    <div class="review-card">
+    <a href="zodiac.html" class="review-card">
       <div class="review-card-vis">
         <div class="review-vis-year">2007</div>
-        <div class="review-vis-badge">★★★★½</div>
+        <div class="review-vis-badge">12 <span>/ 15</span></div>
       </div>
       <div class="review-card-body">
         <div>
@@ -248,10 +271,10 @@ directorSlug: fincher
               <span class="cr-dim r"><span class="cr-dim-dot"></span>R·5</span>
             </div>
           </div>
-          <a href="zodiac.html" class="read-link">Full review →</a>
+          <span class="read-link">Full review →</span>
         </div>
       </div>
-    </div>
+    </a>
 
   </div>
 </section>

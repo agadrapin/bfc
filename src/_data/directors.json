@@ -16,16 +16,16 @@
     "themes": ["Obsession", "Identity", "Dread", "Procedure", "Masculinity", "Paranoia", "Control"],
     "filmography": [
       { "year": 1992, "title": "Alien³", "genre": "Sci-Fi · Horror", "pick": false },
-      { "year": 1995, "title": "Se7en", "genre": "Thriller · Crime", "pick": true },
+      { "year": 1995, "title": "Se7en", "genre": "Thriller · Crime", "pick": true, "slug": "se7en" },
       { "year": 1997, "title": "The Game", "genre": "Thriller · Mystery", "pick": false },
-      { "year": 1999, "title": "Fight Club", "genre": "Drama · Thriller", "pick": true },
+      { "year": 1999, "title": "Fight Club", "genre": "Drama · Thriller", "pick": true, "slug": "fight-club", "awards": [{ "type": "oscar", "status": "nom" }] },
       { "year": 2002, "title": "Panic Room", "genre": "Thriller", "pick": false },
-      { "year": 2007, "title": "Zodiac", "genre": "Crime · Mystery", "pick": true },
-      { "year": 2008, "title": "Benjamin Button", "genre": "Drama · Fantasy", "pick": false },
-      { "year": 2010, "title": "The Social Network", "genre": "Drama · Biography", "pick": false },
-      { "year": 2011, "title": "Dragon Tattoo", "genre": "Crime · Thriller", "pick": false },
-      { "year": 2014, "title": "Gone Girl", "genre": "Thriller · Mystery", "pick": false },
-      { "year": 2020, "title": "Mank", "genre": "Drama · Biography", "pick": false },
+      { "year": 2007, "title": "Zodiac", "genre": "Crime · Mystery", "pick": true, "slug": "zodiac" },
+      { "year": 2008, "title": "Benjamin Button", "genre": "Drama · Fantasy", "pick": false, "awards": [{ "type": "oscar", "status": "nom" }, { "type": "globe", "status": "nom" }] },
+      { "year": 2010, "title": "The Social Network", "genre": "Drama · Biography", "pick": false, "awards": [{ "type": "oscar", "status": "nom" }, { "type": "globe", "status": "won" }] },
+      { "year": 2011, "title": "Dragon Tattoo", "genre": "Crime · Thriller", "pick": false, "awards": [{ "type": "oscar", "status": "nom" }] },
+      { "year": 2014, "title": "Gone Girl", "genre": "Thriller · Mystery", "pick": false, "awards": [{ "type": "globe", "status": "nom" }] },
+      { "year": 2020, "title": "Mank", "genre": "Drama · Biography", "pick": false, "awards": [{ "type": "oscar", "status": "nom" }] },
       { "year": 2023, "title": "The Killer", "genre": "Action · Thriller", "pick": false }
     ],
     "picks": ["se7en", "fight-club", "zodiac"]
@@ -47,12 +47,12 @@
     "themes": ["Class", "Family", "Memory", "Justice", "Social Commentary", "Tragicomedy"],
     "filmography": [
       { "year": 2000, "title": "Barking Dogs Never Bite", "genre": "Comedy · Drama", "pick": false },
-      { "year": 2003, "title": "Memories of Murder", "genre": "Crime · Drama", "pick": true },
+      { "year": 2003, "title": "Memories of Murder", "genre": "Crime · Drama", "pick": true, "slug": "memories-of-murder" },
       { "year": 2006, "title": "The Host", "genre": "Action · Horror", "pick": false },
-      { "year": 2009, "title": "Mother", "genre": "Crime · Drama", "pick": true },
+      { "year": 2009, "title": "Mother", "genre": "Crime · Drama", "pick": true, "slug": "mother" },
       { "year": 2013, "title": "Snowpiercer", "genre": "Action · Sci-Fi", "pick": false },
-      { "year": 2017, "title": "Okja", "genre": "Action · Drama", "pick": false },
-      { "year": 2019, "title": "Parasite", "genre": "Drama · Thriller", "pick": false }
+      { "year": 2017, "title": "Okja", "genre": "Action · Drama", "pick": false, "awards": [{ "type": "palme", "status": "nom" }] },
+      { "year": 2019, "title": "Parasite", "genre": "Drama · Thriller", "pick": false, "awards": [{ "type": "oscar", "status": "won" }, { "type": "palme", "status": "won" }, { "type": "globe", "status": "won" }] }
     ],
     "picks": ["memories-of-murder", "mother"]
   },

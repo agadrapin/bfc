@@ -1,0 +1,297 @@
+---
+layout: layouts/director.njk
+title: Joel & Ethan Coen
+permalink: /directors/coen/
+directorSlug: coen
+breadcrumbs:
+  - text: Joel & Ethan Coen
+---
+
+{% set dir = directors[directorSlug] %}
+
+<!-- ═══ HERO ══════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-ghost">{{ dir.ghostLetter }}</div>
+
+  <div class="hero-content">
+    <!-- LEFT -->
+    <div>
+      {% include "partials/breadcrumb.njk" %}
+
+      <div class="hero-season-tag">
+        <div class="season-dot"></div>
+        <span class="season-label">Season {{ dir.season | pad(2, '0') }} · {% if dir.isCurrent %}Current Director{% else %}Past Director{% endif %}</span>
+      </div>
+
+      <h1 class="hero-name">
+        <span class="first">THE</span>
+        <span class="last" data-text="COENS">COENS</span>
+      </h1>
+
+      <p class="hero-bio">
+        <strong>Masters of the American absurd.</strong> {{ dir.bio }}
+      </p>
+
+      <div class="hero-actions">
+        <a href="#reviews" class="btn btn-gold">Read Reviews</a>
+        <a href="#timeline" class="btn btn-outline">View Timeline</a>
+      </div>
+    </div>
+
+    <!-- RIGHT — STATS PANEL -->
+    <div class="hero-stats">
+      <div class="stats-header">
+        Director Profile <div class="stats-header-dot"></div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-cell">
+          <label>Born</label>
+          <span>{{ dir.born }}</span>
+        </div>
+        <div class="stat-cell">
+          <label>Origin</label>
+          <span>{{ dir.origin }}</span>
+        </div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-cell">
+          <label>Active</label>
+          <span>{{ dir.active }}</span>
+        </div>
+        <div class="stat-cell">
+          <label>Features</label>
+          <span class="accent-gold">{{ dir.features }} films</span>
+        </div>
+      </div>
+
+      <div class="stat-row">
+        <div class="stat-cell">
+          <label>Our Picks</label>
+          <span class="accent-gold">{{ dir.picks | length }} selected</span>
+        </div>
+        <div class="stat-cell">
+          <label>Season</label>
+          <span class="accent-mag">{{ dir.season | pad(2, '0') }}</span>
+        </div>
+      </div>
+
+      <div class="themes-wrap">
+        <div class="themes-label">Recurring Themes</div>
+        <div class="themes-tags">
+          {% for theme in dir.themes %}
+          <span class="theme-tag">{{ theme }}</span>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM ANCHOR BAR -->
+  <div class="hero-bar">
+    <div class="hero-bar-nav">
+      <a href="#timeline" class="bar-link">Timeline</a>
+      <a href="#reviews" class="bar-link">Reviews</a>
+    </div>
+    <span style="font-size:0.55rem; letter-spacing:0.2em; color:var(--muted); text-transform:uppercase;">Season {{ dir.season | pad(2, '0') }} of {{ site.currentSeason | pad(2, '0') }}</span>
+  </div>
+</section>
+
+<!-- ═══ FILMOGRAPHY TIMELINE ══════════════════════════════ -->
+<section class="section" id="timeline">
+  <div class="section-glow-purple"></div>
+
+  <div class="section-tag">
+    <div class="tag-line"></div>
+    <span class="tag-text">Career in Order</span>
+  </div>
+  <h2 class="section-heading">TIMELINE</h2>
+
+  <div class="timeline">
+    <div class="timeline-axis-wrap">
+      <div class="timeline-axis" id="timelineAxis">
+        <div class="timeline-axis-fill"></div>
+      </div>
+    </div>
+
+    <div class="timeline-decades">
+      <div class="decade-mark"><div class="decade-tick"></div><span class="decade-label">1980s</span></div>
+      <div class="decade-mark"><div class="decade-tick"></div><span class="decade-label">1990s</span></div>
+      <div class="decade-mark"><div class="decade-tick"></div><span class="decade-label">2000s</span></div>
+      <div class="decade-mark"><div class="decade-tick"></div><span class="decade-label">2010s</span></div>
+    </div>
+
+    <div class="timeline-films">
+      {% for film in dir.filmography %}
+      {% if film.pick and film.slug %}
+      <a href="{{ film.slug }}.html" class="tl-film pick">
+        <div class="tl-pick-marker">OUR PICK</div>
+        <div class="tl-year">{{ film.year }}</div>
+        <div class="tl-title">{{ film.title }}</div>
+        <div class="tl-genre">{{ film.genre }}</div>
+        {% if film.awards %}
+        <div class="tl-awards">
+          {% for award in film.awards %}
+          <span class="tl-award {{ award.status }}" data-tip="{% if award.type == 'oscar' %}Oscar{% elif award.type == 'palme' %}Palme dOr{% else %}Golden Globe{% endif %} — {% if award.status == 'won' %}Winner{% else %}Nominee{% endif %}">{% if award.type == 'oscar' %}🏆{% elif award.type == 'palme' %}🌿{% else %}🌐{% endif %}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+        <span class="tl-badge">★ Reviewed</span>
+      </a>
+      {% else %}
+      <div class="tl-film">
+        <div class="tl-year">{{ film.year }}</div>
+        <div class="tl-title">{{ film.title }}</div>
+        <div class="tl-genre">{{ film.genre }}</div>
+        {% if film.awards %}
+        <div class="tl-awards">
+          {% for award in film.awards %}
+          <span class="tl-award {{ award.status }}" data-tip="{% if award.type == 'oscar' %}Oscar{% elif award.type == 'palme' %}Palme dOr{% else %}Golden Globe{% endif %} — {% if award.status == 'won' %}Winner{% else %}Nominee{% endif %}">{% if award.type == 'oscar' %}🏆{% elif award.type == 'palme' %}🌿{% else %}🌐{% endif %}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+        <span class="tl-badge">Feature</span>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SELECTED REVIEWS ══════════════════════════════════ -->
+<section class="section" id="reviews">
+  <div class="section-glow-magenta"></div>
+
+  <div class="section-header">
+    <div>
+      <div class="section-tag">
+        <div class="tag-line"></div>
+        <span class="tag-text">Season {{ dir.season | pad(2, '0') }} Selections</span>
+      </div>
+      <h2 class="section-heading">THE PICKS</h2>
+    </div>
+    <a href="/rankings/films/" class="link-subtle">All reviews →</a>
+  </div>
+
+  <div class="reviews-grid">
+
+    <!-- Review 1: No Country for Old Men -->
+    <a href="no-country-for-old-men.html" class="review-card">
+      <div class="review-card-vis">
+        <div class="review-vis-year">2007</div>
+        <div class="review-vis-badge">10 <span>/ 15</span></div>
+      </div>
+      <div class="review-card-body">
+        <div>
+          <div class="review-meta">2007 · 122 min · Thriller · Crime</div>
+          <div class="review-title">No Country for Old Men</div>
+          <p class="review-excerpt">
+            The Coens' most uncompromising statement — a film that strips away genre comfort and leaves you with something closer to a reckoning. Thrilling and funny and frightening, sometimes all within the same scene.
+          </p>
+        </div>
+        <div class="review-footer">
+          <div class="club-rating">
+            <span class="club-rating-label">Club Rating</span>
+            <div class="club-rating-score">
+              <span class="club-rating-total">10</span>
+              <span class="club-rating-max">/ 15</span>
+            </div>
+            <div class="club-rating-breakdown">
+              <span class="cr-dim a"><span class="cr-dim-dot"></span>A·2</span>
+              <span class="cr-dim e"><span class="cr-dim-dot"></span>E·4</span>
+              <span class="cr-dim r"><span class="cr-dim-dot"></span>R·4</span>
+            </div>
+          </div>
+          <span class="read-link">Full review →</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- Review 2: The Big Lebowski -->
+    <a href="the-big-lebowski.html" class="review-card">
+      <div class="review-card-vis">
+        <div class="review-vis-year">1998</div>
+        <div class="review-vis-badge">9 <span>/ 15</span></div>
+      </div>
+      <div class="review-card-body">
+        <div>
+          <div class="review-meta">1998 · 117 min · Comedy · Crime</div>
+          <div class="review-title">The Big Lebowski</div>
+          <p class="review-excerpt">
+            A rather silly comedy with many not-so-obvious jokes — and I enjoyed it a lot. The Coens have built an entire universe out of a case of mistaken identity, a soiled rug, and a cast of characters so specific they could only exist in this film.
+          </p>
+        </div>
+        <div class="review-footer">
+          <div class="club-rating">
+            <span class="club-rating-label">Club Rating</span>
+            <div class="club-rating-score">
+              <span class="club-rating-total">9</span>
+              <span class="club-rating-max">/ 15</span>
+            </div>
+            <div class="club-rating-breakdown">
+              <span class="cr-dim a"><span class="cr-dim-dot"></span>A·2</span>
+              <span class="cr-dim e"><span class="cr-dim-dot"></span>E·4</span>
+              <span class="cr-dim r"><span class="cr-dim-dot"></span>R·3</span>
+            </div>
+          </div>
+          <span class="read-link">Full review →</span>
+        </div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<script>
+  const films = {{ dir.filmography | dump | safe }};
+  const START_YEAR = 1982, END_YEAR = 2020;
+
+  function buildDots() {
+    const axis = document.getElementById('timelineAxis');
+    films.forEach(f => {
+      const pct = ((f.year - START_YEAR) / (END_YEAR - START_YEAR)) * 100;
+      const dot = document.createElement('div');
+      dot.className = 'axis-dot ' + (f.pick ? 'pick' : 'regular');
+      dot.style.left = pct + '%';
+      dot.innerHTML = `
+        <div class="axis-dot-inner"></div>
+        <div class="axis-tooltip">
+          <span class="tooltip-title">${f.title}</span>
+          <span class="tooltip-year">${f.year}</span>
+        </div>
+        <div class="axis-year-label">${f.year}</div>
+      `;
+      axis.appendChild(dot);
+    });
+  }
+
+  buildDots();
+
+  const axis = document.getElementById('timelineAxis');
+  const axisObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        axis.classList.add('revealed');
+        axisObserver.unobserve(axis);
+      }
+    });
+  }, { threshold: 0.3 });
+  axisObserver.observe(axis);
+
+  const revealEls = document.querySelectorAll('.tl-film, .review-card');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        const delay = (Array.from(e.target.parentNode.children).indexOf(e.target) * 0.04);
+        e.target.style.opacity = '0';
+        e.target.style.transform = 'translateY(12px)';
+        e.target.style.transition = `opacity 0.5s ease ${delay}s, transform 0.5s ease ${delay}s`;
+        requestAnimationFrame(() => { e.target.style.opacity = ''; e.target.style.transform = ''; });
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.05 });
+  revealEls.forEach(el => io.observe(el));
+</script>

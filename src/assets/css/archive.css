@@ -281,42 +281,93 @@
 }
 
 @media (max-width: 600px) {
-  .archive-seasons {
-    padding: 3rem 1.2rem;
+
+  /* ── HERO: tighten, hide subtitle ────────────────────── */
+  .rankings-hero-sub {
+    display: none;
   }
 
+  /* ── STATS: compact 2×2, hide overflow detail ────────── */
   .archive-stats {
     grid-template-columns: 1fr 1fr;
   }
 
   .archive-stat {
-    padding: 1.2rem;
+    padding: 1rem 1.2rem;
   }
 
+  .archive-stat-num {
+    font-size: 2rem;
+  }
+
+  .archive-stat-detail,
+  .archive-stat-max {
+    display: none;
+  }
+
+  /* ── SECTIONS: reduce spacing ────────────────────────── */
+  .archive-seasons {
+    padding: 2rem 1.2rem;
+  }
+
+  .archive-section-head {
+    margin-bottom: 1.5rem;
+  }
+
+  .season-block {
+    margin-bottom: 1rem;
+  }
+
+  /* ── SEASON HEADER: keep horizontal, compact ─────────── */
   .season-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-    padding: 1.2rem;
+    gap: 1rem;
+    padding: 1rem 1.2rem;
   }
 
   .season-num {
-    font-size: 2.5rem;
-    min-width: auto;
+    font-size: 2.2rem;
+    min-width: 2.8rem;
+  }
+
+  .season-director {
+    font-size: 1.5rem;
   }
 
   .season-title-row {
     flex-wrap: wrap;
     gap: 0.5rem;
+    margin-bottom: 0.3rem;
   }
 
+  /* Hide active years, keep nationality + film count */
+  .season-meta span:nth-child(2) {
+    display: none;
+  }
+
+  /* ── FILM ROWS: title + score only ───────────────────── */
   .film-row {
-    padding: 1rem 1.2rem;
-    grid-template-columns: 1fr auto;
-    gap: 0.4rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1.2rem;
+    gap: 1rem;
   }
 
+  .film-row-meta,
   .film-row-dims {
-    grid-column: 1 / -1;
+    display: none;
+  }
+
+  .film-row-title {
+    font-size: 0.8rem;
+  }
+
+  .film-row-total {
+    min-width: auto;
+    font-size: 1.3rem;
+  }
+
+  .film-row-total span {
+    display: none;
   }
 }

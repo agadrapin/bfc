@@ -332,7 +332,7 @@ title: null
   // ── DIRECTOR SELECTOR (SLOT MACHINE)
   const spinPool = [
     {% for key, dir in directors %}{% if dir.slug %}
-    { name: '{{ dir.name }}', origin: '{{ dir.nationality }}', active: '{{ dir.active }}', slug: '{{ dir.slug }}', hasProfile: true },
+    { name: '{{ dir.name | safe }}', origin: '{{ dir.nationality }}', active: '{{ dir.active }}', slug: '{{ dir.slug }}', hasProfile: true },
     {% endif %}{% endfor %}
     {% for dir in directors.archive %}
     { name: '{{ dir.name }}', origin: '{{ dir.origin }}', active: '', slug: '', hasProfile: false },

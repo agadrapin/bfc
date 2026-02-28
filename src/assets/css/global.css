@@ -746,4 +746,33 @@ footer.site-footer {
   color: var(--white);
 }
 
-@import url('./mobile.css');
+/* ── HAMBURGER (hidden by default, shown on mobile) ─── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: crosshair;
+  padding: 0.5rem;
+}
+
+.nav-hamburger span {
+  width: 18px;
+  height: 1.5px;
+  background: var(--muted2);
+  transition: all 0.25s;
+}
+
+.nav-hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(3px, 3px);
+}
+
+.nav-hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(3px, -3px);
+}
+

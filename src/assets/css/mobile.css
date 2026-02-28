@@ -114,47 +114,135 @@
 
     /* ════════════════════════════════════════════
        LANDING PAGE
-       Show: Hero · Film picks carousel · Archive carousel
-       Hide: Poster cards · Selector · Ticker
+       Hero: name + film switcher below, buttons side-by-side
+       Ticker: hidden
+       Selector: heading + terminal stacked
+       Picks: horizontal carousel
+       Archive: horizontal carousel
        ════════════════════════════════════════════ */
 
-    .hero-grid {
+    /* ── HERO ─────────────────────────────────────────────── */
+    .hero {
         grid-template-columns: 1fr;
-        padding: 6rem 1.2rem 2.5rem;
         min-height: unset;
     }
 
-    .hero-right {
+    .hero::before {
         display: none;
     }
 
-    .hero-title-main {
+    .hero-left {
+        padding: 6rem 1.2rem 1.5rem;
+    }
+
+    .hero-tagline {
+        display: none;
+    }
+
+    .hero-title {
         font-size: clamp(3.2rem, 14vw, 5rem);
     }
 
+    .hero-meta-row {
+        margin-bottom: 2rem;
+    }
+
+    .meta-cell {
+        padding: 0.6rem 0.8rem;
+    }
+
+    .meta-cell label {
+        font-size: 0.45rem;
+        margin-bottom: 0.2rem;
+    }
+
+    .meta-cell span {
+        font-size: 0.65rem;
+    }
+
+    /* Film switcher — show under the director name */
+    .hero-right {
+        padding: 0 1.2rem 2.5rem;
+    }
+
+    .film-selector {
+        max-width: 100%;
+        gap: 1.5rem;
+    }
+
+    .fs-number {
+        font-size: 5rem;
+        top: -0.5rem;
+    }
+
+    .fs-body {
+        padding-top: 2.5rem;
+    }
+
+    .fs-title {
+        font-size: clamp(1.8rem, 6vw, 2.5rem);
+    }
+
+    .fs-nav {
+        padding-top: 3rem;
+    }
+
+    /* Buttons side by side */
     .hero-actions {
-        flex-direction: column;
         gap: 0.75rem;
     }
 
-    .hero-actions a,
-    .hero-actions button {
-        width: 100%;
-        text-align: center;
-        justify-content: center;
+    .hero-actions .btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.55rem;
     }
 
-    .section-ticker,
-    .selector-section {
+    /* ── TICKER: hidden ──────────────────────────────────── */
+    .ticker {
         display: none;
     }
 
-    /* Film picks → carousel */
-    .picks-section {
+    /* ── SELECTOR: single column, terminal underneath ────── */
+    .section-selector {
+        grid-template-columns: 1fr;
+        padding: 3rem 1.2rem;
+        gap: 2rem;
+    }
+
+    .section-body {
+        display: none;
+    }
+
+    .section-selector .section-heading {
+        font-size: clamp(2rem, 8vw, 3.5rem);
+        margin-bottom: 0.5rem;
+    }
+
+    .terminal-body {
+        padding: 1.2rem;
+    }
+
+    .slot-result {
+        font-size: 2rem;
+    }
+
+    .slot-window {
+        min-height: 110px;
+        padding: 1.2rem;
+    }
+
+    /* ── CAROUSEL LIMIT: max 5 items ────────────────────── */
+    .picks-grid .film-card:nth-child(n+6),
+    .director-grid .dir-card:nth-child(n+6) {
+        display: none;
+    }
+
+    /* ── PICKS: horizontal carousel, no excerpts ─────────── */
+    .section-picks {
         padding: 3rem 0;
     }
 
-    .picks-section .section-header {
+    .section-picks .section-header {
         padding: 0 1.2rem;
         margin-bottom: 1.5rem;
     }
@@ -167,6 +255,7 @@
         padding: 0 1.2rem 1.2rem;
         gap: 1rem;
         scrollbar-width: none;
+        background: transparent;
     }
 
     .picks-grid::-webkit-scrollbar {
@@ -174,13 +263,29 @@
     }
 
     .picks-grid .film-card {
-        flex: 0 0 82vw;
-        max-width: 320px;
+        flex: 0 0 78vw;
+        max-width: 300px;
         scroll-snap-align: start;
         border: 1px solid var(--border);
     }
 
-    .picks-section::after {
+    .film-card-excerpt {
+        display: none;
+    }
+
+    .film-card-vis {
+        height: 120px;
+    }
+
+    .film-year-ghost {
+        font-size: 4.5rem;
+    }
+
+    .film-card-rating {
+        gap: 0.25rem;
+    }
+
+    .section-picks::after {
         content: 'swipe for more →';
         display: block;
         text-align: center;
@@ -192,18 +297,18 @@
         padding: 0 1.2rem;
     }
 
-    /* Archive → carousel */
-    .archive-section {
+    /* ── PAST DIRECTORS: horizontal carousel ─────────────── */
+    .section-archive {
         padding: 3rem 0;
     }
 
-    .archive-section .section-header {
+    .section-archive .section-header {
         padding: 0 1.2rem;
         margin-bottom: 1.5rem;
     }
 
-    .archive-grid {
-        display: flex !important;
+    .director-grid {
+        display: flex;
         overflow-x: auto;
         scroll-snap-type: x mandatory;
         -webkit-overflow-scrolling: touch;
@@ -211,19 +316,29 @@
         gap: 1px;
         scrollbar-width: none;
         background: transparent;
+        margin-top: 0;
     }
 
-    .archive-grid::-webkit-scrollbar {
+    .director-grid::-webkit-scrollbar {
         display: none;
     }
 
-    .archive-grid .archive-card {
-        flex: 0 0 58vw;
-        max-width: 210px;
+    .dir-card {
+        flex: 0 0 60vw;
+        max-width: 220px;
         scroll-snap-align: start;
+        padding: 1.2rem 1rem;
     }
 
-    .archive-section::after {
+    .dir-name {
+        font-size: 1.2rem;
+    }
+
+    .dir-film-tag {
+        font-size: 0.52rem;
+    }
+
+    .section-archive::after {
         content: 'swipe for more →';
         display: block;
         text-align: center;

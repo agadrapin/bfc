@@ -39,6 +39,26 @@
   });
 })();
 
+// ── NAV HAMBURGER ────────────────────────────────────────
+(function initHamburger() {
+  const btn = document.querySelector('.nav-hamburger');
+  const links = document.querySelector('.nav-links');
+  if (!btn || !links) return;
+
+  btn.addEventListener('click', function() {
+    btn.classList.toggle('active');
+    links.classList.toggle('open');
+  });
+
+  // Close menu when clicking a nav link
+  links.querySelectorAll('a').forEach(function(a) {
+    a.addEventListener('click', function() {
+      btn.classList.remove('active');
+      links.classList.remove('open');
+    });
+  });
+})();
+
 // ── NAV DROPDOWN (mobile tap toggle) ─────────────────────
 (function initDropdown() {
   const dropdown = document.querySelector('.nav-dropdown');

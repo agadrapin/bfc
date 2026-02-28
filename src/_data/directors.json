@@ -48,7 +48,7 @@
     "origin": "Munich, Germany",
     "nationality": "Austrian",
     "active": "1989 – Present",
-    "features": 11,
+    "features": 12,
     "bio": "Michael Haneke has spent four decades making films that refuse to let audiences off the hook. Working primarily in Austria and France, he has built one of the most deliberately uncomfortable bodies of work in contemporary cinema — not through shock for its own sake, but through a precise, almost clinical dismantling of the assumptions his viewers bring with them. His films implicate. They assign responsibility. They are constructed with the care of a trap.",
     "themes": ["Complicity", "Violence", "Surveillance", "Bourgeois Fragility", "Moral Provocation"],
     "filmography": [
@@ -60,6 +60,7 @@
       { "year": 2001, "title": "The Piano Teacher", "genre": "Drama · Romance", "pick": false, "awards": [{ "type": "palme", "status": "nom" }] },
       { "year": 2003, "title": "Time of the Wolf", "genre": "Drama · Sci-Fi", "pick": false },
       { "year": 2005, "title": "Caché", "genre": "Thriller · Drama", "pick": true, "slug": "cache" },
+      { "year": 2007, "title": "Funny Games U.S.", "genre": "Thriller · Horror", "pick": false },
       { "year": 2009, "title": "The White Ribbon", "genre": "Drama · Mystery", "pick": false, "awards": [{ "type": "palme", "status": "won" }] },
       { "year": 2012, "title": "Amour", "genre": "Drama · Romance", "pick": false, "awards": [{ "type": "oscar", "status": "won" }, { "type": "palme", "status": "won" }] },
       { "year": 2017, "title": "Happy End", "genre": "Drama", "pick": false }
@@ -78,7 +79,7 @@
     "origin": "Daegu, South Korea",
     "nationality": "South Korean",
     "active": "2000 – Present",
-    "features": 7,
+    "features": 9,
     "bio": "Bong Joon-ho has a remarkable talent for unearthing the darkness within the mundane. His films often begin with deceptively ordinary premises — small-town police work, a mother's devotion — but gradually peel back layers to reveal harrowing truths about human nature and societal failings.",
     "themes": ["Class", "Family", "Memory", "Justice", "Social Commentary", "Tragicomedy"],
     "filmography": [
@@ -88,7 +89,9 @@
       { "year": 2009, "title": "Mother", "genre": "Crime · Drama", "pick": true, "slug": "mother" },
       { "year": 2013, "title": "Snowpiercer", "genre": "Action · Sci-Fi", "pick": false },
       { "year": 2017, "title": "Okja", "genre": "Action · Drama", "pick": false, "awards": [{ "type": "palme", "status": "nom" }] },
-      { "year": 2019, "title": "Parasite", "genre": "Drama · Thriller", "pick": false, "awards": [{ "type": "oscar", "status": "won" }, { "type": "palme", "status": "won" }, { "type": "globe", "status": "won" }] }
+      { "year": 2019, "title": "Parasite", "genre": "Drama · Thriller", "pick": false, "awards": [{ "type": "oscar", "status": "won" }, { "type": "palme", "status": "won" }, { "type": "globe", "status": "won" }] },
+      { "year": 2025, "title": "Mickey 17", "genre": "Sci-Fi · Comedy", "pick": false },
+      { "year": 2027, "title": "The Valley", "genre": "Animation", "pick": false, "unreleased": true }
     ],
     "picks": ["memories-of-murder", "mother"]
   },
@@ -104,7 +107,7 @@
     "origin": "Los Angeles, USA",
     "nationality": "American",
     "active": "1996 – Present",
-    "features": 9,
+    "features": 10,
     "bio": "Paul Thomas Anderson is one of the most formally ambitious American directors working today — a filmmaker who has spent thirty years building an extraordinary and largely unrepeatable body of work. Beginning with sprawling ensemble pieces that mapped the emotional wreckage of the San Fernando Valley, he has progressively narrowed his focus until his films became chamber pieces of almost unbearable intensity. What has remained constant is his interest in obsession: the obsession of men who want to win at any cost, of love that curdles into control, of talent that devours everything around it.",
     "themes": ["Obsession", "Power", "Father Figures", "American Ambition", "Toxic Intimacy"],
     "filmography": [
@@ -116,7 +119,8 @@
       { "year": 2012, "title": "The Master", "genre": "Drama", "pick": false, "awards": [{ "type": "oscar", "status": "nom" }] },
       { "year": 2014, "title": "Inherent Vice", "genre": "Comedy · Crime", "pick": false },
       { "year": 2017, "title": "Phantom Thread", "genre": "Drama · Romance", "pick": true, "slug": "phantom-thread", "awards": [{ "type": "oscar", "status": "nom" }] },
-      { "year": 2021, "title": "Licorice Pizza", "genre": "Comedy · Drama", "pick": false, "awards": [{ "type": "oscar", "status": "nom" }, { "type": "globe", "status": "nom" }] }
+      { "year": 2021, "title": "Licorice Pizza", "genre": "Comedy · Drama", "pick": false, "awards": [{ "type": "oscar", "status": "nom" }, { "type": "globe", "status": "nom" }] },
+      { "year": 2025, "title": "One Battle After Another", "genre": "Action · Comedy", "pick": false, "awards": [{ "type": "oscar", "status": "nom" }, { "type": "globe", "status": "won" }] }
     ],
     "picks": ["there-will-be-blood", "phantom-thread"]
   },
@@ -132,7 +136,7 @@
     "origin": "Paris, France",
     "nationality": "Polish-French",
     "active": "1955 – Present",
-    "features": 21,
+    "features": 23,
     "bio": "Roman Polański is one of the most technically accomplished and personally haunted directors in the history of cinema. Born in Paris, raised in Kraków, and shaped irrevocably by the horrors of the Second World War — his mother died in Auschwitz, and he survived the Kraków ghetto as a child — Polański has spent seven decades making films in which safety is always provisional and the world outside is never entirely trustworthy. His work ranges from lean, claustrophobic chamber pieces to sprawling historical epics, but a consistent preoccupation runs through all of it: the way ordinary life can be invaded, distorted, and destroyed by forces that arrive without warning.",
     "themes": ["Confinement", "Paranoia", "Survival", "Power and Control", "The Fragility of Safety"],
     "filmography": [
@@ -142,6 +146,7 @@
       { "year": 1967, "title": "The Fearless Vampire Killers", "genre": "Comedy · Horror", "pick": false },
       { "year": 1968, "title": "Rosemary's Baby", "genre": "Horror · Drama", "pick": false, "awards": [{ "type": "oscar", "status": "nom" }, { "type": "globe", "status": "won" }] },
       { "year": 1971, "title": "Macbeth", "genre": "Drama · History", "pick": false },
+      { "year": 1972, "title": "What?", "genre": "Comedy", "pick": false },
       { "year": 1974, "title": "Chinatown", "genre": "Mystery · Thriller", "pick": false, "awards": [{ "type": "oscar", "status": "won" }, { "type": "globe", "status": "won" }] },
       { "year": 1976, "title": "The Tenant", "genre": "Drama · Thriller", "pick": false },
       { "year": 1979, "title": "Tess", "genre": "Drama · Romance", "pick": false, "awards": [{ "type": "oscar", "status": "nom" }, { "type": "globe", "status": "won" }] },
@@ -156,7 +161,8 @@
       { "year": 2011, "title": "Carnage", "genre": "Comedy · Drama", "pick": false },
       { "year": 2013, "title": "Venus in Fur", "genre": "Drama · Comedy", "pick": false },
       { "year": 2017, "title": "Based on a True Story", "genre": "Drama · Thriller", "pick": false },
-      { "year": 2019, "title": "An Officer and a Spy", "genre": "Drama · History", "pick": false }
+      { "year": 2019, "title": "An Officer and a Spy", "genre": "Drama · History", "pick": false },
+      { "year": 2023, "title": "The Palace", "genre": "Comedy · Drama", "pick": false }
     ],
     "picks": ["the-pianist", "knife-in-the-water"]
   },
@@ -172,10 +178,11 @@
     "origin": "Houston, USA",
     "nationality": "American",
     "active": "1988 – Present",
-    "features": 22,
+    "features": 25,
     "bio": "Richard Linklater has spent thirty years making films about the texture of being alive — the conversations that define us, the time that passes whether we are ready for it or not, the way a single day or a single room can contain an entire human life. Working outside the Hollywood system for most of his career, he has developed one of the most distinctive and quietly radical bodies of work in American cinema.",
     "themes": ["Time", "Conversation", "Identity", "Consciousness", "The Weight of the Past"],
     "filmography": [
+      { "year": 1988, "title": "It's Impossible to Learn to Plow by Reading Books", "genre": "Drama", "pick": false },
       { "year": 1990, "title": "Slacker", "genre": "Comedy · Drama", "pick": false },
       { "year": 1993, "title": "Dazed and Confused", "genre": "Comedy · Drama", "pick": false },
       { "year": 1995, "title": "Before Sunrise", "genre": "Drama · Romance", "pick": false },
@@ -197,7 +204,9 @@
       { "year": 2019, "title": "Where'd You Go, Bernadette", "genre": "Comedy · Drama", "pick": false },
       { "year": 2022, "title": "Apollo 10½", "genre": "Animation · Comedy", "pick": false },
       { "year": 2023, "title": "Hit Man", "genre": "Comedy · Crime", "pick": false },
-      { "year": 2025, "title": "Blue Moon", "genre": "Drama · Music", "pick": false }
+      { "year": 2025, "title": "Blue Moon", "genre": "Drama · Music", "pick": false, "awards": [{ "type": "oscar", "status": "nom" }, { "type": "globe", "status": "nom" }] },
+      { "year": 2025, "title": "Nouvelle Vague", "genre": "Comedy · Drama", "pick": false, "awards": [{ "type": "palme", "status": "nom" }, { "type": "globe", "status": "nom" }] },
+      { "year": 2040, "title": "Merrily We Roll Along", "genre": "Musical", "pick": false, "unreleased": true }
     ],
     "picks": ["a-scanner-darkly", "tape"]
   },
@@ -223,14 +232,14 @@
       { "year": 1996, "title": "Breaking the Waves", "genre": "Drama · Romance", "pick": true, "slug": "breaking-the-waves", "awards": [{ "type": "palme", "status": "nom" }] },
       { "year": 1998, "title": "The Idiots", "genre": "Drama · Comedy", "pick": true, "slug": "the-idiots" },
       { "year": 2000, "title": "Dancer in the Dark", "genre": "Musical · Drama", "pick": true, "slug": "dancer-in-the-dark", "awards": [{ "type": "palme", "status": "won" }] },
+      { "year": 2003, "title": "The Five Obstructions", "genre": "Documentary", "pick": false },
       { "year": 2003, "title": "Dogville", "genre": "Drama · Crime", "pick": false, "awards": [{ "type": "palme", "status": "nom" }] },
       { "year": 2005, "title": "Manderlay", "genre": "Drama · Crime", "pick": false },
       { "year": 2006, "title": "The Boss of It All", "genre": "Comedy", "pick": false },
       { "year": 2009, "title": "Antichrist", "genre": "Drama · Horror", "pick": false, "awards": [{ "type": "palme", "status": "nom" }] },
       { "year": 2011, "title": "Melancholia", "genre": "Drama · Sci-Fi", "pick": false, "awards": [{ "type": "palme", "status": "nom" }] },
       { "year": 2013, "title": "Nymphomaniac", "genre": "Drama", "pick": false },
-      { "year": 2018, "title": "The House That Jack Built", "genre": "Crime · Horror", "pick": false },
-      { "year": 2024, "title": "The Kingdom Exodus", "genre": "Drama · Horror", "pick": false }
+      { "year": 2018, "title": "The House That Jack Built", "genre": "Crime · Horror", "pick": false }
     ],
     "picks": ["breaking-the-waves", "the-idiots", "dancer-in-the-dark"]
   },

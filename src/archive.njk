@@ -1,0 +1,122 @@
+---
+layout: layouts/archive.njk
+title: Archive
+permalink: /archive/
+---
+
+{# Film ratings — duplicated from index.njk (source of truth) #}
+{% set filmRatings = {
+  'memories-of-murder':     { total: 14, a: 4, e: 5, r: 5 },
+  'mother':                 { total: 12, a: 4, e: 4, r: 4 },
+  'no-country-for-old-men': { total: 10, a: 2, e: 4, r: 4 },
+  'the-big-lebowski':       { total: 9,  a: 2, e: 4, r: 3 },
+  'cache':                  { total: 8,  a: 3, e: 1, r: 4 },
+  'funny-games':            { total: 8,  a: 5, e: 1, r: 2 },
+  'there-will-be-blood':    { total: 13, a: 4, e: 5, r: 4 },
+  'phantom-thread':         { total: 10, a: 3, e: 3, r: 4 },
+  'the-pianist':            { total: 13, a: 4, e: 4, r: 5 },
+  'knife-in-the-water':     { total: 13, a: 5, e: 5, r: 3 },
+  'a-scanner-darkly':       { total: 9,  a: 3, e: 2, r: 4 },
+  'tape':                   { total: 12, a: 3, e: 5, r: 4 },
+  'breaking-the-waves':     { total: 11, a: 2, e: 4, r: 5 },
+  'the-idiots':             { total: 10, a: 4, e: 3, r: 3 },
+  'dancer-in-the-dark':     { total: 15, a: 5, e: 5, r: 5 }
+} %}
+
+{# Directors sorted by season number #}
+{% set seasonOrder = ['bong', 'coen', 'haneke', 'anderson', 'polanski', 'linklater', 'vontrier'] %}
+
+<!-- ═══ HERO ═════════════════════════════════════════════ -->
+<section class="rankings-hero">
+  <div class="rankings-hero-ghost gold">ARCHIVE</div>
+  <div class="rankings-hero-inner">
+    <div class="section-tag">
+      <div class="tag-line"></div>
+      <span class="tag-text">The Vault</span>
+    </div>
+    <h1 class="rankings-hero-title gold">FULL ARCHIVE</h1>
+    <p class="rankings-hero-sub">Every season, every director, every film — indexed and preserved. The complete record of the Bayley Film Club.</p>
+  </div>
+</section>
+
+<!-- ═══ STATS BAR ════════════════════════════════════════ -->
+<div class="archive-stats">
+  <div class="archive-stat">
+    <span class="archive-stat-num">{{ site.currentSeason | pad(2, '0') }}</span>
+    <span class="archive-stat-label">Seasons</span>
+  </div>
+  <div class="archive-stat">
+    <span class="archive-stat-num">{{ seasonOrder | length | pad(2, '0') }}</span>
+    <span class="archive-stat-label">Directors Profiled</span>
+  </div>
+  <div class="archive-stat">
+    <span class="archive-stat-num">15</span>
+    <span class="archive-stat-label">Films Reviewed</span>
+  </div>
+  <div class="archive-stat">
+    <span class="archive-stat-num">15<span class="archive-stat-max"> / 15</span></span>
+    <span class="archive-stat-label">Highest Rating</span>
+    <span class="archive-stat-detail">Dancer in the Dark</span>
+  </div>
+</div>
+
+<!-- ═══ REVIEWED SEASONS ═════════════════════════════════ -->
+<section class="archive-seasons">
+  <div class="archive-section-head">
+    <div class="section-tag">
+      <div class="tag-line"></div>
+      <span class="tag-text">Season Index</span>
+    </div>
+    <h2 class="section-heading">REVIEWED<br>SEASONS</h2>
+  </div>
+
+  {% for key in seasonOrder %}
+  {% set dir = directors[key] %}
+  <div class="season-block">
+    <div class="season-header">
+      <div class="season-num">{{ dir.season | pad(2, '0') }}</div>
+      <div class="season-info">
+        <div class="season-title-row">
+          <a href="/directors/{{ dir.slug }}/" class="season-director">{{ dir.name }}</a>
+          {% if dir.isCurrent %}<span class="now-badge"><span class="now-badge-dot"></span>Now Screening</span>{% endif %}
+        </div>
+        <div class="season-meta">
+          <span>{{ dir.nationality }}</span>
+          <span>{{ dir.active }}</span>
+          <span>{{ dir.picks | length }} films</span>
+        </div>
+      </div>
+    </div>
+    <div class="season-films">
+      {% for film in dir.filmography %}{% if film.pick %}
+      {% set r = filmRatings[film.slug] %}
+      <a href="/directors/{{ dir.slug }}/{{ film.slug }}.html" class="film-row" style="text-decoration:none;">
+        <span class="film-row-title">{{ film.title }}</span>
+        <span class="film-row-meta">{{ film.year }} · {{ film.genre }}</span>
+        <span class="film-row-dims">
+          <span class="cr-dim a"><span class="cr-dim-dot"></span>A·{{ r.a }}</span>
+          <span class="cr-dim e"><span class="cr-dim-dot"></span>E·{{ r.e }}</span>
+          <span class="cr-dim r"><span class="cr-dim-dot"></span>R·{{ r.r }}</span>
+        </span>
+        <span class="film-row-total">{{ r.total }}<span> / 15</span></span>
+      </a>
+      {% endif %}{% endfor %}
+    </div>
+  </div>
+  {% endfor %}
+</section>
+
+<!-- ═══ SCROLL REVEAL ════════════════════════════════════ -->
+<script>
+  const revealEls = document.querySelectorAll('.season-block');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        e.target.style.transitionDelay = (i * 0.06) + 's';
+        e.target.classList.add('revealed');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => io.observe(el));
+</script>

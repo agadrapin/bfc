@@ -1,0 +1,322 @@
+/* ═══════════════════════════════════════════════════════
+   THE BAYLEY FILM CLUB — archive.css
+   Full Archive page — season blocks, film rows, stats bar
+   ═══════════════════════════════════════════════════════ */
+
+/* ── HERO GOLD VARIANT ───────────────────────────────── */
+.rankings-hero-ghost.gold {
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(201, 168, 76, 0.08);
+}
+
+.rankings-hero-title.gold {
+  color: var(--gold2);
+  text-shadow: 0 0 40px rgba(201, 168, 76, 0.3);
+}
+
+/* ── STATS BAR ───────────────────────────────────────── */
+.archive-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-bottom: 1px solid var(--border);
+  background: var(--panel);
+}
+
+.archive-stat {
+  padding: 1.5rem 2rem;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.archive-stat:last-child {
+  border-right: none;
+}
+
+.archive-stat-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  line-height: 1;
+  color: var(--gold2);
+  text-shadow: 0 0 20px rgba(201, 168, 76, 0.25);
+  letter-spacing: 0.05em;
+}
+
+.archive-stat-max {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.55rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+
+.archive-stat-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.52rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.archive-stat-detail {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.7rem;
+  color: var(--muted2);
+  font-style: italic;
+}
+
+/* ── SECTION HEADERS ─────────────────────────────────── */
+.archive-section-head {
+  margin-bottom: 3rem;
+}
+
+.archive-section-head .section-heading {
+  margin-bottom: 0;
+}
+
+/* ── SEASONS SECTION ─────────────────────────────────── */
+.archive-seasons {
+  padding: 5rem 3rem;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.archive-seasons::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 50% at 50% 0%, rgba(201, 168, 76, 0.03) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* ── SEASON BLOCK ────────────────────────────────────── */
+.season-block {
+  border: 1px solid var(--border);
+  margin-bottom: 1.5rem;
+  background: var(--dark);
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.season-block.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.season-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 1.8rem 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.season-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3.5rem;
+  line-height: 1;
+  color: var(--border2);
+  letter-spacing: 0.03em;
+  min-width: 4.5rem;
+  text-align: center;
+}
+
+.season-info {
+  flex: 1;
+}
+
+.season-title-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.season-director {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.8rem, 2.5vw, 2.5rem);
+  letter-spacing: 0.03em;
+  line-height: 1;
+  color: var(--white);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.season-director:hover {
+  color: var(--gold2);
+}
+
+.now-badge {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.48rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--magenta);
+  border: 1px solid rgba(232, 24, 154, 0.4);
+  padding: 0.25rem 0.6rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.now-badge-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--magenta);
+  box-shadow: 0 0 8px var(--magenta);
+  animation: pulse 2s ease infinite;
+}
+
+.season-meta {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.season-meta span {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.52rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ── FILM ROWS ───────────────────────────────────────── */
+.film-row {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid var(--border);
+  color: inherit;
+  transition: background 0.2s;
+  cursor: crosshair;
+}
+
+.film-row:last-child {
+  border-bottom: none;
+}
+
+.film-row:hover {
+  background: var(--panel);
+}
+
+.film-row-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--white);
+  transition: color 0.2s;
+}
+
+.film-row:hover .film-row-title {
+  color: var(--gold2);
+}
+
+.film-row-meta {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.52rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.film-row-dims {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.film-row-total {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  line-height: 1;
+  color: var(--gold2);
+  text-shadow: 0 0 15px rgba(201, 168, 76, 0.25);
+  min-width: 3rem;
+  text-align: right;
+}
+
+.film-row-total span {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.5rem;
+  color: var(--muted);
+  letter-spacing: 0.1em;
+}
+
+/* ── RESPONSIVE ──────────────────────────────────────── */
+@media (max-width: 900px) {
+  .archive-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .archive-stat:nth-child(2) {
+    border-right: none;
+  }
+
+  .film-row {
+    grid-template-columns: 1fr auto;
+    gap: 0.6rem 1.5rem;
+  }
+
+  .film-row-title {
+    grid-column: 1;
+  }
+
+  .film-row-total {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    align-self: center;
+  }
+
+  .film-row-meta {
+    grid-column: 1;
+  }
+
+  .film-row-dims {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 600px) {
+  .archive-seasons {
+    padding: 3rem 1.2rem;
+  }
+
+  .archive-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .archive-stat {
+    padding: 1.2rem;
+  }
+
+  .season-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding: 1.2rem;
+  }
+
+  .season-num {
+    font-size: 2.5rem;
+    min-width: auto;
+  }
+
+  .season-title-row {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .film-row {
+    padding: 1rem 1.2rem;
+    grid-template-columns: 1fr auto;
+    gap: 0.4rem 1rem;
+  }
+
+  .film-row-dims {
+    grid-column: 1 / -1;
+  }
+}

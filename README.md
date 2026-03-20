@@ -1,5 +1,7 @@
 # The Bayley Film Club
 
+**[www.bayleyfilmclub.com](https://www.bayleyfilmclub.com)**
+
 A personal film criticism site built with Eleventy and hosted on GitHub Pages. Each season spotlights a single director — two or three film picks, full written reviews, and a custom 3-tier rating system.
 
 ## Rating System
@@ -40,15 +42,18 @@ src/
 │   │   └── review.css                ← Film review styles
 │   └── js/global.js                  ← Cursor, scroll reveal, radar chart
 ├── directors/
-│   ├── fincher/
-│   │   ├── index.njk                 ← Director profile (Season 04)
-│   │   ├── se7en.md                  ← Film review
-│   │   ├── fight-club.md
-│   │   └── zodiac.md
-│   └── bong/
-│       ├── index.njk                 ← Director profile (Season 01)
-│       ├── memories-of-murder.md
-│       └── mother.md
+│   ├── bong/                         ← Season 01
+│   ├── coen/                         ← Season 02
+│   ├── haneke/                       ← Season 03
+│   ├── anderson/                     ← Season 05
+│   ├── polanski/                     ← Season 06
+│   ├── linklater/                    ← Season 07
+│   ├── vontrier/                     ← Season 08
+│   └── lynch/                        ← Season 09 (current)
+│       ├── index.njk                 ← Director profile page
+│       ├── lynch.json                ← Directory data file
+│       ├── mulholland-drive.md       ← Film review
+│       └── blue-velvet.md
 └── rankings/
     ├── films.njk                     ← Film leaderboard
     └── directors.njk                 ← Director rankings
@@ -72,7 +77,7 @@ npm run build        # Build to _site/
 
 ## Hosting
 
-Designed for **GitHub Pages**. Push to `main`, enable Pages from the repo Settings.
+Live at **[www.bayleyfilmclub.com](https://www.bayleyfilmclub.com)**. Deployed via GitHub Pages — push to `main` and the site rebuilds automatically.
 
 ## Tech Stack
 

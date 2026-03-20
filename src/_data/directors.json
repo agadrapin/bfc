@@ -12,7 +12,7 @@
     "nationality": "American",
     "active": "1984 – Present",
     "features": 18,
-    "bio": "Joel and Ethan Coen occupy a singular position in American cinema — two minds so thoroughly fused in their creative process that separating their contributions has always been beside the point. Working across nearly four decades, they have built a body of work defined less by a single style than by an attitude: a cold, precise, often hilarious conviction that the universe is indifferent and the people navigating it are mostly fooling themselves.",
+    "bio": "Joel and Ethan Coen occupy a singular position in American cinema — two minds so thoroughly fused in their creative process that separating their contributions has always been beside the point. Since their 1984 debut, they have built a body of work defined less by a single style than by an attitude: a cold, precise, often hilarious conviction that the universe is indifferent and the people navigating it are mostly fooling themselves.",
     "themes": ["Fate", "Moral Ambiguity", "Absurdism", "Violence", "The American Myth"],
     "filmography": [
       { "year": 1984, "title": "Blood Simple", "genre": "Crime · Thriller", "pick": false },
@@ -49,7 +49,7 @@
     "nationality": "Austrian",
     "active": "1989 – Present",
     "features": 12,
-    "bio": "Michael Haneke has spent four decades making films that refuse to let audiences off the hook. Working primarily in Austria and France, he has built one of the most deliberately uncomfortable bodies of work in contemporary cinema — not through shock for its own sake, but through a precise, almost clinical dismantling of the assumptions his viewers bring with them. His films implicate. They assign responsibility. They are constructed with the care of a trap.",
+    "bio": "Michael Haneke has built a career — active since 1989 — making films that refuse to let audiences off the hook. Working primarily in Austria and France, he has built one of the most deliberately uncomfortable bodies of work in contemporary cinema — not through shock for its own sake, but through a precise, almost clinical dismantling of the assumptions his viewers bring with them. His films implicate. They assign responsibility. They are constructed with the care of a trap.",
     "themes": ["Complicity", "Violence", "Surveillance", "Bourgeois Fragility", "Moral Provocation"],
     "filmography": [
       { "year": 1989, "title": "The Seventh Continent", "genre": "Drama", "pick": false },
@@ -108,7 +108,7 @@
     "nationality": "American",
     "active": "1996 – Present",
     "features": 10,
-    "bio": "Paul Thomas Anderson is one of the most formally ambitious American directors working today — a filmmaker who has spent thirty years building an extraordinary and largely unrepeatable body of work. Beginning with sprawling ensemble pieces that mapped the emotional wreckage of the San Fernando Valley, he has progressively narrowed his focus until his films became chamber pieces of almost unbearable intensity. What has remained constant is his interest in obsession: the obsession of men who want to win at any cost, of love that curdles into control, of talent that devours everything around it.",
+    "bio": "Paul Thomas Anderson is one of the most formally ambitious American directors working today — a filmmaker who has, since his 1996 debut, built an extraordinary and largely unrepeatable body of work. Beginning with sprawling ensemble pieces that mapped the emotional wreckage of the San Fernando Valley, he has progressively narrowed his focus until his films became chamber pieces of almost unbearable intensity. What has remained constant is his interest in obsession: the obsession of men who want to win at any cost, of love that curdles into control, of talent that devours everything around it.",
     "themes": ["Obsession", "Power", "Father Figures", "American Ambition", "Toxic Intimacy"],
     "filmography": [
       { "year": 1996, "title": "Hard Eight", "genre": "Crime · Drama", "pick": false },
@@ -137,7 +137,7 @@
     "nationality": "Polish-French",
     "active": "1955 – Present",
     "features": 23,
-    "bio": "Roman Polański is one of the most technically accomplished and personally haunted directors in the history of cinema. Born in Paris, raised in Kraków, and shaped irrevocably by the horrors of the Second World War — his mother died in Auschwitz, and he survived the Kraków ghetto as a child — Polański has spent seven decades making films in which safety is always provisional and the world outside is never entirely trustworthy. His work ranges from lean, claustrophobic chamber pieces to sprawling historical epics, but a consistent preoccupation runs through all of it: the way ordinary life can be invaded, distorted, and destroyed by forces that arrive without warning.",
+    "bio": "Roman Polański is one of the most technically accomplished and personally haunted directors in the history of cinema. Born in Paris, raised in Kraków, and shaped irrevocably by the horrors of the Second World War — his mother died in Auschwitz, and he survived the Kraków ghetto as a child — Polański has spent a career active since 1955 making films in which safety is always provisional and the world outside is never entirely trustworthy. His work ranges from lean, claustrophobic chamber pieces to sprawling historical epics, but a consistent preoccupation runs through all of it: the way ordinary life can be invaded, distorted, and destroyed by forces that arrive without warning.",
     "themes": ["Confinement", "Paranoia", "Survival", "Power and Control", "The Fragility of Safety"],
     "filmography": [
       { "year": 1962, "title": "Knife in the Water", "genre": "Drama · Thriller", "pick": true, "slug": "knife-in-the-water", "awards": [{ "type": "oscar", "status": "nom" }] },
@@ -179,7 +179,7 @@
     "nationality": "American",
     "active": "1988 – Present",
     "features": 25,
-    "bio": "Richard Linklater has spent thirty years making films about the texture of being alive — the conversations that define us, the time that passes whether we are ready for it or not, the way a single day or a single room can contain an entire human life. Working outside the Hollywood system for most of his career, he has developed one of the most distinctive and quietly radical bodies of work in American cinema.",
+    "bio": "Richard Linklater has spent his career since 1988 making films about the texture of being alive — the conversations that define us, the time that passes whether we are ready for it or not, the way a single day or a single room can contain an entire human life. Working outside the Hollywood system for most of his career, he has developed one of the most distinctive and quietly radical bodies of work in American cinema.",
     "themes": ["Time", "Conversation", "Identity", "Consciousness", "The Weight of the Past"],
     "filmography": [
       { "year": 1988, "title": "It's Impossible to Learn to Plow by Reading Books", "genre": "Drama", "pick": false },
@@ -217,13 +217,13 @@
     "slug": "vontrier",
     "ghostLetter": "V",
     "season": 8,
-    "isCurrent": true,
+    "isCurrent": false,
     "born": "Apr 30, 1956",
     "origin": "Copenhagen, Denmark",
     "nationality": "Danish",
     "active": "1984 – Present",
     "features": 14,
-    "bio": "Lars von Trier is the most provocative and most precisely intentional filmmaker working in European cinema today. Over four decades and across a body of work divided into formal trilogies and personal obsessions, he has constructed an oeuvre defined by a single, unflinching conviction: that goodness is punishable, that innocence invites destruction, and that the world will find a way to break anyone pure enough to believe otherwise.",
+    "bio": "Lars von Trier is the most provocative and most precisely intentional filmmaker working in European cinema today. Since 1984, across a body of work divided into formal trilogies and personal obsessions, he has constructed an oeuvre defined by a single, unflinching conviction: that goodness is punishable, that innocence invites destruction, and that the world will find a way to break anyone pure enough to believe otherwise.",
     "themes": ["Sacrifice", "Female Suffering", "Faith and Doubt", "Social Cruelty", "The Inevitability of Tragedy"],
     "filmography": [
       { "year": 1984, "title": "The Element of Crime", "genre": "Crime · Sci-Fi", "pick": false },
@@ -243,6 +243,35 @@
     ],
     "picks": ["breaking-the-waves", "the-idiots", "dancer-in-the-dark"]
   },
+  "lynch": {
+    "name": "David Lynch",
+    "firstName": "David",
+    "lastName": "Lynch",
+    "slug": "lynch",
+    "ghostLetter": "L",
+    "season": 9,
+    "isCurrent": true,
+    "born": "Jan 20, 1946",
+    "origin": "Missoula, USA",
+    "nationality": "American",
+    "active": "1977 – 2006",
+    "features": 10,
+    "bio": "David Lynch spent his career — from 1977 to 2006 — making films that exist nowhere else in cinema — works that operate according to their own internal logic, somewhere between waking life and the most vivid and disturbing dreams. Beginning with the industrial nightmare of Eraserhead and ending with the quiet devastation of Inland Empire, his filmography is one of the great sustained acts of personal vision in American art. Lynch was interested in what lies beneath the surface of ordinary life — the violence, the desire, the strangeness that polite society keeps hidden just out of sight. His films rarely explain themselves, and they are not supposed to. They are meant to be felt before they are understood, and in many cases they resist understanding entirely. That resistance is the point.",
+    "themes": ["Dreams and Reality", "The Dark Side of America", "Identity", "Obsession", "The Uncanny"],
+    "filmography": [
+      { "year": 1977, "title": "Eraserhead", "genre": "Horror · Fantasy", "pick": false },
+      { "year": 1980, "title": "The Elephant Man", "genre": "Drama · Biography", "pick": false, "awards": [{ "type": "oscar", "status": "nom" }] },
+      { "year": 1984, "title": "Dune", "genre": "Sci-Fi · Adventure", "pick": false },
+      { "year": 1986, "title": "Blue Velvet", "genre": "Mystery · Thriller", "pick": true, "slug": "blue-velvet", "awards": [{ "type": "oscar", "status": "nom" }] },
+      { "year": 1990, "title": "Wild at Heart", "genre": "Crime · Romance", "pick": false, "awards": [{ "type": "palme", "status": "won" }] },
+      { "year": 1992, "title": "Twin Peaks: Fire Walk with Me", "genre": "Drama · Mystery", "pick": false },
+      { "year": 1997, "title": "Lost Highway", "genre": "Thriller · Mystery", "pick": false },
+      { "year": 1999, "title": "The Straight Story", "genre": "Drama · Biography", "pick": false, "awards": [{ "type": "palme", "status": "nom" }] },
+      { "year": 2001, "title": "Mulholland Drive", "genre": "Mystery · Drama", "pick": true, "slug": "mulholland-drive", "awards": [{ "type": "palme", "status": "nom" }, { "type": "oscar", "status": "nom" }] },
+      { "year": 2006, "title": "Inland Empire", "genre": "Drama · Mystery", "pick": false }
+    ],
+    "picks": ["mulholland-drive", "blue-velvet"]
+  },
   "archive": [
     {
       "number": 1,
@@ -258,36 +287,30 @@
     },
     {
       "number": 3,
-      "name": "David Lynch",
-      "origin": "American",
-      "films": ["Mulholland Drive", "Blue Velvet", "Eraserhead"]
-    },
-    {
-      "number": 4,
       "name": "Andrei Tarkovsky",
       "origin": "Russian",
       "films": ["Stalker", "Solaris", "Andrei Rublev"]
     },
     {
-      "number": 5,
+      "number": 4,
       "name": "Ingmar Bergman",
       "origin": "Swedish",
       "films": ["The Seventh Seal", "Persona", "Wild Strawberries"]
     },
     {
-      "number": 6,
+      "number": 5,
       "name": "Wong Kar-wai",
       "origin": "Hong Kong",
       "films": ["In the Mood for Love", "Chungking Express", "2046"]
     },
     {
-      "number": 7,
+      "number": 6,
       "name": "Martin Scorsese",
       "origin": "American",
       "films": ["Taxi Driver", "Raging Bull", "Goodfellas"]
     },
     {
-      "number": 8,
+      "number": 7,
       "name": "Nicolas Winding Refn",
       "origin": "Danish",
       "films": ["Drive", "Only God Forgives", "The Neon Demon"]

@@ -1,10 +1,10 @@
 ---
 layout: layouts/director.njk
-title: Richard Linklater
-permalink: /directors/linklater/
-directorSlug: linklater
+title: Shane Meadows
+permalink: /directors/meadows/
+directorSlug: meadows
 breadcrumbs:
-  - text: Richard Linklater
+  - text: Shane Meadows
 ---
 
 {% set dir = directors[directorSlug] %}
@@ -30,7 +30,7 @@ breadcrumbs:
       </h1>
 
       <p class="hero-bio">
-        <strong>The architect of time.</strong> {{ dir.bio }}
+        <strong>The Midlands poet.</strong> {{ dir.bio }}
       </p>
 
       <div class="hero-actions">
@@ -177,31 +177,31 @@ breadcrumbs:
 
   <div class="reviews-grid">
 
-    <!-- Review 1: A Scanner Darkly -->
-    <a href="a-scanner-darkly.html" class="review-card">
+    <!-- Review 1: This Is England -->
+    <a href="this-is-england.html" class="review-card">
       <div class="review-card-vis">
         <div class="review-vis-year">2006</div>
-        <div class="review-vis-badge">9 <span>/ 15</span></div>
+        <div class="review-vis-badge">10 <span>/ 15</span></div>
       </div>
       <div class="review-card-body">
         <div>
-          <div class="review-meta">2006 · 100 min · Animation · Sci-Fi</div>
-          <div class="review-title">A Scanner Darkly</div>
+          <div class="review-meta">2006 · 101 min · Drama · Crime</div>
+          <div class="review-title">This Is England</div>
           <p class="review-excerpt">
-            Dizzy, confusing in places — but the drug haze is the point. The last twenty minutes pay off everything, wrapping the dealer network in a conspiracy theory that earns its reveal. The Harrelson and Downey Jr. scenes alone are worth the price of admission.
+            An entertaining film that gave me perspective on England in the eighties — the decade of unevenly distributed wealth, when the poor got poorer and the rich got richer, of working-class struggles and strikes.
           </p>
         </div>
         <div class="review-footer">
           <div class="club-rating">
             <span class="club-rating-label">Club Rating</span>
             <div class="club-rating-score">
-              <span class="club-rating-total">9</span>
+              <span class="club-rating-total">10</span>
               <span class="club-rating-max">/ 15</span>
             </div>
             <div class="club-rating-breakdown">
               <span class="cr-dim a"><span class="cr-dim-dot"></span>A·3</span>
-              <span class="cr-dim e"><span class="cr-dim-dot"></span>E·2</span>
-              <span class="cr-dim r"><span class="cr-dim-dot"></span>R·4</span>
+              <span class="cr-dim e"><span class="cr-dim-dot"></span>E·4</span>
+              <span class="cr-dim r"><span class="cr-dim-dot"></span>R·3</span>
             </div>
           </div>
           <span class="read-link">Full review →</span>
@@ -209,18 +209,18 @@ breadcrumbs:
       </div>
     </a>
 
-    <!-- Review 2: Tape -->
-    <a href="tape.html" class="review-card">
+    <!-- Review 2: Dead Man's Shoes -->
+    <a href="dead-mans-shoes.html" class="review-card">
       <div class="review-card-vis">
-        <div class="review-vis-year">2001</div>
+        <div class="review-vis-year">2004</div>
         <div class="review-vis-badge">12 <span>/ 15</span></div>
       </div>
       <div class="review-card-body">
         <div>
-          <div class="review-meta">2001 · 86 min · Drama · Thriller</div>
-          <div class="review-title">Tape</div>
+          <div class="review-meta">2004 · 90 min · Thriller · Drama</div>
+          <div class="review-title">Dead Man's Shoes</div>
           <p class="review-excerpt">
-            Tension bundles up with every minute and doesn't stop until the last second. Three people, one room — and everything you could want from a story about guilt, control, friendship, and the particular difficulty of growing up.
+            A reflection on how we treat other people — how often we don't think about the implications of our actions, especially in the psychological sphere. Meadows doesn't let you look away from any of it.
           </p>
         </div>
         <div class="review-footer">
@@ -231,8 +231,8 @@ breadcrumbs:
               <span class="club-rating-max">/ 15</span>
             </div>
             <div class="club-rating-breakdown">
-              <span class="cr-dim a"><span class="cr-dim-dot"></span>A·3</span>
-              <span class="cr-dim e"><span class="cr-dim-dot"></span>E·5</span>
+              <span class="cr-dim a"><span class="cr-dim-dot"></span>A·4</span>
+              <span class="cr-dim e"><span class="cr-dim-dot"></span>E·4</span>
               <span class="cr-dim r"><span class="cr-dim-dot"></span>R·4</span>
             </div>
           </div>
@@ -246,7 +246,7 @@ breadcrumbs:
 
 <script>
   const films = {{ dir.filmography | dump | safe }};
-  const START_YEAR = 1988, END_YEAR = 2026;
+  const START_YEAR = 1994, END_YEAR = 2028;
 
   function buildDots() {
     const axis = document.getElementById('timelineAxis');

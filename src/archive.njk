@@ -22,11 +22,15 @@ permalink: /archive/
   'the-idiots':             { total: 10, a: 4, e: 3, r: 3 },
   'dancer-in-the-dark':     { total: 15, a: 5, e: 5, r: 5 },
   'mulholland-drive':       { total: 10, a: 4, e: 2, r: 4 },
-  'blue-velvet':            { total: 6,  a: 2, e: 2, r: 2 }
+  'blue-velvet':            { total: 6,  a: 2, e: 2, r: 2 },
+  'bronson':                { total: 12, a: 5, e: 4, r: 3 },
+  'only-god-forgives':      { total: 11, a: 4, e: 4, r: 3 },
+  'this-is-england':        { total: 10, a: 3, e: 4, r: 3 },
+  'dead-mans-shoes':        { total: 12, a: 4, e: 4, r: 4 }
 } %}
 
 {# Directors sorted by season number #}
-{% set seasonOrder = ['bong', 'coen', 'haneke', 'anderson', 'polanski', 'linklater', 'vontrier', 'lynch'] %}
+{% set seasonOrder = ['bong', 'coen', 'haneke', 'meadows', 'anderson', 'polanski', 'linklater', 'vontrier', 'lynch', 'refn'] %}
 
 <!-- ═══ HERO ═════════════════════════════════════════════ -->
 <section class="rankings-hero">
@@ -52,7 +56,7 @@ permalink: /archive/
     <span class="archive-stat-label">Directors Profiled</span>
   </div>
   <div class="archive-stat">
-    <span class="archive-stat-num">17</span>
+    <span class="archive-stat-num">21</span>
     <span class="archive-stat-label">Films Reviewed</span>
   </div>
   <div class="archive-stat">
@@ -79,7 +83,7 @@ permalink: /archive/
       <div class="season-num">{{ dir.season | pad(2, '0') }}</div>
       <div class="season-info">
         <div class="season-title-row">
-          <a href="/directors/{{ dir.slug }}/" class="season-director">{{ dir.name }}</a>
+          {% if dir.slug %}<a href="/directors/{{ dir.slug }}/" class="season-director">{{ dir.name }}</a>{% else %}<span class="season-director">{{ dir.name }}</span>{% endif %}
           {% if dir.isCurrent %}<span class="now-badge"><span class="now-badge-dot"></span>Now Screening</span>{% endif %}
         </div>
         <div class="season-meta">

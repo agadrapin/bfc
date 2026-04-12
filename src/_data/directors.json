@@ -95,6 +95,35 @@
     ],
     "picks": ["memories-of-murder", "mother"]
   },
+  "meadows": {
+    "name": "Shane Meadows",
+    "firstName": "Shane",
+    "lastName": "Meadows",
+    "slug": "meadows",
+    "ghostLetter": "M",
+    "season": 4,
+    "isCurrent": false,
+    "born": "Dec 26, 1972",
+    "origin": "Uttoxeter, England",
+    "nationality": "British",
+    "active": "1996 – Present",
+    "features": 10,
+    "bio": "Shane Meadows is one of British cinema's most distinctly rooted filmmakers — a director who has been telling stories about the places and people that mainstream film tends to overlook since his debut in 1996. Raised in the Midlands, he makes films about small towns, working-class lives, and the specific kinds of damage that accumulate in communities where opportunity is scarce and memory is long. His work is not political in any programmatic sense — it is too intimate and too specific for that — but it is always honest about the social conditions that shape his characters, and about the ways those conditions can turn ordinary people toward violence, loyalty, or quiet desperation.",
+    "themes": ["Working-Class Britain", "Belonging", "Violence and Consequence", "Guilt", "Community"],
+    "filmography": [
+      { "year": 1996, "title": "Small Time", "genre": "Comedy · Drama", "pick": false },
+      { "year": 1997, "title": "TwentyFourSeven", "genre": "Drama · Comedy", "pick": false },
+      { "year": 1999, "title": "A Room for Romeo Brass", "genre": "Comedy · Drama", "pick": false },
+      { "year": 2002, "title": "Once Upon a Time in the Midlands", "genre": "Comedy · Drama", "pick": false },
+      { "year": 2004, "title": "Dead Man's Shoes", "genre": "Thriller · Drama", "pick": true, "slug": "dead-mans-shoes", "awards": [{ "type": "bafta", "status": "nom" }] },
+      { "year": 2006, "title": "This Is England", "genre": "Drama · Crime", "pick": true, "slug": "this-is-england", "awards": [{ "type": "bafta", "status": "won" }] },
+      { "year": 2008, "title": "Somers Town", "genre": "Drama · Comedy", "pick": false },
+      { "year": 2009, "title": "Le Donk & Scor-zay-zee", "genre": "Comedy · Music", "pick": false },
+      { "year": 2013, "title": "The Stone Roses: Made of Stone", "genre": "Documentary · Music", "pick": false },
+      { "year": 2026, "title": "Chork", "genre": "Drama", "pick": false, "unreleased": true }
+    ],
+    "picks": ["this-is-england", "dead-mans-shoes"]
+  },
   "anderson": {
     "name": "Paul Thomas Anderson",
     "firstName": "Paul\nThomas",
@@ -250,7 +279,7 @@
     "slug": "lynch",
     "ghostLetter": "L",
     "season": 9,
-    "isCurrent": true,
+    "isCurrent": false,
     "born": "Jan 20, 1946",
     "origin": "Missoula, USA",
     "nationality": "American",
@@ -271,6 +300,36 @@
       { "year": 2006, "title": "Inland Empire", "genre": "Drama · Mystery", "pick": false }
     ],
     "picks": ["mulholland-drive", "blue-velvet"]
+  },
+  "refn": {
+    "name": "Nicolas Winding Refn",
+    "firstName": "Nicolas\nWinding",
+    "lastName": "Refn",
+    "slug": "refn",
+    "ghostLetter": "R",
+    "season": 10,
+    "isCurrent": true,
+    "born": "Sep 29, 1970",
+    "origin": "Copenhagen, Denmark",
+    "nationality": "Danish",
+    "active": "1996 – Present",
+    "features": 11,
+    "bio": "Nicolas Winding Refn is one of the most visually distinctive filmmakers working today — a director for whom image, sound, and atmosphere consistently take precedence over dialogue and conventional narrative. Working across Denmark, the UK, and the United States, he has built a body of work that divides audiences sharply and deliberately: his films are slow, intensely stylised, and loaded with symbolism that rewards patience and punishes distraction. Refn is drawn to figures who exist outside ordinary social structures — prisoners, criminals, enforcers, men defined entirely by their capacity for violence — and he treats them not with moral judgement but with a cool, almost anthropological fascination.",
+    "themes": ["Violence as Spectacle", "Masculine Identity", "Myth and Symbol", "Isolation", "Moral Judgement"],
+    "filmography": [
+      { "year": 1996, "title": "Pusher", "genre": "Crime · Thriller", "pick": false },
+      { "year": 1999, "title": "Bleeder", "genre": "Drama · Crime", "pick": false },
+      { "year": 2003, "title": "Fear X", "genre": "Thriller · Mystery", "pick": false },
+      { "year": 2004, "title": "Pusher II", "genre": "Crime · Drama", "pick": false },
+      { "year": 2005, "title": "Pusher III", "genre": "Crime · Drama", "pick": false },
+      { "year": 2008, "title": "Bronson", "genre": "Biography · Crime", "pick": true, "slug": "bronson" },
+      { "year": 2009, "title": "Valhalla Rising", "genre": "Action · Adventure", "pick": false },
+      { "year": 2011, "title": "Drive", "genre": "Crime · Drama", "pick": false, "awards": [{ "type": "palme", "status": "nom" }, { "type": "globe", "status": "nom" }] },
+      { "year": 2013, "title": "Only God Forgives", "genre": "Crime · Drama", "pick": true, "slug": "only-god-forgives", "awards": [{ "type": "palme", "status": "nom" }] },
+      { "year": 2016, "title": "The Neon Demon", "genre": "Horror · Thriller", "pick": false, "awards": [{ "type": "palme", "status": "nom" }] },
+      { "year": 2026, "title": "Her Private Hell", "genre": "Thriller · Horror", "pick": false, "unreleased": true }
+    ],
+    "picks": ["bronson", "only-god-forgives"]
   },
   "archive": [
     {
@@ -308,12 +367,6 @@
       "name": "Martin Scorsese",
       "origin": "American",
       "films": ["Taxi Driver", "Raging Bull", "Goodfellas"]
-    },
-    {
-      "number": 7,
-      "name": "Nicolas Winding Refn",
-      "origin": "Danish",
-      "films": ["Drive", "Only God Forgives", "The Neon Demon"]
     }
   ]
 }

@@ -136,7 +136,7 @@ breadcrumbs:
         {% if film.awards %}
         <div class="tl-awards">
           {% for award in film.awards %}
-          <span class="tl-award {{ award.status }}" data-tip="{% if award.type == 'oscar' %}Oscar{% elif award.type == 'palme' %}Palme dOr{% else %}Golden Globe{% endif %} — {% if award.status == 'won' %}Winner{% else %}Nominee{% endif %}">{% if award.type == 'oscar' %}🏆{% elif award.type == 'palme' %}🌿{% else %}🌐{% endif %}</span>
+          <span class="tl-award {{ award.status }}" data-tip="{% if award.type == 'oscar' %}Oscar{% elif award.type == 'palme' %}Palme dOr{% elif award.type == 'bafta' %}BAFTA{% else %}Golden Globe{% endif %} — {% if award.status == 'won' %}Winner{% else %}Nominee{% endif %}">{% if award.type == 'oscar' %}🏆{% elif award.type == 'palme' %}🌿{% elif award.type == 'bafta' %}🎭{% else %}🌐{% endif %}</span>
           {% endfor %}
         </div>
         {% endif %}
@@ -150,7 +150,7 @@ breadcrumbs:
         {% if film.awards %}
         <div class="tl-awards">
           {% for award in film.awards %}
-          <span class="tl-award {{ award.status }}" data-tip="{% if award.type == 'oscar' %}Oscar{% elif award.type == 'palme' %}Palme dOr{% else %}Golden Globe{% endif %} — {% if award.status == 'won' %}Winner{% else %}Nominee{% endif %}">{% if award.type == 'oscar' %}🏆{% elif award.type == 'palme' %}🌿{% else %}🌐{% endif %}</span>
+          <span class="tl-award {{ award.status }}" data-tip="{% if award.type == 'oscar' %}Oscar{% elif award.type == 'palme' %}Palme dOr{% elif award.type == 'bafta' %}BAFTA{% else %}Golden Globe{% endif %} — {% if award.status == 'won' %}Winner{% else %}Nominee{% endif %}">{% if award.type == 'oscar' %}🏆{% elif award.type == 'palme' %}🌿{% elif award.type == 'bafta' %}🎭{% else %}🌐{% endif %}</span>
           {% endfor %}
         </div>
         {% endif %}

@@ -251,6 +251,18 @@ footer.site-footer {
   color: var(--muted);
 }
 
+.footer-kofi {
+  display: block;
+  margin-top: 1rem;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-kofi:hover { color: var(--gold); }
+
 /* ── SHARED SECTION UTILITIES ──────────────────────────── */
 .section-tag {
   display: flex;
@@ -436,6 +448,12 @@ footer.site-footer {
   color: var(--gold2);
   border-color: rgba(232, 201, 122, 0.35);
   background: rgba(232, 201, 122, 0.05);
+}
+
+.award.bafta {
+  color: #c4956a;
+  border-color: rgba(196, 149, 106, 0.35);
+  background: rgba(196, 149, 106, 0.05);
 }
 
 .award.nominee {
@@ -774,5 +792,45 @@ footer.site-footer {
 
 .nav-hamburger.active span:nth-child(3) {
   transform: rotate(-45deg) translate(3px, -3px);
+}
+
+/* ── AMAZON AFFILIATE ────────────────────────────────── */
+.amazon-link {
+  margin: 3rem 0;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+}
+
+.amazon-btn {
+  display: inline-block;
+  margin-top: 1rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold2);
+  text-decoration: none;
+  border: 1px solid rgba(201,168,76,0.4);
+  padding: 0.7rem 1.2rem;
+  transition: all 0.2s;
+}
+
+.amazon-btn:hover {
+  background: rgba(201,168,76,0.06);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.amazon-btn em {
+  font-style: normal;
+  color: var(--white);
+}
+
+.amazon-disclosure {
+  margin-top: 0.8rem;
+  font-size: 0.5rem;
+  letter-spacing: 0.15em;
+  color: var(--muted);
+  text-transform: uppercase;
 }
 
